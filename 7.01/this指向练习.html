@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>this指向练习</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 
+    var num = 1;//num=4
+    var myObject = {
+        num: 2,//num=3
+        add: function() {
+            this.num = 3;
+            // window调用
+            (function() {
+                // this 指向window
+                console.log(this.num);//1
+                // 相当于对全局变量重新赋值
+                this.num = 4;
+            })();
+            console.log(this.num);
+        },
+        sub: function() {
+            console.log(this);//window
+            console.log(this.num)
+        }
+    }
+    myObject.add();//3
+    console.log(myObject.num);//3
+    console.log(num);//4
+    var sub = myObject.sub;
+    sub();//window调用
+    myObject.sub();//myObject调用
+
+ 
+    var name = 'window';      
+    var person1 = {
+        name: 'person1',
+        show1: function () {
+            console.log(this.name)
+        },
+        show3: function () {
+                return function () {
+                console.log(this.name)
+            }
+        },
+    }
+
+    var person2 = { name: 'person2' }
+    person1.show1()//person1
+    person1.show1.call(person2)//person2
+    // 实际上是window调用
+    person1.show3()()//window
+    // call()触发的是show3的返回值
+    person1.show3().call(person2)//person2
+    // 看的是子域里的this，是window调用
+    person1.show3.call(person2)()//window
+
+
+    // 3.
+    var name = 'zc';
+    // 立即执行函数都是window调用的
+    (function(){
+            name:'yf'
+            console.log(this.name);//zc
+    })();
+
+    // 4.
+    function foo() {
+        // 还是相当于在window下调用函数，this指向window，this永远不可能指向函数，只指向对象
+        (function(){
+            name:'yf'
+            console.log(this.name);//zc
+        })();
+    }
+    foo();
+
+    // 5.
+    function foo(){
+        console.log(this)//this指向obj
+        return function(){
+            console.log(this)//this指向window
+        }
+    }
+    var obj = {
+        say:foo
+    }
+    obj.say();
+    obj.say()();
+    // res存的是foo()函数返回值的指针  这种写法相当于 obj.say()();
+    var res = obj.say();
+    res();
+    // 规律：父函数this不等于子函数this，按照规律判断
+
+    // 6.
+    (function(){
+        console.log(this);//window
+        return function(){
+            console.log(this);//window
+        }
+    })()();
+
+    // 7.
+    var obj = {};
+    (function(){
+        console.log(this);//window
+        return function(){
+            console.log(this);//obj
+        }
+    })().call(obj);
+
+    // 8.
+    (function(){
+        console.log(this);//window
+        return function(){
+            console.log(this);//window
+        }
+    })().call(this);
+
+    // 9.
+    var obj = {};
+    (function(){
+        console.log(this);//obj
+        return function(){
+            console.log(this);//window
+        }
+    }).call(obj)();
+    // 使用call触发
+
+    // 10.
+</script>
+</html>

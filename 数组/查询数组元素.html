@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>查询数据元素</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var arr = ['222','gukun',12,[11,23]];
+    // 判断数组元素中是否含有某个元素
+    
+    // 1.方式一：遍历 +if
+    for(var i=0;i<=arr.length;i++){
+        if(arr[i]==='gukun'){
+            console.log('gukun');
+            break;
+        }else{
+            console.log('没有')
+        }
+    }
+    
+    // 2.方式二：indexOf() 检索数组中是否有指定元素，有返回索引值，没有返回-1
+    var res = arr.indexOf('gukun');
+    console.log(res);
+</script>
+</html>

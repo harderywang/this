@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var name = 'zc';
+    function foo(){
+        // arguments函数在不声明形参时也可以接收实参  是个伪数组
+        console.log(arguments)
+        var name = 'lyc';
+        console.log(this.name);
+    }
+    var wyh = {
+        name:'wyh',
+        foo:foo
+    }
+    var fei = {
+        name:'yf',
+        foo:foo,
+        cname:this.name
+    }
+    var yuAng = {
+        name:'ya',
+        foo:foo
+    }
+    foo();
+    wyh.foo()
+    fei.foo()
+    // 1.call()改变function函数中this指向，触发函数
+    // 参一：指定this指向的对象
+    // 参二~参N：给调用函数传入实参
+    foo.call(fei,'help me');
+    wyh.foo.call(this);// 将foo中this指向fei改为window
+
+    // 2.apply()改变function函数中this指向，触发函数
+    // 参一：指定this指向的对象
+    // 参二：数组：给调用的函数传入实参
+    yuAng.foo.apply(window,[1,2,3,4,5,6])
+
+    // 3.bind()改变function函数中this指向，需要加执行符才能触发函数
+    yuAng.foo.bind(window)(1,2,3);
+
+    // 问题：call apply  bind 的区别？
+    // 三者都可以改变this指向，但是call和apply可以直接触发函数，bind需要添加执行符，且，call和apply
+</script>
+</html>

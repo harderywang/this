@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>arguments</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function foo(){
+        // arguments是一个伪数组，伪数组不可以使用数组的api，作用是接受实参
+        console.log(arguments);//Arguments(5)
+        // 将伪数组变成真数组
+        // 1.基础方法：for循环遍历
+        var params = [];
+        for(var i = 0;i<arguments.length;i++){
+            params.push(arguments[i])
+        }
+        console.log(params);//[1, 2, 3, 4, 5]
+        
+        // 2.es6中的展开运算符，可以将伪数组中的数据放入parmas中
+        var params = [...arguments];
+        console.log(params);//[1, 2, 3, 4, 5]
+        
+        // 3.Array.from() 将伪数组转变成真数组  参数为伪数组，返回真数组
+        var params = Array.from(arguments);
+        console.log(params);//[1, 2, 3, 4, 5]
+    }
+    foo(1,2,3,4,5);
+</script>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+    <script>
+        // 变量或属性key 赋值js基本数据类型数据存的是数据
+        // 变量或属性key 赋值引用数据类型数据 存的是指针
+        
+        // var obj = {
+        //     name:'yf',
+        //     age:18
+        // }
+        // var res = {};
+        // xxx.xx.xx 点左边的赋值都是对象，xx本身类型是【字符串】
+         
+        // 实现深拷贝  复制对象  复制数组
+        // 复制对象
+        function copyObject(obj){
+            // if语句中的判断条件一定会执行，但是代码块不会执行。
+            if(arguments.length == 0){
+                throw new Error('argument.length can not zero');
+            }
+            if(arguments.length > 1){
+                throw new Error('arguments.length can not gt 1');
+            }
+            if(obj.constructor !== Object){
+                throw new Error('type param must be object');
+            }
+            var res={};
+            for(var x in obj){
+                res[x] = obj[x];
+            };
+            return res;
+        }
+        var obj1 = copyObject({
+            name:'zc',
+            age:21
+        });
+        console.log(obj1);
+
+
+        // 复制数组
+        function copyArray(arr){
+            if(arguments.length == 0){
+                throw new Error('argument.length can not zero');
+            }
+            if(arguments.length > 1){
+                throw new Error('arguments.length can not gt 1');
+            }
+            if(arr.constructor !== Array){
+                throw new Error('type param must be object');
+            }
+            var res=[];
+            for(var i=0;i<arr.length;i++){
+                res.push(arr[i]);
+            };
+            return res;
+        }
+        var arr1 = copyArray([1,2,3,4,5,6]);
+        console.log(arr1);
+        // copy数组或对象
+        function copy(param){
+            if(arguments.length == 0 ){
+                throw new Error('argument.length can not zero');
+            }
+            if(arguments.length > 1){
+                throw new Error('arguments.length can not gt 1');
+            }
+            if(!(param instanceof Object)){
+                throw new Error('type param must be object or array');
+            }
+
+            if(Array.isArray(param)){
+                var res=[];
+                for(var i=0;i<param.length;i++){
+                    res.push(param[i]);
+                };
+                console.log(res);
+                return res;
+            }else{
+                var res={};
+                for(var x in param){
+                res[x] = param[x];
+            };
+            return res;
+            }
+        }
+        var res1 = copy([1,2,3,4,5]);
+        console.log(res1);
+
+
+
+
+    </script>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 1.封装一段代码，实现求两个值之间的随机数
+    // function random(max,min){
+    //     console.log(Math.round(Math.random()*(max-min)+min));
+    // }
+    // random(20,10);
+
+    /*函数封装的用法：
+    确定实参的数据类型及数据意义，定义形参
+    */
+
+    // 2.封装数组去重方法
+    function Arr(arr){
+        // 错误优先原则，先验证长度，再验证类型
+        // 严格模式  判断是否是数组，不是抛出错误
+        if(arguments.length > 1){
+            throw new Error('arguments.length can not gt 1')
+        }
+        if(arguments.length == 0){
+            throw new Error('arguments.length can not undefined')
+        }
+        if(!Array.isArray(arr)){
+            // 抛出错误并阻止下面的代码执行
+            throw new Error('params must is Array')
+        }
+       
+        for(var i =0;i<arr.length;i++){
+            for(var j=i+1;j<arr.length;j++){
+                if(arr[i] == arr[j]){
+                    arr.splice(j,1);
+                    j--;
+                }
+            }
+        }
+        console.log(arr);
+    };
+    Arr([1,2,2,4,4,5]);
+</script>
+</html>

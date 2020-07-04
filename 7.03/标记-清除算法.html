@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+    <script>
+        // 只有变量或对象下属性可以引用
+        // 无论是变量被引用还是对象中的属性被引用，AO都不会被销毁
+        function fun(){
+            var a = 0;
+            return function(){
+                console.log(++a);
+            }
+        }
+        var res = fun()
+        // a存在是因为res引用了fun返回的函数
+        // 在res执行时需要引用AO下的a属性，所以AO不会被销毁，fun的AO对象不会被回收
+        res();
+        res();
+        // 当闭包完成任务后找到完成任务的条件，然后清空res，那么foo的AO对象就不会再被引用
+        //在不用的时候将引用的根对象赋值为null就可以清空被引用数据
+        res = null;
+    </script>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+    <script>
+        //数组排序
+        function sort(arr){
+            // if语句中的判断条件一定会执行，但是代码块不会执行。
+            if(arguments.length === 0){
+                throw new Error('parm can not undefined');
+            }
+            if(arguments.length > 1){
+                throw new Error('parm can not gt 1');
+            }
+            if(!Array.isArray(arr)){
+                throw new Error('parm must be Array');
+            }
+            for(var i = 0;i<arr.length;i++){
+                for(var j = i+1;j<arr.length;j++){
+                    // 前 > 后 从小到大
+                    if(arr[i] > arr[j]){
+                        var res;
+                        res = arr[i];
+                        arr[i] = arr[j];
+                        arr[j] = res;
+                    }
+                }
+            }
+            console.log(arr);
+        }
+        sort([1,2,3,2,7,89,3,21]);
+    </script>
+</html>

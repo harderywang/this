@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+    <script>
+        var n = 123;
+        // 栈会给n变量分配空间，用来存123
+       
+        var str = 'fwc2r1352xyt';
+        // 栈给str变量分配空间，用来存'fwc2r1352xyt'
+        
+        var o = {
+            name:'zc',
+        }
+        // 栈给o变量分配空间存指针，堆来存对象数据
+        // 栈给对象下属性name分配空间 用来存字符串'zc'
+        
+        var arr = [];
+        // 栈存arr指针，栈存元素；堆创建空间存数组，提供指针
+        
+        function foo(a){
+            return a+2;
+        }
+        // 给函数(可调用的对象)分配内存
+        // 栈存foo的指针，堆存函数提供指针
+        // 函数调用，栈返回返回值，时间到【返回值】没有变量引用，计算机销毁 
+
+          
+    </script>
+</html>

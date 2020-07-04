@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>变量的销毁原因</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var test = '全局变量';
+    function foo(){
+        var a = 0;// 没有被销毁
+        var c = 'ccc';// 被销毁
+        console.log(a);//0 （执行3次，都是0）
+        // console.log(b);//报错 外层作用域不能访问内部作用域
+        return function bar(){
+            var b = 'b';
+            ++a;//a在上一层对象中被声明
+            console.log(a);//不执行了
+        }
+        
+    } 
+    var bar = foo();
+    bar();
+    bar();
+    bar();
+    // foo()();
+    // foo()();
+    // foo()();
+
+</script>
+</html>

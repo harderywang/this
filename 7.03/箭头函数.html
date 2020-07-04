@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+    <script>
+        // 箭头函数没有this指向
+        // 箭头函数中this用的是【上一层作用域】中的this
+        var obj = ()=>{
+            console.log(this);//上一层作用域是全局，所以是window
+        } 
+        var foo = {
+            obj:obj,
+            bar:bar
+        }
+        foo.obj();
+        function bar(){
+            var obj = {
+                foo:()=>{
+                    console.log(this);
+                    // 箭头函数没有this 此时是bar的this
+                }
+            }
+            obj.foo();
+            // 回调函数中的
+            setTimeout(()=>{
+                console.log(this)
+            },500)
+        }
+        foo.bar();
+        // 总结：箭头函数中没有this，如何判断箭头函数内部this
+        // 看上一层作用域中的this是什么
+    </script>
+</html>

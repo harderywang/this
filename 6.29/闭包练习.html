@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>闭包练习</title>
+</head>
+<body>
+    
+</body>
+<script>
+    (function(window){
+        var num = 0;
+        // foo是window下属性 所以是全局的 foo存的是指针
+        window.foo = function(){
+            // 在全局属性下访问私有的num
+            console.log(num);
+            var count = 0;
+            return function foo(){
+            count++;
+            console.log(count);
+            };
+        };
+        
+    })(window);
+    var bar = foo();
+    bar();
+    bar();
+    console.log(bar);
+    console.log(bar);
+    var c = foo();
+</script>
+</html>

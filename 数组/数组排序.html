@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 练习：将给定字符串的每个单词顺序颠倒
+    var str = "Let's take LeetCode contest";
+    var reverseWords = function() {
+    var arr = str.split(' ');
+    var str1 = '';
+    for(var i = 0;i<arr.length;i++){
+        var arr1 = arr[i];
+        console.log(arr1); 
+        if(i!==0){
+            str1 += ' '+arr1.split('').reverse().join('');
+        }else{
+            str1 += arr1.split('').reverse().join('');
+        } 
+    }
+    console.log(str1); 
+    };
+    reverseWords();
+
+    // 1.reverse() 颠倒数组元素顺序
+    var arr = [1,2,3,'s','sa',6];
+    var reverseArr = arr.reverse();
+    console.log(reverseArr);
+
+    // 2.sort()  可以用来对数组中的元素进行排序（会影响原数组，直接对原数组进行排序） 对数字进行排序可能回得到错误的结果
+    // 会影响原数组，默认按照Unicode编码进行排序
+    // 与reverse()结合可以调转顺序
+    var arr = [1,2,3,5,7,4];
+    // 在sort()中添加一个回调函数，可以用来指定排序规则，回调函数中需要定义两个形参
+    // 浏览器将分别使用数组中的元素作为实参取调用回调函数 使用那个元素不确定，但是在数组中前面一个参数肯定在后面一个参数的前边
+    arr.sort(function(x,y){
+        // return x-y;//从小到大 升序   (6) [1, 2, 3, 4, 5, 7]
+        return y-x;//从大到小 降序 (6) [7, 5, 4, 3, 2, 1]
+    })
+    console.log(arr);
+
+
+
+</script>
+</html>

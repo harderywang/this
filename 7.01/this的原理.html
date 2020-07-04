@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /* 原理一  与函数调用相结合
+    - 当一个函数在执行的时候，会创建一个上下文对象，会产生局部作用域
+    - 上下文对象中，函数时被谁调用，在哪里调用，参数是什么等信息
+    - this就是记录的一个属性，在函数被调用时产生
+    */
+    
+    /*
+    函数调用有几种方式？
+    1.new调用
+    2.事件调用
+    3.call apply 或 bind调用
+    */
+
+    /*
+    原理二：结合作用域的角度看this
+    问题：为什么return返回为对象 数组 函数时，this就不指向new实例化的对象
+    函数本身不能作为构造函数，new类似失效
+    原理：函数在执行时会创建一个局部作用域，this是受作用域的影响。
+    new 创建一个对象，就是将构造函数的作用域赋给了新对象;所以this 指向了这个对象，return {}, [],function 之后；改变了作用域，作用域赋值给了 {} function [] 所以this指向{} [] function
+    */
+    var name = 'zc';
+    // 特殊情况
+    function foo(){
+        this.name = 'aaa',
+        console.log(this.name),
+        console.log(this)
+        return {
+            name:'wyh'
+        }
+    }
+    var obj = new foo();
+    console.log(obj);
+
+</script>
+</html>

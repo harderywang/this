@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>展开运算符</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var arr = [1,2,3,4,5];
+    // 创建对象res 展开数组arr中的内容
+    var res = [...arr];
+
+
+// 创建一个对象obj，复制其中的内容
+    var obj = {
+        name:'wyh',
+        age:22
+    }
+    // 1.基础方式，遍历
+    var clone = {}
+    for(var x in obj){
+        // 注意：x是变量，不能直接加点调用
+        clone[x] = obj[x];
+    }
+    console.log(clone);//{name: "wyh", age: 22}
+    // 2.展开运算符
+    var clone1 = {...obj};
+    console.log(clone);//{name: "wyh", age: 22}
+
+    // 总结：
+    // 展开对象就用对象接收，展开数组用数组接收
+</script>
+</html>

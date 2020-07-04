@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>递归、预编译</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 递归
+    // 很容易找到抽象规律的用递归的方法
+    // 1.写一段函数实现n的阶乘
+    function mul(n,num){
+        for(var i = n;i>=1;i--){
+            num = num*i;
+        }
+        return num;
+    }
+    console.log(mul(8,1));//40320
+    
+    // 递归的方法
+    // 找规律，找出口
+    // 规律：n!=n*(n-1)!
+    // 出口：n = 1时，n的
+    function mul(n){
+        if(n==1){
+            return 1;
+        }
+        return n*mul(n-1);
+    }
+    console.log(mul(8));//40320
+
+    // 2.实现费波纳恩数列
+    // 规律：fb(n) = fb(n-1) + fb(n-2);
+    function fb(n){
+        if(n==1 || n==2){
+            return 1;
+        }
+        return fb(n-1) + fb(n-2);
+    }
+    console.log(fb(8));//21
+
+
+    // 预编译
+    // 互相嵌套的函数，里面的函数可以访问外层函数的变量，但是外面的函数不可以访问里层函数的变量
+    // 函数声明整体提升  变量只是声明提升
+    /*
+    预编译的前奏：
+    1.implay global暗示全局变量：即任何变量，如果变量未经声明就复制，此变量就是全局变量所有
+
+    2.一切声明的全局变量，全是window的属性,window就是全局。
+    var a = 123;=====>window.a = 123;
+
+    预编译发生在函数执行前
+    预编译的顺序
+    1.创建一个AO对象 执行期上下文 函数执行产生的一个存储空间库
+    2.形参声明提前
+    3.变量声明提升
+    4.形参实参统一
+    5.函数声明并赋值 将函数名作为AO对象的属性名
+    执行函数
+
+    */
+    a = 100;
+    function demo(e){
+        function e(){}
+        arguments[0] = 2;
+        console.log(e);
+        if(a){
+            var b = 123;
+        }
+        var c;
+        a = 10;
+        var a;
+        console.log(b);
+        f = 123;
+        console.log(c);
+        console.log(a); 
+    }
+    var a;
+    demo(1);
+    console.log(a);
+    console.log(f);
+    /*
+    GO{
+    预编译：
+      a:undefined
+      demo:function(){}
+    执行：a:100
+    f:123
+      
+    }
+    */
+
+
+    
+    
+
+</script>
+</html>

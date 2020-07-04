@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>立即执行函数</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function foo(){};
+    // 注意：立即执行函数没有声明提升的过程普通函数有声明提升的过程。
+    (function(){})();
+</script>
+</html>

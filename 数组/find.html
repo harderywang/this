@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>find</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var arr = [1,30,33,44,55];
+    // find()用于查找某个数组是否有某个元素 如果有则返回第一个查到的元素 没有返回undefined
+    
+    var res = arr.find(function(item,index){
+        // item：数组元素  index：索引值
+        return item===30
+    })
+    console.log(res);
+    // 用法：1.判断是否有，有的话使用这个元素
+    if(res!==undefined){
+        // 使用了find查到的元素
+        var sum = res +1;
+        console.log(sum);
+    }
+
+    // 2.如何只判断数组中是否含有某一个元素
+    // findIndex() 查询是否含有某个元素，有返回第一次出现的该元素索引值，没有返回-1
+    var arr1 = [1,2,3]
+    var res  = arr1.findIndex(function(item,index){
+        return item === '';
+    })
+    console.log(res1);
+
+    // 3.map() 可以实现深拷贝，返回一个新的数组
+    var arr4 = [1,2,3,4,5,6,7,8];
+    var res = arr.map(function(item){
+        console.log(item);
+        return item*2;
+    })
+    res.push('sdf');
+    console.log(res);
+
+    // 浅拷贝  被复制的数组改变复制得到的数组也会改变
+    var arr1 = [];
+    var res1 = arr1;
+    res1.push('res新增数据');
+    console.log(arr1,res1);
+    
+
+</script>
+</html>

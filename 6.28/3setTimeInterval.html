@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计时器</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 计时器
+    // setTimeout() 等多少秒后再执行，执行的一次
+    // setInterval() 每个多少毫秒执行一次 无限循环的执行
+    // 1.两者都是异步程序，回调函数中写的都是执行慢的程序  都会返回timer 只要写了计时器，在满足条件之后都需要清空timer，是浏览器的性能优化
+    // 2.timer 是计时器的唯一识别身份  clearTimeout clearInterval 到底清空的是哪一个计时器
+    // 3.bug:清空计时器多个，但是都是最后一个计时器，解决方法：用立即执行函数
+    // 4.用途：秒杀倒计时、函数体的循环执行、服务器宕机等
+
+    // 出口：如何清除setInterval()
+    // timer 表示每一个计时器的身份
+    
+    // var x = 0;
+    // var timer = setInterval(function(){
+    //     x++;
+    //     console.log(x);
+    //     // console.log('11111111');
+    //     if(x>=10){
+    //         // 清空计时器 不清空会导致浏览器的性能变差
+    //         clearInterval(timer);
+    //     }
+    // },1000);
+    // console.log(timer);
+    // console.log('22222222');
+
+
+// 下面写的代码容易产生bug，无法清空多个setInterval
+    // for(var i =0;i<3;i++){
+    //     var x = 0;
+    //     // 执行3次
+    //     var timer = setInterval(function(){
+    //         // 执行3n次
+    //         console.log('aaaaa');
+    //         // 清空的是循环里最后一次执行的计时器
+    //         clearInterval(timer,'--------');
+    //     },1500);
+    //     console.log(timer,'========');//timer 形成多个，需要清空每一个
+    // }
+
+
+// 清除多个timer
+    // var timer;
+    // for(var i = 0;i<3;i++){
+    //     var x = 0;
+    //     timer = setInterval(function(){
+    //         console.log('22222');
+
+    //     },1500);
+    //     console.log(timer,'--------');
+    //     clearInterval(timer);//清空了多个timer  但是setInterval()也失效了
+    //     console.log(timer);
+
+    //     // 最后一个timer清了3次
+    //     // var res = setTimeout(function(){
+    //     //     console.log(timer);
+    //     //     clearInterval(timer);
+    //     // });
+    //     // console.log(res);
+
+    // }
+
+    // 解决了  清空timer 仅清空最后一个timer 
+    for (var i = 0; i < 3; i++) {
+        (function () {
+            var timer = setInterval(function () {
+                // console.log('111111')
+                console.log(timer)
+                clearInterval(timer)
+            }, 500);
+        })();
+    }
+
+    // 可以分别清空某一次
+    for (var i = 0; i < 3; i++) {
+        (function () {
+            var timer = setInterval(function () {
+                // console.log('111111')
+                console.log(timer)
+                clearInterval(1);
+                clearInterval(2);
+                clearInterval(3);
+            }, 500);
+        })();
+    }
+</script>
+</html>

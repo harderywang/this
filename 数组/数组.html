@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数组</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 创建方式
+    // 1.字面量方式创建
+    var arr = ['1',12];
+    // 2.通过构造函数的方式创建数组
+    var arr1 = new Array('1',12);
+    console.log(arr1);//(2) ["1", 12]
+
+
+    // 一、如何往数组里添加元素
+    // 1.直接添加在最后一个
+    arr1[arr1.length] = '新增';
+    console.log(arr1);//(3) ["1", 12, "新增"]
+    arr1[arr1.length] = 'xinzeng';
+    console.log(arr1);//(4) ["1", 12, "新增", "xinzeng"]
+    // 2.利用api添加
+    // push() 尾部添加
+    arr1.push('push1');
+    console.log(arr1);//(5) ["1", 12, "新增", "xinzeng", "push1"]
+    // unshift() 向数组的开头添加内容
+    arr1.unshift('unshift');
+    console.log(arr1);//(6) ["unshift", "1", 12, "新增", "xinzeng", "push1"]
+
+    // 三、删除数组中的元素
+    // 1.pop() 尾部删除  长度减一
+    var arr = [1,2,3,4,5,6];
+    console.log(arr.pop());//6
+    console.log(arr);//(5) [1, 2, 3, 4, 5]
+    // 2.shift()从头部删
+    console.log(arr.shift());//1
+    console.log(arr);//(4) [2, 3, 4, 5]
+    // 注意：1.关于删除数组元素，长度会变化，for循环中会有两个变化的量
+    // 2.不能将元素完全删除
+    // 完全清空数组的元素
+    for(var i=arr.length;i>0;i--){
+        // arr.pop();
+        arr.shift();
+        console.log(arr);
+    }
+
+// 下面的代码是错误的
+    // var arr = [1,2,3,4,5,6];
+    // for(var i=0;i<arr.length;i++){
+    //     arr.shift();
+    //     console.log(arr);
+    // }
+
+    // 四、删除替换和插入
+    var arr = [1,2,3,4,5,6,7,8,9];
+    console.log(arr);//(9) [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    // splice()
+    // 参数一：删除的开始位置
+    // 参数二：删除的长度
+    // 参数三及之后：替换在删除位的数据，多出删除位的也会插入
+    arr.splice(0,2);
+    console.log(arr);//(7) [3, 4, 5, 6, 7, 8, 9]  删除索引0及之后共两位
+    arr.splice(1,2,'hello','world');
+    console.log(arr);//(7) [3, "hello", "world", 6, 7, 8, 9]
+    arr.splice(3,2,'hh','ww','!');
+    console.log(arr);//(8) [3, "hello", "world", "hh", "ww", "!", 8, 9]
+
+    // 五、拼接数组或值 concat() 合并数组并返回合并后的结构 
+    var arr = [1, 2, 3, "d", "e", "f"];
+    var arr1 = arr.concat([[5,6,7],4,'r']);
+    var arr2 = arr1.concat(['y','f']);
+    var res = arr2.concat(arr2);
+    console.log(res);//(22) [1, 2, 3, "d", "e", "f", Array(3), 4, "r", "y", "f", 1, 2, 3, "d", "e", "f", Array(3), 4, "r", "y", "f"]
+    // join() 将数组转换成一个字符串 不会对原数组产生影响，而是将转化后的结果返回
+    // 参数：可以指定一个参数，这个参数将会成为数组中的连接符，如果不指定参数默认用逗号作为连接符
+
+    // 六、截取数组片段 slice()
+    // 不会改变原数组，将截取到的内容封装到一个新数组中返回 可以传递一个负值，负值从后向前看
+    // 参数一：开始位置（包括）
+    // 参数二：结束位置（不包括）
+    var arr = [1, 2, 3, "d", "e", "f"];
+    var arr1 = arr.slice(2,5);
+    console.log(arr1);//(3) [3, "d", "e"]
+
+    // 七、filter() 过滤符合某条件的元素
+    var arr = [
+        {name:'aaa',age:12},
+        {name:'bbb',age:32},
+        {name:'ccc',age:44},
+        {name:'ddd',age:39},
+        {name:'eee',age:35},
+        {name:'fff',age:37},
+        {name:'ggg',age:33}
+    ];
+    var result = arr.filter(function(item,index){
+        // item 元素   index 索引
+        return item.age > 33;
+    })
+    console.log(result);
+
+    // 八、splice() 删除元素并向数组添加元素  会影响原数组
+    // 参数一：开始位置（包括）
+    // 参数二：删除长度
+    // 参数3以及后面的参数：插入删除的参数后面
+    var arr8 = [1,2,3,'a','b','c']; 
+    arr8.splice(3);
+    console.log(arr8); //[1, 2, 3]
+    arr8.splice(3,2);
+    console.log(arr8);//[1, 2, 3]
+    arr8.splice(3,2,'d','e','f');
+    console.log(arr8);//[1, 2, 3, "d", "e", "f"]
+
+
+
+
+
+</script>
+</html>

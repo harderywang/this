@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数中变量的特点</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var test = 'ddddddd';//全局作用域下声明的变量存在内存中不会被销毁
+    // 全局作用域中的全局变量在页面打开时创建，在页面关闭时销毁 全局变量只会初始化一次，在页面刷新时初始化
+    function foo(){
+        // 函数作用域下声明的变量执行时在内存中创建，执行完毕后销毁
+        // 每次执行函数都是初始化变量
+        var a = 1;
+        var b = 'ddd';
+        var c = 'dddd';
+        ++a;
+        console.log(a,b,c);
+    }
+    foo();
+
+    // 变量销毁的原因：没用了，只有可能需要被使用的变量不会被销毁
+
+</script>
+</html>

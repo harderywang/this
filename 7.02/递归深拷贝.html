@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+    <script>
+        // 面试题：考察大家的基础逻辑题，对赋值 逻辑 递归 if for 方法封装等综合掌握度
+        // 如何写一个与数据类型相关的判断的表达式
+        var obj = {
+            name:'zc',
+            fo:function(){},
+            list:[{
+                name:'yf'
+            },
+            {
+                name:'gk',
+                say:'hahahaha'
+                }]
+        };
+
+        //  封装一个函数deepCopy() 实现的是对数组或者对象的深层拷贝
+        function deepCopy(params){
+            if(arguments.length == 0 ){
+                    throw new Error('argument.length can not zero');
+            }
+            if(arguments.length > 1){
+                throw new Error('arguments.length can not gt 1');
+            }
+            if(!(params instanceof Object)){
+                throw new Error('type param must be object or array');
+            }
+            // 如果是数组
+            var res;
+            if(Array.isArray(params)){
+                res = {};
+                for(var i = 0;i<params.length;i++){
+                    if(params[i] instanceof Object){
+                        res[i] = deepCopy(params[i]);
+                    }else{
+                        res.push(params[i]);
+                    }  
+                }
+            }
+            // 如果是对象
+            if(params.constructor === Object){
+                res = [];
+                for(var x in params){
+                    // params[x]表示的是数组或者对象
+                    if(params[x] instanceof Object){
+                        // 将深层拷贝的结果添加到res中
+                        res[x] = deepCopy(params[x]);
+                    }else{
+                        res[x] = params[x];
+                    }   
+                }
+                
+            }
+            return res; 
+        }
+        var obj1 = deepCopy(function(){}) 
+        // 给obj添加
+        // obj.list.age = 18;
+        console.log(obj1);
+        console.log(obj);
+
+
+
+        // 第二种方法
+        function deepClone(obj){
+            if(typeof obj !='object'){
+                throw new TypeError("类型错误"); 
+                }
+            var res;
+            if(obj===null){
+                return null;
+            }
+            if(Array.isArray(obj)){
+                 res=[];
+            }else{
+                 res={};
+            }
+            for(var key in obj){
+                if(typeof obj[key]=='object'){
+                    res[key]=deepClone(obj[key]);
+                }else{
+                    res[key]=obj[key];
+                }
+            }
+            return res;
+        }
+        console.log(deepClone(obj))
+
+    </script>
+</html>

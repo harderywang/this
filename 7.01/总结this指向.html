@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>this总结</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /* 
+    1.首先看this在哪个作用域
+       - 在全局:this指向window，
+       - 在函数中谁调用就是谁，构造函数指向new实例化的对象，事件函数指向触发事件，普通函数就是谁调用就是谁
+    2.看函数执行
+        2.0 判断执行了哪一个函数，再看方法体中this指向
+        2.1 看是否有call apply bind 有的话看参数，参数是什么this就指向什么
+        2.2 看是否为事件处理函数，是的话，this就是触发事件元素
+        2.3 看是否为new关键字创建的构造函数，this为new实例化对象
+        2.4 以上都不满足 this就是谁调用就指向谁
+    */
+    var obj = {
+        name:'yf',
+        cname:this.name,
+        say:function(){
+            console.log(`${this.name}hhhhh`)
+        }
+    }
+    var name = 'zc';
+    console.log(obj);//{name: "yf", cname: "zc", say: ƒ}
+    // 用say接收obj.say的指针
+    var say = obj.say;
+    // 省略window say()是window调用
+    say();//zchhhhh
+    
+    var wzx = {
+        name:'wzxdog',
+        say:function(){
+            console.log(`${this.name}hahahhha`)
+        }
+    }
+    wzx.say();//wzxdoghahahhha
+    // 获取的是wzx下的方法，并由call触发，此时this指的是obj
+    wzx.say.call(obj);//yfhahahhha
+    wzx.say.apply(this);//zchahahhha
+
+</script>
+</html>

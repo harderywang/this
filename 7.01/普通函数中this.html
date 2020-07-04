@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>this</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 先看this在什么作用域下
+    // 在全局下：if for {} () 没有特殊情况执行window
+    // 在局部作用域中，普通的谁调用就执行谁
+    // 普通函数中 谁调用指向谁
+    var name = 'zc';
+    function foo(){
+        var name = 'lyc';
+        var age = 95;
+        // 在函数方法体中this就是哪个对象调用指向哪个对象
+        console.log(this.name);
+        // console.log(name);
+
+    }
+    var person = {
+        name:'顾坤',
+        age:25,
+        dec:'hhh',
+        foo:foo,
+        ao:{
+            name:'wyh',
+            foo:foo
+        },
+        // 在对象中的this也是指向全局window
+        do:this.name
+    }
+    console.log(name);
+    // 仅看函数执行时左边的对象是啥
+    foo();//zc
+    person.foo()//顾坤
+    person.ao.foo();//wyh
+    
+
+</script>
+</html>

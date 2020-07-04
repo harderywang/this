@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var a = 100;
+    function testResult() {
+        var b = 2 * a;
+        var a = 200;
+        var c = a / 2;
+        alert(b);
+        alert(c);
+    }
+    testResult();
+
+  /*
+创建go{
+    变量声明;a----> undefined;
+    函数声明并赋值：testResult----> function
+}
+创建ao{
+    形参提升：没有
+    变量提升：
+    b----> undefined   
+    a----> undefined   
+    c----> undefined
+    形参实参提升：没有
+    函数声明并赋值：没有
+}
+解析go{
+    变量赋值：a ----> 100；
+}
+解析ao:b赋值为undefined*2---> NaN
+       a赋值为200
+       c赋值为200/2，即100
+       alert b ----> NaN
+       alert c ----> 100
+销毁ao
+  */
+</script>
+</html>

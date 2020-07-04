@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数组方法底层原理练习</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var arr = [1,2,3,4,5,6];
+    var res = [3,4,5];
+    
+    // 方式一  深拷贝
+    var arr1 = [];
+    for(var j =0;j<arr.length;j++){
+        arr1.push(arr[j]);
+    }
+    for(var i = 0;i<res.length;i++){
+        arr1.push(res[i]);
+    }
+    console.log(arr1);// [1, 2, 3, 4, 5, 6, 3, 4, 5]
+
+    // 方式二  展开运算符
+    var arr2 = [];
+    arr2 = [...arr,...res];
+    console.log(arr1);//[1, 2, 3, 4, 5, 6, 3, 4, 5]
+
+    // reverse() 将数组反向排序
+    // 1.不用任何api和引用数据类型
+    var arr = [1,2,3,4,5,6];
+    var res;
+    for(var i = 0;i<arr.length/2;i++){
+        res = arr[i];
+        arr[i] = arr[arr.length-1-i];
+        arr[arr.length-1-i] = res;
+    }
+    console.log(arr);//[6, 5, 4, 3, 2, 1]
+    
+    // 2.创建新数组以及push()
+    var arr = [1,2,3,4,5,6];
+    var res1 = [];
+    for(var i = 0;i<arr.length;i++){
+        res1.push(arr[arr.length-1-i]);
+    }
+    console.log(res1);//[6, 5, 4, 3, 2, 1]
+    
+    // 3.不用api，创建空数组
+    var arr = [1,2,3,4,5,6];
+    var res2 = [];
+    for(var i = 0;i<arr.length;i++){
+        res2[i] = arr[arr.length-1-i];
+    }
+    console.log(res2);
+
+
+    // 数组排序
+    // 从大到小
+    var arr = [3,1,4,5,6,7];
+    var res;
+    for (var i = 0; i < arr.length; i++) {
+            for (var j = 0; j < arr.length; j++) {
+                if (arr[j] < arr[i]) {
+                    res = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = res;
+                }
+            }
+
+        }
+    console.log(arr);//[7, 6, 5, 4, 3, 1]
+
+    // 从小到大
+    var arr = [3,1,4,5,6,7];
+    var res;
+    for (var i = 0; i < arr.length; i++) {
+            for (var j = 0; j < arr.length; j++) {
+                if (arr[j] > arr[i]) {
+                    res = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = res;
+                }
+            }
+
+        }
+    console.log(arr);// [1, 3, 4, 5, 6, 7]
+
+    
+
+
+</script>
+</html>

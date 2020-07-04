@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var arr = [1,2,3,5,6,32,4,5,22];
+    // 1.for循环
+    var res = arr[0];
+    for(var i = 1;i<arr.length;i++){
+        if(res<arr[i]){
+            res = arr[i];
+        }
+    }
+    console.log(res);//32
+
+    // 2.Math.max(...arr)
+    var maxNum = Math.max(...arr);
+    console.log(maxNum);//32
+
+    // 3.先排序，再求值
+    arr.sort(function (x, y) {
+        return y - x;//从大到小 
+    })
+    console.log(arr[0]);//32
+
+</script>
+</html>

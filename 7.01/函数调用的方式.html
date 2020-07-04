@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 普通函数
+    // 1.xx.xxx() xxx()
+    function foo(){
+        console.log('aaa');
+
+    }
+    foo();
+    var obj = {
+        foo:foo
+    }
+    obj.foo();
+    
+    // 2.new xxx()
+    new foo();
+    
+    // 3.xxx.call()  xxx.apply()  xxx.bind()()
+    foo.call(window) 
+    foo.apply(window) 
+    foo.bind(window)();
+    
+    // 4.事件触发
+
+
+    // 特殊函数调用方式：立即执行函数
+    // 1.
+    (function(){
+        console.log('立即执行函数执行了');
+    })();
+
+    // 2.
+    (function(){
+        console.log('立即执行函数执行了');
+    }());
+
+    // 3.
+    (function(){
+        console.log('立即执行函数执行了');
+    }).call();
+    (function(){
+        console.log('立即执行函数执行了');
+    }).apply();
+    (function(){
+        console.log('立即执行函数执行了');
+    }).bind()();
+
+    // 4.使用new关键字
+    new (function(){
+        console.log('立即执行函数执行了');
+    });
+
+    // 5.
+    (function(){
+        console.log('立即执行函数执行了');
+        return function(){
+            console.log('函数返回值');
+            return function(){
+                console.log('第三层');
+            }
+        }
+    })()()(); 
+
+    
+</script>
+</html>

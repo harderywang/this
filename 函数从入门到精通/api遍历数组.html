@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>遍历数组</title>
+</head>
+<body>
+    
+</body>
+<script>
+   
+    /*
+    forEach() 遍历数组 函数在封装时就执行了
+    在JS中我们一般使用for循环去遍历数组
+    JS中还为我们提供了一个方法，用来遍历数组
+    回参一：数组元素 item
+    回参二：数组索引值 index
+
+    */
+    //创建一个数组
+    var arr = [2,3,5,7,9];
+    arr.forEach(function(item,index){
+        console.log(index,'-----');
+        console.log(arr)
+    });
+</script>
+</html>

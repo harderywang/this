@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>递归</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 递归函数内部自己调用自己，死循环，用的时候就需要给一个出口
+    // 1.找规律
+    // 2.找出口，用条件句
+
+    // 求1+2+3+4一直加到n
+    function sum(n){
+        if(n == 1){
+            return 1;
+        }
+        return n+sum(n-1);
+    }
+    console.log(sum(10));
+
+    // 最先运算的最后出结果，最先运行的运算时间最长。性能差
+
+    
+</script>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js解析过程</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /*
+    1.语言分析：检查js代码是否有语法错误
+    2.预编译：
+        2.1 全局下：创建一个GO对象
+            函数方法体（局部）：创建一个AO对象 提升变量 提升函数
+        2.2 提升当前作用域下var声明的变量  赋值：undefined
+        2.3 提升当前作用域下所有声明的函数
+
+    3.解析执行：
+        对每一行代码分别解析执行，对提升的变量重新赋值
+    */
+    console.log(a);
+    var a = 0;
+    // 函数不仅声明提升，赋值也会提升
+    function a(){
+    }
+</script>
+</html>
