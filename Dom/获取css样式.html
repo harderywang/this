@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrap{
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap"></div>
+    <script>
+        // IE8及以下不支持用className获取元素
+        var wrap = document.getElementsByClassName('wrap')[0];
+        console.log(wrap)
+        //只能获取行内样式
+        var res = wrap.style;
+        console.log(res)
+        // 可以获取所有的样式  getComptedStyle(元素对象,null) 参二是否获取伪元素
+        // 注意不支持 ie8以下  仅支持谷歌和火狐
+        var res1 = getComputedStyle(wrap,null)
+        console.log(res1)
+        // IE8以下通过 ele.currentStyle()  只可以是ie不可以是谷歌
+
+        // 获取样式兼容性问题
+        function getStyle(ele){
+            if(ele.currentStyle){
+                return ele.currentStyle
+            }else{
+                return getComputedStyle(ele,null)
+            }
+        }
+        getStyle(wrap)
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="wraper">
+        <div id="box"></div>
+    </div>
+    <script>
+        //选择器的作用 选中html元素 然后进行 js 的修改
+        //用什么存选择器选中的结果 
+        var divs = document.getElementsByTagName('div');
+        //通过html标签 获取html元素 返回类数组 （elements） 
+        console.log(divs) 
+        console.log(divs[0]);
+
+        //通过class 获取html元素返回类数组
+        var wrap = document.getElementsByClassName('wraper');
+        console.log(wrap)
+
+        //通过id 选中元素 返回该元素
+        var  box = document.getElementById('box');
+        console.log(box)
+
+        // 返回元素节点
+        var box1 = document.querySelector('#box');
+        console.log(box1)
+
+        //返回元素节点集合
+        var wraps = document.querySelectorAll('.wraper')
+        console.log(wraps)
+
+        // 总结 dom 的选择器 document.XXX 参数为字符串  返回值要么 是元素 要么是元素对象结合
+
+        //注意有的是集合
+    </script>
+</body>
+</html>

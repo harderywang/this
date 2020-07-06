@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 获取页面 元素对象
+        // 获取页面的高度 监听行为
+        //兼容性问题 IE9一下 
+
+        // 取到整个页面
+        var dom = document.documentElement;
+        console.log(dom)
+
+        var body = document.body;
+        console.log(body)
+
+        //如果document.documentElement 有返回值那么赋值为document.documentElement 
+        // 没有则赋值 document.body
+        var node = document.documentElement||document.body;//兼容性处理
+
+
+        // 注意页面高度不是视图窗口高度
+        console.log(node.offsetHeight)
+    </script>
+</body>
+</html>

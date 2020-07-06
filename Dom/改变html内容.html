@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="wraper">
+        <div class="box">这是html</div>
+        <button id='btn'>修改</button>
+    </div>
+    <script>
+        // var box = document.getElementsByClassName('box')[0];
+        // var btn = document.getElementById('btn');
+        // console.dir(btn)
+        // //点击事件 事件处理函数需要用户触发行为才能执行
+        // btn.onclick = function(){
+        //     box.innerHTML = 'wang'
+        // }
+        // //修改html元素内容包括标签
+        // box.innerHTML = 'dskfjskdfjksd'
+
+        var wraper = document.getElementsByClassName('wraper')[0];
+        console.dir(wraper.innerHTML)
+        console.dir(wraper.textContent)
+        console.dir(wraper.innerText)
+        console.dir(wraper)
+
+        //页面中 所有的信息都是字符串、
+        // 页面中变迁可以通过DOM选择器 获取dom 对象
+
+        //innerTHML与inerText
+        //innerHTML赋值为模板字符 innerText赋值为文本内容
+            // 不论修改拿一个内容 html 中内容 都会发生变化
+    </script>
+</body>
+</html>
