@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrap"></div>
+    <button class="addElement">点击添加内容</button>
+    <script>
+        // 如何通过js新建标签
+        var node = document.createElement('p');
+        // var div = window.createElement('div');
+        node.innerHTML='innerHTML';//
+        node.innerText = 'innerText';//
+        node.textContent ='textContent';//
+        console.log(node) ;
+        // console.log(div) 
+
+        var wrap = document.querySelector('.wrap');
+        wrap.appendChild(node)//父ele.appendchild(子元素)  
+            //perantEle.appendChild(childEle) 给某个元素添加子元素 
+        // wrap.append(node);      
+         console.log(wrap)
+    </script>
+</body>
+</html>

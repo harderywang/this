@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrap">
+        <p class="center">我是中</p>
+    </div>
+    <script>
+        var wrap  = document.querySelector('.wrap');
+        var center  = document.querySelector('.center');
+        var pNode = document.createElement('p');
+        pNode.innerHTML = '我是萌新';
+        //父ele.insertBefore(待插入ele,参照的ele)
+        wrap.insertBefore(pNode,center)
+    </script>
+</body>
+</html>

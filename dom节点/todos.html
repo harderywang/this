@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            background-color: rgb(173, 158, 146);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            list-style: none;
+        }
+
+        input {
+            outline: none;
+            border: 1px solid #ccc;
+            height: 35px;
+            width: 300px;
+            padding-left: 15px;
+            padding-right: 15px;
+            color: #ccc;
+        }
+
+        #add {
+            width: 45px;
+            height: 35px;
+            appearance: none;
+            border: none;
+            outline: none;
+            background-color: none;
+        }
+
+        .head {
+            width: 500px;
+            margin: 10px auto;
+            display: flex;
+            justify-content: center;
+        }
+
+        main {
+            width: 500px;
+            background-color: #ffffff;
+            padding: 10px;
+            margin: 0 auto;
+        }
+
+        .content {
+            padding: 20px 15px 20px 45px;
+        }
+
+        .content li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0px;
+            height: 35px;
+        }
+
+        .content .deletEl {
+            background-color: #ccc;
+            width: 45px;
+            height: 25px;
+            text-align: center;
+            line-height: 25px;
+            color: #f1f1f1;
+            appearance: none;
+            border: none;
+            outline: none;
+        }
+
+        .checkbox {
+            height: 20px;
+            width: 20px;
+        }
+
+        .through {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div class="head">
+            <input id="ipt" type="text" placeholder="新增内容">
+            <div>
+                <button id="add">新增</button>
+                <div></div>
+            </div>
+        </div>
+        <div class="content">
+            <ul>
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <span>我是内容1</span>
+                    <button class="deletEl">删除</button>
+                </li>
+                <li>
+                    <input type="checkbox" class="checkbox">
+                    <span>我是内容2</span>
+                    <button class="deletEl">删除</button>
+                </li>
+            </ul>
+        </div>
+    </main>
+    <script>
+        //初始化只可以获取一次
+        var input = document.querySelector('#ipt');
+        var addBtn = document.querySelector('#add');
+        var content = document.querySelector('.content');
+        var ulNode = document.querySelector('.content>ul');
+        var liNode = document.querySelectorAll('.content>ul>li')
+        var deletNode = document.querySelectorAll('.content li>.deletEl');
+        var checkbox = document.querySelectorAll('.checkbox');
+        console.log(checkbox)
+        line_througt();
+        dele();
+        addBtn.addEventListener('click', function () {
+            var val = input.value;
+            var liNode = document.createElement('li');
+            var span = document.createElement('span');
+            var btn = document.createElement('button');
+            var checkbox = document.createElement('input');
+            console.log(checkbox)
+            checkbox.className = 'checkbox';
+            checkbox.type = 'checkbox';
+            console.log(checkbox);
+
+
+            liNode.append(checkbox);
+            btn.innerText = '删除';
+            btn.className = 'deletEl';
+            span.innerText = val;
+            liNode.append(span);
+            liNode.append(btn);
+            // console.log(liNode)
+            ulNode.append(liNode)//从尾部加
+            input.value = '';
+            line_througt();
+            dele();
+        })
+
+        // for (var i = 0; i < liNode.length; i++) {
+        //     var deletNode = document.querySelectorAll('li');
+        //     (function () {
+        //         var x = i;
+        //         console.log(deletNode[i])
+        //         deletNode[i].onclick = function () {
+        //         deletNode[x].remove()
+        //         }
+        //     })()
+        // }
+
+
+        // function dele(){
+        //     // console.log(deletNode.length)
+        //     var deletNode = document.querySelectorAll('.content li>.deletEl');
+        //     for (var i = 0; i < deletNode.length; i++) {
+        //     (function () {
+        //         var x = i;
+        //         deletNode[i].onclick = function () {
+        //         deletNode[x].parentNode.remove()
+        //         }
+        //     })()
+        // }
+        // }
+
+
+
+
+        function line_througt() {
+            var checkbox = document.querySelectorAll('.checkbox');
+            console.log(checkbox)
+            for (var i = 0; i < checkbox.length; i++) {
+                (function () {
+                    var x = i;
+                    var flag = true;
+                    checkbox[i].onclick = function () {
+                        if (flag) {
+                            checkbox[x].nextElementSibling.className = 'through';
+                            flag = false;
+                        } else {
+                            checkbox[x].nextElementSibling.className = '';
+                            flag = true;
+                        }
+
+                    }
+                })();
+
+            }
+        }
+
+
+        function dele() {
+            var deletNode = document.querySelectorAll('.content li>.deletEl');
+            var checkbox = document.querySelectorAll('.checkbox');
+            console.log(deletNode)
+            for (var i = 0; i < deletNode.length; i++) {
+                (function () {
+                    var x = i;
+                    deletNode[i].onclick = function () {
+                        if (checkbox[x].nextElementSibling.className === 'through') {
+                            deletNode[x].parentNode.remove()
+                        }
+
+                    }
+                })()
+            }
+        }
+    </script>
+</body>
+
+</html>

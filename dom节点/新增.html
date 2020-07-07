@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,body{
+            width: 100%;
+            height: 100%;
+            background-color: rgb(173, 158, 146);
+        }
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        input{
+            outline: none;
+            border: 1px solid #ccc;
+            height: 35px;
+            width: 300px;
+            padding-left: 15px;
+            padding-right: 15px;
+            color:#ccc;
+        }
+        #add{
+            width: 45px;
+            height: 35px;
+            appearance: none;
+            border: none;
+            outline: none;
+            background-color: none;
+        }
+        .head{
+            width: 500px;
+            margin: 10px auto;
+            display: flex;
+            justify-content: center;
+        }
+        main{
+            width: 500px;
+            background-color: #ffffff;
+            padding: 10px;
+            margin: 0 auto;
+        }
+        .content{
+            padding: 20px 15px 20px 45px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="head">
+            <input id="ipt" type="text" placeholder="新增内容">
+            <div>
+                <button id="add">新增</button>
+                <div ></div>
+            </div>
+        </div>
+        <div class="content">
+            <p>我是一个内容</p>
+        </div>
+    </main>
+    <script>
+        // var input = document.querySelector('#ipt');
+        // var btn = document.querySelector('#add');
+        // var content = document.querySelector('.content')
+        // btn.onclick = function(){
+        //     var values = input.value;//values只是存储了input的指针
+        //     // content.innerHTML = `<p>${values}</p>`;
+        //     // content.innerText = `<p>${values}</p>`;
+        //     var pNode = document.createElement('p');
+        //     pNode.innerHTML=values;
+        //     content.append(pNode);
+        //    // values = '';//这个是values赋值''
+        //    // input.value='';//修改input中的values 清空input中的内容
+        // }
+
+        
+        var input = document.querySelector('#ipt');
+        var btn = document.querySelector('#add');
+        var content = document.querySelector('.content')
+        btn.onclick = function(){
+            var values = input.value;//values只是存储了input的指针
+            // content.innerHTML = `<p>${values}</p>`;
+            // content.innerText = `<p>${values}</p>`;
+            var pNode = document.createElement('p');
+            var pText = document.createTextNode(values);
+            pNode.append(pText)
+            pNode.innerHTML=values;
+            content.append(pNode);
+           // values = '';//这个是values赋值''
+           // input.value='';//修改input中的values 清空input中的内容
+        }
+    </script>
+</body>
+</html>

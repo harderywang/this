@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="prent">
+        <div class="box2"></div>
+        <div class="box">
+            <span>我是一个内容</span>
+            <p>这是一段话</p>
+            <div>这是一个容器</div>
+        </div>
+    </div>
+    <script>
+        var box = document.getElementsByClassName('box')[0];       
+        console.log(box)     
+        // console.log(box.childNodes)
+        // console.log(box.previousSibling)
+        console.log(box.nodeName)//DIV获取节点名字
+        console.log(box.parentNode)//返回父节点；
+        console.log(box.children) //获取子节点集合
+        console.log(box.previousElementSibling)//获取box前一个兄弟元素
+        console.log(box.nextElementSibling)//获取box后一个兄弟元素
+        // 综上所述
+    </script>
+</body>
+</html>

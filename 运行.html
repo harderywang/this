@@ -6,28 +6,211 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .blue,
-        .red-inner {
-            height: 50px;
-            margin: 10px 0;
+        html,
+        body {
+            width: 100%;
+            height: 100%;
         }
 
-        .blue {
-            background: blue;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        .red-outer {
-            overflow: hidden;
-            background: red;
+        .head input {
+            outline: none;
+            width: 300px;
+            height: 40px;
+            padding-left: 20px;
+            border: 1px solid #999999;
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+        }
+
+        #add {
+            height: 40px;
+            width: 50px;
+            outline: none;
+            border: none;
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+            background-color: rgb(66, 110, 146);
+            color: #ffffff;
+        }
+
+        .head {
+            width: 500px;
+            margin: 10px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        main {
+            width: 500px;
+            height: 200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            background-color: #b4a1b8;
+        }
+
+        .content {
+            width: 100%;
+        }
+
+        .content ul {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .content li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0px;
+        }
+
+        .content button {
+            width: 50px;
+            height: 25px;
+            border: none;
+            background-color: rgb(66, 110, 146);
+            border-radius: 4px;
+        }
+
+        .del_line {
+            text-decoration: line-through;
+            /* color: darkgray; */
+        }
+
+        .check {
+            outline: none;
+            width: 22px;
+            height: 22px;
         }
     </style>
 </head>
 
 <body>
-    <div class="blue"></div>
-    <div class="red-outer">
-        <div class="red-inner">red inner</div>
-    </div>
+    <main>
+        <div class="head">
+            <input id="ipt" type="text" class="text" placeholder="新增内容" value="">
+            <div><button id="add">新增<tton>
+            </div>
+        </div>
+        <div class="content">
+            <ul>
+                <li>
+                    <input class="check" type="checkbox">
+                    <span class="txt">我是内容</span>
+                    <button>删除<tton>
+                </li>
+            </ul>
+        </div>
+    </main>
+    <script>
+        // 获取input标签
+        var ipt = document.querySelector('#ipt');
+        // 获取button按钮
+        var addBtn = document.querySelector('#add');
+        // 获取ul标签
+        var ulNode = document.querySelector('.content>ul');
+        // 获取删除按钮
+        var deletNode = document.querySelector('.content button');
+        var check = document.querySelectorAll('.check');
+        deleteItem()
+
+        // 给新增按钮绑定事件，点击增加一个li到ul
+        addBtn.onclick = function () {
+            // 获取input标签里value的内容
+            var val = ipt.value;
+            // 创建一个li标签
+            var liNode = document.createElement('li');
+            // 创建一个check标签
+            var check = document.createElement('input');
+            check.className = 'check';
+            check.type = 'checkbox';
+
+            // 将check加到li上
+            liNode.appendChild(check);
+
+
+            // 创建一个span标签
+            var span = document.createElement('span');
+            // 创建一个button标签
+            var btn = document.createElement('button');
+
+            // 获取到类名del_line
+            var delline = document.querySelector('.del_line')
+            // 获取到check单选框
+            var check = document.querySelector('.check');
+
+            // 将button文本赋值为删除
+            btn.innerHTML = '删除';
+            btn.className = 'deletEl';
+            span.innerHTML = val;
+            liNode.appendChild(span);
+            liNode.appendChild(btn)
+            // 把li添加到ul上
+            ulNode.appendChild(liNode);
+
+            // 清空输入框
+            ipt.value = ''
+            deleteItem();
+
+            // 将添加文本中线封装成函数
+            var lines = function () {
+                // 给check绑定点击事件
+                // 获取到check单选框
+                var check = document.querySelectorAll('.check');
+                console.log(check);
+                for (var j = 0; j < check.length; j++) {
+                    (function () {
+                        var flag = false;
+                        // true显，false隐
+                        var x = j;
+                        console.log(check[x])
+                        check[x].onclick = function () {
+                            flag = !flag;
+                            // 找到span标签
+                            // check[x].nextElementSibling;
+                            flag ? (check[x].nextElementSibling.className = 'del_line') : (check[x].nextElementSibling.className = 'txt')
+                        };
+                    })();
+
+                }
+            }
+            lines();
+
+        }
+
+        // 删除
+        function deleteItem() {
+            var check = document.querySelectorAll('.check');
+            var deletNode = document.querySelectorAll('.content button');
+            console.log(deletNode.length)
+            for (var i = 0; i < deletNode.length; i++) {
+                (function (i) {
+                    var x = i;
+                    deletNode[x].onclick = function () {
+                        var prent = deletNode[x].parentNode;
+                        // var text = check.nextElementSibling;
+                        if (check[x].nextElementSibling.className === 'del_line') {
+                            prent.remove();
+                        } else {
+                            return;
+                        }
+
+                    }
+                })(i);
+            }
+        }
+    </script>
 </body>
 
 </html>

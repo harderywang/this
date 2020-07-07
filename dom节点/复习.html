@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="box"></div>
+    <button name = 'button'>显示 </button>
+    <script>
+        // 选择HTML中的元素
+        var box = document.getElementsByTagName('div').item(0);
+        // console.log(box);
+
+        var btn = document.getElementsByName('button').item(0)
+        // console.log(btn);
+
+        var flag = true;
+        btn.onclick = function(){
+            // 对flag 进行取反
+            flag = !flag;
+            // console.log(flag)
+            flag ? box.className = 'box' : box.className = 'box hidden'
+        }
+        
+       
+    </script>
+</body>
+</html>

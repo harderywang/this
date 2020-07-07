@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>我是好人</h1>
+    <h1>我是好人</h1>
+    <h1>我是好人</h1>
+    <h1>我是好人</h1>
+    <h1>我是好人</h1>
+    <script>
+        //选中h1标签
+        var h1s = document.getElementsByTagName('h1');
+        var h1s0 = h1s[0];
+        var h1s1 = h1s[1];
+        var h1s2 = h1s[2];
+        var h1s3 = h1s[3];
+        var h1s4 = h1s[4];
+
+        // var flag = true;
+        // h1s0.onclick = function () {
+        //     flag = !flag;
+        //     flag ? h1s0.style.color = 'black' : h1s0.style.color = 'blue';
+        //     console.log(flag)
+        // }
+
+        // var flag = true;
+        // h1s1.onclick = function () {
+        //     flag = !flag;
+        //     flag ? h1s1.style.color = 'black' : h1s1.style.color = 'blue'
+        //     console.log(flag)
+        // }
+        //如何解决flag污染问题?
+        //方式一 用立即执行函数嵌套一个函数构成闭包
+        //方式二  在重新var flag = ture
+        // (function () {
+        //     var flag = true;
+        //     h1s0.onclick = function () {
+        //         flag = !flag;
+        //         flag ? h1s0.style.color = 'black' : h1s0.style.color = 'blue';
+        //         console.log(flag)
+        //     }
+        // })();
+        // (function () {
+        //     var flag = true;
+        //     h1s1.onclick = function () {
+        //         flag = !flag;
+        //         flag ? h1s1.style.color = 'black' : h1s1.style.color = 'blue'
+        //         console.log(flag)
+        //     }
+        // })();
+        // (function () {
+        //     var flag = true;
+        //     h1s2.onclick = function () {
+        //         flag = !flag;
+        //         flag ? h1s2.style.color = 'black' : h1s2.style.color = 'blue'
+        //         console.log(flag)
+        //     }
+        // })();
+        // (function () {
+        //     var flag = true;
+        //     h1s3.onclick = function () {
+        //         flag = !flag;
+        //         flag ? h1s3.style.color = 'black' : h1s3.style.color = 'blue'
+        //         console.log(flag)
+        //     }
+        // })();
+        // (function () {
+        //     var flag = true;
+        //     h1s4.onclick = function () {
+        //         flag = !flag;
+        //         flag ? h1s4.style.color = 'black' : h1s4.style.color = 'blue'
+        //         console.log(flag)
+        //     }
+        // })();
+        // h1s2.onclick = function () {
+        //     flag = !flag;
+        //     flag ? h1s2.style.color = 'black' : h1s2.style.color = 'blue'
+        // }
+        // h1s3.onclick = function () {
+        //     flag = !flag;
+        //     flag ? h1s3.style.color = 'black' : h1s3.style.color = 'blue'
+        // }
+        // h1s4.onclick = function () {
+        //     flag = !flag;
+        //     flag ? h1s4.style.color = 'black' : h1s4.style.color = 'blue'
+        // }
+
+
+
+        
+       var n =   [...h1s].forEach((ele) => {
+            (function () {
+                var flag = true;
+                ele.onclick = function () {
+                    flag = !flag;
+                    flag ? ele.style.color = 'black' : ele.style.color = 'blue'
+                    //基于用户的响应处理
+                    // ele.style.color='red'//点击字体变红
+                }
+            })()
+        })
+        console.log(n)
+
+
+    </script>
+</body>
+
+</html>

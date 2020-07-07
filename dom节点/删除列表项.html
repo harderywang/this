@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>被删除内容1</h1>
+    <h1>被删除内容2</h1>
+    <h1>被删除内容3</h1>
+    <h1>被删除内容4</h1>
+    <h1>被删除内容5</h1>
+    <script>
+        var h1s = document.querySelectorAll('h1');
+        // h1s[0].onclick = function () {
+        //     h1s[0].remove()
+        // }
+        // h1s[1].onclick = function () {
+        //     h1s[1].remove()
+        // }
+        // h1s[2].onclick = function () {
+        //     h1s[2].remove()
+        // }
+        // h1s[3].onclick = function () {
+        //     h1s[3].remove()
+        // }
+        // h1s[4].onclick = function () {
+        //     h1s[4].remove()
+        // }
+
+        // for (var i = 0; i < h1s.length; i++) {
+        //     h1s[i].onclick = function () {
+        //         // h1s[i].remove() //这里i是5
+        //         this.remove();
+        //     }
+        // }
+
+        //立即执行函数 闭包
+        for (var i = 0; i < h1s.length; i++) {
+            (function () {
+                var y = i;
+                h1s[y].onclick = function () {
+                    // h1s[i].remove() //这里i是5
+                    h1s[y].remove();
+                }
+            })()
+
+        }
+
+        // 对象思维
+        // for (var i = 0; i < h1s.length; i++) {
+        //     h1s[i].i = i;
+        //     h1s[i].onclick = function(){
+        //         h1s[this.i].remove()
+        //     }
+        // }
+    </script>
+</body>
+
+</html>
