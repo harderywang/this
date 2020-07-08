@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrap">
+        <span></span>
+    </div>
+    <script>
+        var wrap =document.querySelector('.wrap');
+        var span = document.querySelector('span');
+        var ele = document.createElement('div');
+        //替换 父元素.replaceChild(新ele,被替换的元素)
+        wrap.replaceChild(ele,span)
+        //指点插入 父元素.insertBefor(待插入,参照ele的前面)
+        wrap.insertBefore(span,ele)
+
+        //单个克隆 只克隆了wrap元素
+        var cloneEle =wrap.cloneNode()
+        console.log(cloneEle)
+
+         //全部克隆 克隆了wrap元素及其子元素
+         var cloneEle1 =wrap.cloneNode(true)
+        console.log(cloneEle1)
+        // wrap.replaceChild(span,ele)
+    </script>
+</body>
+</html>
