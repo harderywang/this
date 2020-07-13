@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="">
+        <div>
+            <input type="checkbox" class="all"><span class="text">全选</span>
+            <input type="checkbox" class="reverse"><span>反选</span>
+        </div>
+        <div class="btn">
+            <div>
+                <input type="checkbox" class="check"><span>选项1</span>
+            </div>
+            <div>
+                <input type="checkbox" class="check"><span>选项2</span>
+            </div>
+            <div>
+                <input type="checkbox" class="check"><span>选项3</span>
+            </div>
+            <div>
+                <input type="checkbox" class="check"><span>选项4</span>
+            </div>
+            <div>
+                <input type="checkbox" class="check"><span>选项5</span>
+            </div>
+        </div>
+
+
+    </form>
+    <script>
+        // 选择
+        var checkbox = document.getElementsByClassName('check');
+        var all = document.querySelector('.all');
+        var text = document.querySelector('.text');
+        [...checkbox].forEach(function (ele, index) {
+            ele.addEventListener('change', function () {
+                var span = ele.nextElementSibling;
+                if (ele.checked) {
+                    span.style.color = 'blue';
+                } else {
+                    span.style.color = '';
+                }
+                isAllChecked();
+            })
+        })
+
+        // 全选
+        all.addEventListener('change', function () {
+            if (all.checked) {
+                reverse.checked=false;
+                [...checkbox].forEach(function (ele, index) {
+                    ele.checked = true;
+                    ele.nextElementSibling.style.color = 'blue';
+                });
+                text.innerHTML='全不选'
+
+            } else {
+                [...checkbox].forEach(function (ele, index) {
+                    ele.checked = false;
+                    ele.nextElementSibling.style.color = '';
+                });
+                text.innerHTML='全选'
+            }
+            
+        })
+
+        // 反选
+        var reverse = document.querySelector('.reverse');
+        reverse.addEventListener('change', function () {
+            [...checkbox].forEach(function (ele) {
+                ele.checked = !ele.checked;//核心
+                if (ele.checked) {
+                    ele.nextElementSibling.style.color = 'blue';
+                } else {
+                    ele.nextElementSibling.style.color = '';
+                }
+            });
+
+            if (reverse.checked === true) {
+                all.checked = false;
+            }
+            isAllChecked();
+            
+        }) 
+        function isAllChecked(){
+            for (var i = 0; i < checkbox.length; i++) {
+                if (checkbox[i].checked === true) {
+                    all.checked = true;
+                    text.innerHTML = '全不选';
+                } else {
+                    all.checked = false;
+                    text.innerHTML = '全选';
+                    break;
+                }
+
+            }
+        }
+    </script>
+</body>
+
+</html>

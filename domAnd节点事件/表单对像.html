@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="">
+        <input type="text">
+        <input type="checkbox">
+        <button>提交</button>
+        <select name="" id="">
+            <option value="c">中国</option>
+            <option value="a">美国</option>
+            <option value="h" selected>韩国</option>
+        </select>
+    </form>
+
+    <script>
+        // var formObj = document.getElementsByTagName('form');
+        var formobj = document.querySelector('form')
+        // console.log(formObj[0]);
+        console.log(formobj)
+        console.log(formobj[0])
+        console.log(formobj[1])
+        console.log(formobj[2])
+        formobj[0].focus()
+
+        //select  option 用户选择的是哪一个 
+
+        var select = formobj[formobj.length - 1];
+        select.size = '10';//改变select的高度
+        for (var i = 0; i < select.length; i++) {
+            if (select[i].selected) {
+                console.log(select[i].value)
+            }
+        }
+
+        //封装一个方法 作用 返回select option 选择的内容
+        function selectContent() {
+            var arr=[];
+            var select = document.querySelector('select');
+            //错误优先原则
+            // 验证参数长度
+            // if(arguments.length===0){
+            //     throw new Error('Failed to execute "getAttribute" on "Element": 1 argument required, but only 0 present. ')
+            // }
+            //验证参数类型
+           if(select.nodeType !==1){
+            throw new Error('Failed to execute "getAttribute" on "Element": 1 argument required, but only 0 present. ')
+           }
+
+            for (var i = 0; i < select.length; i++) {
+                if (select[i].selected) {
+                    arr.push({
+                        select:select[i],
+                        value:select[i].value
+                    })
+                }
+            }
+            console.log(arr)
+        }
+        selectContent()
+    </script>
+</body>
+
+</html>

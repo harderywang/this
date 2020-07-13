@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<h1>告诉我母语是什么</h1>
+    <form action="">
+        <div>
+            <input type="radio" name ='lang' value="English">英语
+        </div>
+        <div>
+            <input type="radio" name="lang" value="chinese">中文
+        </div>
+        <div>
+            <input type="radio" name="lang" value="fayu" checked>法语
+        </div>
+        <div>
+            <input type="radio" name="lang" value="ladingwei">拉丁文
+        </div>
+    </form>
+    <script>
+        //问题如何获取单选后的text
+        //获取所有的input 
+        // 遍历input数组  查看checked的值为true
+        // 生命变量 checkRadio 来接收checkd为true的元素  并通过.value 获取用户的值
+        var input = document.querySelectorAll('input');
+
+        var checkRadio = null;
+        for(var i = 0;i < input.length;i++){
+            if(input[i].checked){
+                checkRadio = input[i];
+                break;
+            }
+        }
+        console.log(checkRadio.value)
+
+        // [...input].forEach((ele)=>{
+        //     ele.onclick=function(){
+        //         if(ele.checked){
+        //             var next = ele.nextSibling;
+        //             console.log(next)
+        //         }
+        //     }
+        // })
+    </script>
+</body>
+</html>

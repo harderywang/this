@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        #warp{
+            width: 100px;
+            height: 100px;
+            background-color: black;
+        }
+    </style>
+    <input type="text" name="" id="">
+    <div id="warp">
+        <div class="box"></div>
+    </div>
+    <script>
+    //     // 监听鼠标在页面移动的范围
+    //    document.onmousemove = function(){
+    //         console.log('---鼠标移动时触发')
+    //     }
+    //     // 监听某个元素 鼠标移动情况
+    //     warp.onmousemove = function(){
+    //         console.log('鼠标移动时触发')
+    //     }
+    //     //问题documen 和warp 都监听了
+
+
+        var warp = document.getElementById('warp');
+        warp.onmouseenter = function(){
+            console.log('鼠标移入到warp')
+        }
+        warp.onmouseleave = function(){
+            console.log('鼠标离开warp')
+        }
+        warp.onmousedown = function(){
+            console.log('鼠标任意点击')
+        }
+
+        var input = document.querySelector('input');
+        // 键盘事件
+        input.onkeydown = function(){
+            console.log('按下键盘任意键触发')
+        }
+        input.onkeyup = function(){
+            console.log('松开时触发')
+        }
+    </script>
+</body>
+</html>

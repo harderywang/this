@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrap{
+            width: 500px;
+            height: 500px;
+            background-color: rgb(68, 131, 6);
+        }
+        .box{
+            width: 300px;
+            height: 300px;
+            background-color: rgb(200, 81, 87);
+        }
+        .child{
+            width: 100px;
+            height: 100px;
+            background-color: rgb(32, 98, 219);
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="box">
+            <div class="child"></div>
+        </div>
+    </div>
+    <script>
+        var wrap =  document.querySelector('.wrap');
+        var box = document.querySelector('.box');
+        var child = document.querySelector('.child');
+       
+    //    事件冒泡
+    //      在目标元素ele上触发事件 如果ele的祖籍元素上绑定了相同事件 那么也会被触发
+            // 直到找到root元素为止
+        //函数执行顺序 目标元素  父元素  祖籍元素
+        // addEventListener(事件类型,事件处理函数,事件机制（默认为false冒泡）)
+        child.addEventListener('click',function(e){
+            // 阻止事件冒泡------祖籍中的事件处理函数不会出发
+            e.stopPropagation();
+            console.log(e.target)
+            e.target.style.background ='red'
+            console.log('child')
+        },false);
+        box.addEventListener('click',function(e){
+            e.stopPropagation();
+            console.log(e.target)
+            e.target.style.background ='black'
+            console.log('box')
+        },false)
+        wrap.addEventListener('click',function(e){
+            e.stopPropagation();
+            console.log(e.target)
+            e.target.style.background ='yellow'
+            console.log('wrap')
+        },false)
+
+          
+    </script>
+</body>
+</html>

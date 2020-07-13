@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <form action="">
+        <div>
+            <input type="checkbox" value="1">
+            <sapn>选择内容1</sapn>
+        </div>
+        <div>
+            <input type="checkbox" value="2">
+            <sapn>选择内容2</sapn>
+        </div>
+        <div>
+            <input type="checkbox" value="3" checked>
+            <sapn>选择内容3</sapn>
+        </div>
+        <div>
+            <input type="checkbox" value="4">
+            <sapn>选择内容4</sapn>
+        </div>
+        <div>
+            <input type="checkbox" value="5" checked>
+            <sapn>选择内容5</sapn>
+        </div>
+    </form>
+    <script>
+        // 多选
+        // 如何获取用户勾选的哪些内容呢？并知道选择的是什么？
+        //获取所有的input type =checkbox
+        // 遍历input数组  查看checked的值为true
+        // 声明数组 checkedArr 来接收checkd为true的元素和value 用户的值
+        var inputs = document.querySelectorAll('form>div>input[type=checkbox');
+        console.log(inputs);
+
+        //用来存储按钮和对应的值
+        var checkedArr=[]
+        for(var i = 0; i<inputs.length;i++){
+            if(inputs[i].checked){
+                checkedArr.push({
+                    ele:inputs[i],
+                    value:inputs[i].value
+                })
+            }
+        }
+        console.log(checkedArr)
+    </script>
+</body>
+
+</html>

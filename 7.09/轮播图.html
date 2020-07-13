@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .wrap{
+            width: 500px;
+            height: 300px;
+            position: relative;
+            margin: 10px auto;
+        }
+        .wrap img{
+            width: 500px;
+            height: 300px;
+            position: absolute;
+            display: none;
+        }
+        .show{
+            display: block !important;
+        }
+        #pre{
+            width: 30px;
+            height: 70px;
+            background-color: rgba(0,0,0,0.5);
+            color: #fff;
+            text-align: center;
+            line-height: 70px;
+            position: absolute;
+            z-index: 1000;
+            left: 0px;
+            top: 50%;
+            transform: translate(0px,-50%);
+        }
+        #next{
+            width: 30px;
+            height: 70px;
+            background-color: rgba(0,0,0,0.5);
+            color: #fff;
+            text-align: center;
+            line-height: 70px;
+            position: absolute;
+            z-index: 1000;
+            right: 0px;
+            top: 50%;
+            transform: translate(0px,-50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <img src="./img/1.jpg" alt="" class="show">
+        <img src="./img/2.jpg" alt="">
+        <img src="./img/3.jpg" alt="">
+        <div class="control">
+            <div id="pre"><</div>
+            <div id="next">></div>
+        </div>
+    </div>
+    
+    <script>
+        //初始化 页面显示一个图片
+        // 通过控制 类名show 来控制哪个img显示
+        // 声明一个变量index表示当前显示的元素
+        var pre = document.querySelector('#pre');
+        var next = document.querySelector('#next');
+        var imgs = document.querySelectorAll('.wrap>img');
+        var warp = document.querySelector('.wrap');
+
+        var index =0;
+        function nextFun(e){
+            console.log(e.target);
+            [...imgs].forEach((ele)=>{
+                ele.className = '';
+            });
+            ++index;
+            if(index>2){
+                index = 0;
+            }
+            imgs[index].className = 'show'
+        }
+
+        function preFun(){
+            [...imgs].forEach((ele)=>{
+                ele.className = '';
+            });
+            --index;
+            if(index<0){
+                index = 2;
+            }
+            imgs[index].className = 'show'
+        }
+
+        pre.addEventListener('click',preFun,false);
+        next.addEventListener('click',nextFun,false)
+
+    </script>
+</body>
+</html>

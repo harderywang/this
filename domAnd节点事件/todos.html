@@ -72,20 +72,6 @@
         </div>
     </main>
     <script>
-        // var input = document.querySelector('#ipt');
-        // var btn = document.querySelector('#add');
-        // var content = document.querySelector('.content')
-        // btn.onclick = function(){
-        //     var values = input.value;//values只是存储了input的指针
-        //     // content.innerHTML = `<p>${values}</p>`;
-        //     // content.innerText = `<p>${values}</p>`;
-        //     var pNode = document.createElement('p');
-        //     pNode.innerHTML=values;
-        //     content.append(pNode);
-        //    // values = '';//这个是values赋值''
-        //    // input.value='';//修改input中的values 清空input中的内容
-        // }
-
 
         var input = document.querySelector('#ipt');
         var btn = document.querySelector('#add');
@@ -105,8 +91,10 @@
 
 
         input.onkeyup = function (e) {
+            
             var code = e.keyCode;
             if (code === 13) {
+                console.log(e)
                 var values = input.value;
                 var pNode = document.createElement('p');
                 var pText = document.createTextNode(values);

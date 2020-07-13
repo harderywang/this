@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <input type="checkbox">
+    <input type="checkbox" value="1">
     <span>我选中的内容</span>
     <script>
         //from 表单在任何一个都是特殊的
@@ -23,12 +23,14 @@
         console.log(check.checked)
 
         //如何获取勾选后的内容 
-        check.onclick = function(){
-            if (check.checked) {
-                var next = check.nextElementSibling;
-                console.log(next.innerText)
-            }
-        }
+        console.log(check.value) //1代表选中
+
+        // check.onclick = function(){
+        //     if (check.checked) {
+        //         var next = check.nextElementSibling;
+        //         console.log(next.innerText)
+        //     }
+        // }
     </script>
 </body>
 

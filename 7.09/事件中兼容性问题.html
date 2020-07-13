@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">点击</button>
+    <script>
+        var  btn = document.getElementById('btn');
+        // btn.onclick =function(e){
+        //     //解决事件兼容性  ie8一下event在window下
+        //     var event = e||window.event; 
+        // }
+        // 2阻止浏览器默认行为
+        // function preventDefault(e){
+        //     var event = e || window.event;
+        //     if(event.preventDefault){
+        //         event.preventDefault();
+        //     }else{
+        //         event.returnValue = false;
+        //     }
+        // }
+        // btn.onclick = function(e){
+        //     preventDefault(e)
+        // }
+
+        //阻止事件冒泡
+        function stopPropagation(e){
+            var event = e||window.event;
+            if(evnet.stopPropagation){
+                event.stopPropagation();
+            }else{
+                event.canceBubble = true;
+            }
+        }
+
+
+        // js如何解决兼容性问题 
+
+
+        // 事件监听的封装
+        // function addEventListener(ele,event,callback,type){
+        //     if(ele.addEventListener){
+        //         ele.addEventListener(event,callback,type)
+        //     }else{
+        //         ele.attachEvent(event,callback)
+        //     }
+        // }
+        // addEventListener(btn,'click',function(e){
+        //     console.log('点击事件的执行')
+        // },false)
+
+        // 删除事件句柄的兼容性处理
+        function removeEventListener(ele,eventName,eventFun){
+            if(ele.removeEventListener){
+                ele.removeEventListener(eventName,eventFun);
+            }else{
+                ele.detachEvent(eventName,eventFun)
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: darkgreen;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <script>
+        var box = document.querySelector('.box');
+        // box.onclick = function(){
+        //     // 通过获取鼠标移动距离 将距离赋值给元素的left top 属性 实现 元素的移动效果
+        //     // 坑2 让鼠标在中心
+        //     document.onmousemove = function(e){
+        //     //  console.log(box.)
+        //         box.style.left = e.clientX-box.offsetWidth/2+'px';
+        //         box.style.top = e.clientY-box.offsetHeight/2+'px';
+        //     }
+        // }
+
+
+        // 需求：在哪里点击在哪里拖动
+        // box.onclick = function(event){
+        //    var x = event.offsetX;
+        //    var y = event.offsetY;
+        //     document.onmousemove = function(e){
+        //      console.log(box.offsetHeight/2)
+        //         box.style.left = e.clientX-x+'px';
+        //         box.style.top = e.clientY-y+'px';
+        //     }
+        // }
+
+
+            // 按住拖动
+         box.onmousedown = function(event){
+           var x = event.offsetX;
+           var y = event.offsetY;   
+            document.onmousemove = function(e){
+                box.style.left = e.clientX-x+'px';
+                box.style.top = e.clientY-y+'px';
+            }
+            // document.onmouseup = function () {
+            //         document.onmousemove = null;
+            //         // document.onmouseup = null;
+            //     }
+        }
+
+        // document.onmousemove = function (e) {
+        //     box.onclick = function () {
+        //         box.style.left = e.clientX + 'px';
+        //         box.style.top = e.clientY + 'px';
+        //     }
+
+        // }
+    </script>
+</body>
+</html>

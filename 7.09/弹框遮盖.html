@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+
+        }
+
+        .eject {
+            width: 200px;
+            height: 200px;
+            background-color: rgb(168, 223, 175);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <button>点击有惊吓</button>
+    <div class="eject">
+        <div class="content">临时卡等级分类考试的解放路口的时间弗兰克的师傅家里的时刻就废了卡萨丁荆防颗粒的设计费</div>
+        <div class="btn">
+            <button class="btn-item">取消</button>
+            <button class="btn-item">关闭</button>
+        </div>
+
+    </div>
+    <script>
+        var button = document.querySelector('button');
+        var eject = document.querySelector('.eject');
+        var html = document.querySelector('html');
+        var btn = document.querySelector('.btn')
+        button.addEventListener('click', btn1, false);
+        function btn1(event) {
+               eject.style.display = 'block';
+                html.style.backgroundColor = 'black';
+                html.style.opacity ='0.5'
+        }
+        btn.addEventListener('click',function(e){
+            eject.style.display = 'none';
+            html.style.backgroundColor = 'white';
+        })
+    </script>
+</body>
+
+</html>

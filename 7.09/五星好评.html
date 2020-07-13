@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .warp {
+            display: flex;
+        }
+
+        .img {
+            width: 100px;
+            height: 90px;
+            background-image: url('./img/stra.jpg');
+            background-position: -26px 106px;
+        }
+
+        .yellow {
+            background-position: -132px 209px;
+        }
+
+        .content-item {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="warp">
+        <div class="img" data-number='1'></div>
+        <div class="img" data-number='2'></div>
+        <div class="img" data-number='3'></div>
+        <div class="img" data-number='4'></div>
+        <div class="img" data-number='5'></div>
+    </div>
+    <div class="content">
+        <h2 class="content-item">差</h2>
+        <h2 class="content-item">较差</h2>
+        <h2 class="content-item">一般</h2>
+        <h2 class="content-item">良好</h2>
+        <h2 class="content-item">美味</h2>
+    </div>
+    <script>
+        var warp = document.querySelector('.warp');
+        var img = document.querySelectorAll('.img');
+        var h2 = document.querySelectorAll('h2');
+        function change(event) {
+            var n = event.target.getAttribute('data-number');
+            var good;  
+            for (var i = 1; i <= img.length; i++) {
+                if (i <= n) {
+                    good = document.querySelector(`div[data-number='${i}']`);
+                    good.className = 'img yellow';
+                    h2[i - 1].style.display = '';
+                } else {
+                    good = document.querySelector(`div[data-number='${i}']`)
+                    good.className = 'img';
+                    h2[i - 1].style.display = '';
+                }
+
+            }
+
+            h2[n - 1].style.display = 'block';
+        }
+        warp.addEventListener('click', change, false);
+
+         // for (var j = img.length; j > n; j--) {
+            //     good = document.querySelector(`div[data-number='${j}']`)
+            //     good.className = 'img';
+            //     h2[j - 1].style.display = '';
+            // }
+            // for (var i = 1; i <= n; i++) {
+            //     good = document.querySelector(`div[data-number='${i}']`)
+            //     good.className = 'img yellow';
+            //     h2[i - 1].style.display = '';
+            // }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button class="add">0</button>
+    <script>
+        var add = document.querySelector('.add');
+        var count = 0;
+        add.addEventListener('click',function addFun(e){
+            e.stopPropagation();
+            ++count;
+            add.innerHTML=count;
+            // 当count===5时删除add 点击事件
+            if(count ===5){
+                // removeEventListener(事件,事件句柄) 不支持ie8一下
+                removeEventListener(add,'click',addFun);
+                console.log('删除了')
+            }
+        })
+        function removeEventListener(ele,eventName,eventFun){
+            if(ele.removeEventListener){
+                ele.removeEventListener(eventName,eventFun);
+            }else{
+                ele.detachEvent(eventName,eventFun)
+            }
+        }
+    </script>
+</body>
+</html>

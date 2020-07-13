@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 70px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            text-align: center;
+            line-height: 70px;
+            font-size: 18px;
+            font-weight: 900;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">开始点名</div>
+    <button id="start">开始点名</button>
+    <button id="end">停止</button>
+    <script>
+        var names = ['丁龙飞', '季玉龙', '唐艺玲', '陈顺', '周超', '与非', '刘昊', '刘玉才', '顾坤', '王宇航', '苟永正', '安素星', '姚云峰', '吕建成', '韩建立'];
+        var box = document.querySelector('.box');
+        var start = document.querySelector('#start');
+        var end = document.querySelector('#end');
+        var timer;
+        var flag = true;//开关 防抖
+        start.onclick = function () {
+            timer = setInterval(() => {
+                var random = Math.floor(Math.random() * (names.length))
+                box.innerHTML = names[random];
+            }, 100);
+            console.log(timer);
+
+
+
+            // if (flag) {
+            //     // 保证timer只赋了一次值
+            //     timer = setInterval(() => {
+            //         var random = Math.floor(Math.random() * (names.length))
+            //         box.innerHTML = names[random];
+            //     }, 10);
+
+
+            // }
+            // console.log(timer);
+            // flag = false;
+            // 当点击多次时 不清楚timer
+            // end.onclick = function(){
+            //     clearInterval(timer)
+            // }
+
+            // (function(timer){
+            //     end.onclick = function(){
+            //     clearInterval(timer)
+            // }
+            // })(timer)
+
+
+            end.onclick = function () {
+                clearInterval(timer);
+                flag = true;
+            }
+
+        }
+
+        // 网络性能优化
+        // 防抖 截留
+        // 多次点击按钮以第一次为主      timer 触底
+        // 多次点击按钮以最后一次为主      购物车 计时器
+    </script>
+</body>
+
+</html>
