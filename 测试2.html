@@ -1,22 +1,47 @@
+
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-    <script>
-        var i = 1;
-            (function () {
-                var i = 0
-                setTimeout(function () {
-                    console.log(i)
-                }, 16.2)
-            })()
-    </script>
-</body>
-
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			var provinces=[
+				["合肥市","芜湖市","蚌埠市","淮南市"],
+				["南京市","无锡市","徐州市","常州市"],
+				["广州市","韶关市","深圳市","珠海市"]
+			]
+			function selectProvince(){
+				var province=document.getElementById("province");
+				var city=document.getElementById("city");
+				var citys=provinces[province.value];
+				city.options.length=0;
+				for (var i=0;i<citys.length;i++) {
+					var sel=document.createElement("option");
+					var cityName=document.createTextNode(citys[i]);
+					sel.appendChild(cityName);
+					city.appendChild(sel);
+				}
+			}
+			function init(){
+				var province=document.getElementById("province");
+				var city=document.getElementById("city");
+				var citys=provinces[province.value];
+				for (var i=0;i<citys.length;i++) {
+					var sel=document.createElement("option");
+					var cityName=document.createTextNode(citys[i]);
+					sel.appendChild(cityName);
+					city.appendChild(sel);
+				}
+			}
+		</script>
+	</head>
+	<body onload="init();">
+		<select id="province" onchange="selectProvince();">
+			<option value="0" selected="selected">安徽省</option>
+			<option value="1">江苏省</option>
+			<option value="2">广东省</option>
+		</select>
+		<select id="city"></select>
+	</body>
 </html>
+ 

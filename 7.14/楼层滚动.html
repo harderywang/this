@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        .content {
+            width: 100%;
+            height: 100%;
+            /* padding: 10px; */
+        }
+
+        .box {
+            width: 100%;
+            height: 100%;
+
+        }
+
+        .red {
+            background-color: red;
+        }
+
+        .green {
+            background-color: green;
+        }
+
+        .yellow {
+            background-color: yellow;
+        }
+
+        .blue {
+            background-color: blue;
+        }
+
+        .contral {
+            width: 45px;
+            position: fixed;
+            top: 50%;
+            left: 50px;
+            transform: translate(-50%, -50%);
+            background-color: blanchedalmond;
+        }
+
+        .contral-item {
+            width: 100%;
+            height: 50px;
+            background-color: #ccc;
+            border: 1px solid black;
+            text-align: center;
+            outline: none;
+            text-decoration: none;
+        }
+
+        .active {
+            color: blanchedalmond;
+            background-color: brown;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <div class="box red"></div>
+        <div class="box green"></div>
+        <div class="box yellow"></div>
+        <div class="box blue"></div>
+    </div>
+    <div class="contral">
+
+        <button class="contral-item">红</button>
+        <button class="contral-item">绿</button>
+        <button class="contral-item">黄</button>
+        <button class="contral-item">蓝</button>
+    </div>
+    <script>
+        // tab切换
+        var btn = document.querySelectorAll('.contral-item');
+        var box = document.querySelectorAll('.box')
+        console.log(btn)
+
+        // 初始化
+        btn[0].style.color = '#fff';
+        btn[0].style.backgroundColor = '#000000';
+        for (var i = 0; i < btn.length; i++) {
+
+            (function (i) {
+
+                btn[i].onclick = function () {
+
+                    for (var j = 0; j < btn.length; j++) {
+
+                        btn[j].style.color = '';
+                        btn[j].style.backgroundColor = '';
+
+                    }
+                    console.log(btn[i]);
+                    btn[i].style.color = '#fff';
+                    btn[i].style.backgroundColor = '#000000';
+                    // 点击按钮指定滚动条高度
+                    //  滚动条滚动了多少
+                    var top = 0;
+                    // console.log(top.style.padding)
+                    for (var x = 0; x < i; x++) {
+                        top += box[x].offsetHeight;
+                    }
+                    console.log(top)
+                    //指定滚动到某一个位置 没有动画的滚动
+                    window.scrollTo({
+                        top: top
+                    })
+                }
+            })(i)
+        }
+
+        // 滚动联动 监听滚动条事件
+        // 页面高度 = 滚动高度+窗口高度
+        // -----滚动高度 和元素高度 求得当前滚动到哪一个元素
+        // 问题 box 滚动到第几个元素 求btn 到哪一个元素
+        document.onscroll = function (e) {
+            // 求滚动条滚动的高度
+            var h = document.documentElement.scrollTop || document.body.scrollTop;
+            // 求元素高度
+            var count = Math.floor(h / innerHeight);
+            console.log(count)
+            // for(var i = 0;i<btn.leng;i++){
+
+            // }
+            // console.log(h)
+            // 当前滚动到第几个元素
+            
+            for (var j = 0; j < btn.length; j++) {
+
+                btn[j].style.color = '';
+                btn[j].style.backgroundColor = '';
+
+            }
+            btn[count].style.color = '#fff';
+            btn[count].style.backgroundColor = '#000000';
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            opacity: 1;
+        }
+
+        /* .box:hover{
+            
+        } */
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+    <script>
+        var box = document.querySelector('.box');
+        function getStyle(ele, str) {
+            var res;
+            if (ele.currentStyle) {
+                res = ele.currentStyle[str];
+            } else {
+                res = getComputedStyle(ele, null)[str];
+            }
+            console.log(res)
+            return res;
+
+        }
+
+        function ani(ele, str, end, time) {
+            var start = getStyle(ele, str);
+            start = parseInt(start);
+            var s = end - start;
+
+            time = time * 1000;
+
+            var timer = setInterval(function () {
+                start += s / (time / 16.7);
+                // ele.style[str] = start + 'px';
+                // if (start >= end) {
+                //     ele.style[str] = end + 'px';
+                //     clearInterval(timer)
+                // }
+                if (s > 0) {
+                    if (start >= end) {
+
+                        if (str === 'opacity' || str === 'zIndex') {
+                            ele.style[str] = start;
+                            ele.style[str] = end;
+                        } else {
+                            ele.style[str] = start + 'px';
+                            ele.style[str] = end + 'px';
+                        }
+                        clearInterval(timer)
+                    }
+                } else {
+                    if (start <= end) {
+                        if (str === 'opacity' || str === 'zIndex') {
+                            ele.style[str] = start;
+                            ele.style[str] = end;
+                        } else {
+                            ele.style[str] = start + 'px';
+                            ele.style[str] = end + 'px';
+                          
+                        }
+                        clearInterval(timer);
+                    }
+                }
+
+
+                if (str === 'opacity' || str === 'zIndex') {
+                    ele.style[str] = start;
+                } else {
+                    ele.style[str] = start + 'px';
+                }
+            }, 16.7)
+        }
+        ani(box, 'width', 400, 0.5);
+        ani(box, 'opacity', 0.3, 0.5);
+    </script>
+</body>
+
+</html>

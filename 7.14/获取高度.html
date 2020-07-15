@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 200px;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>我是内容</h1>
+        <h1>我是内容</h1>
+        <h1>我是内容</h1>
+        <h1>我是内容</h1>
+        <h1>我是内容</h1>
+    </div>
+    <script>
+        var box = document.querySelector('.box');
+        console.log(box.style.height=300+'px');//可以设置不可以获取
+        console.log(box.offsetHeight)
+        var pageH = document.documentElement.offsetHeight;//获取html 高度
+        console.log(pageH)
+        // 视图窗口高度
+        // 页面高度
+        // 屏幕高度
+        // 某个指定元素的高度
+
+
+        // 动态高度
+        // 滚动条滚动高度
+        // event 位置
+        // dom位置
+
+        // 指定某个元素到达某个位置
+        // 指定滚动到某一个位置
+        // 移动到某个位置postion
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="">
+
+        <select name="province" id="" class="province">
+            <option value="" >请选择</option>
+            <option value=""selected="selected">请选择1</option>
+        </select>
+        <select name="city" id="" class="city">
+            <option value="">请选择</option>
+            <option value=""selected="selected">请选择1</option>
+        </select>
+        <select name="area" id="" class="area">
+            <option value="">请选择</option>
+            <option value=""selected="selected">请选择1</option>
+        </select>
+    </form>
+    
+    <script src="./area.js"></script>
+    <script>
+        var province = document.querySelector('.province');
+        var city = document.querySelector('.city');
+        var area1 = document.querySelector('.area');
+        // console.log(province)
+
+        // for (var key in area) {
+        //     var option = document.createElement('option');
+        //     option.innerHTML = key;
+        //     option.value = key;
+        //     province.appendChild(option);
+
+        //     if (option.selected === true) {
+        //         area[key].forEach(function (ele, index) {
+        //             for (var k in ele) {
+        //                 var option1 = document.createElement('option');
+        //                 option1.innerHTML = k;
+        //                 option1.value = k;
+        //                 city.appendChild(option1);
+
+        //                 if (option1.selected === true) {
+        //                     ele[k].forEach(function (el, ind) {
+        //                         for (var x in el) {
+        //                             var option2 = document.createElement('option');
+        //                             option2.innerHTML = x;
+        //                             option2.value = x;
+        //                             area1.appendChild(option2);
+
+        //                         }
+        //                     })
+        //                 }
+
+
+        //             }
+        //         })
+        //     }
+
+
+
+        // };
+
+
+        // for (var key in area) {
+        //     var option = document.createElement('option');
+        //     option.innerHTML = key;
+        //     option.value = key;
+        //     province.appendChild(option);
+        // }
+
+window.onload =function(){
+     for (var key in area) {
+            var option = document.createElement('option');
+            option.innerHTML = key;
+            option.value = key;
+            province.appendChild(option);
+        }
+}
+
+province.onchange = function () {
+
+for (var key in area) {
+    var option = document.createElement('option');
+    option.innerHTML = key;
+    option.value = key;
+   
+    province.appendChild(option);
+
+    console.log(option.selected)
+    if (option.selected === true) {
+        area[key].forEach(function (ele, index) {
+            for (var k in ele) {
+                var option1 = document.createElement('option');
+                option1.innerHTML = k;
+                option1.value = k;
+                city.appendChild(option1);
+
+                if (option1.selected === true) {
+                    ele[k].forEach(function (el, ind) {
+                        for (var x in el) {
+                            var option2 = document.createElement('option');
+                            option2.innerHTML = x;
+                            option2.value = x;
+                            area1.appendChild(option2);
+
+                        }
+                    })
+                }
+
+
+            }
+        })
+    }
+
+};
+}
+
+
+    </script>
+</body>
+
+</html>

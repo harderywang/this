@@ -1,72 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        button {
-            width: 55px;
-            height: 35px;
-            border-radius: 5px;
-        }
-
-        .contral {
-            margin: 10px;
-            width: 200px;
-            height: 35px;
-            border-radius: 5px;
-        }
-
-        .colorBox {
-            margin: 10px;
-            display: block;
-            width: 300px;
-            height: 20px;
-        }
-    </style>
 </head>
-
 <body>
-    <div class="top">
-        <button value="red">赤</button>
-        <button value="orange">橙</button>
-        <button value="yellow">黄</button>
-        <button value="green">绿</button>
-        <button value="cyan">青</button>
-        <button value="blue">蓝</button>
-        <button value="purple">紫</button>
-    </div>
-    <input class="contral" type="button" value="控制颜色">
-    <input class="colorBox" type="text" style="background-color: white;">
-
+    <!-- <select name="province" id="province">
+        <option value=""></option>
+    </select>
+    <select name="city" id="city">
+        <option value=""></option>
+        <option value=""></option>
+    </select>
+    <select name="area" id="area">
+        <option value=""></option>
+        <option value=""></option>
+    </select> -->
+    <script src="./7.14/area.js"></script>
     <script>
-        var top = document.getElementsByClassName('top')[0];
-        var btn = document.getElementsByTagName('button');
-        var contral = document.getElementsByClassName('contral')[0];
-        var colorBox = document.getElementsByClassName('colorBox')[0];
+        var province = document.createElement('select');
+        var city = document.createElement('select')
 
+        // 遍历对象
+        for(var i in area){
+            // 遍历创建option
+            var opt = new Option(i,i);
+            // 将创建好的option 添加到 省份select中
+            province.appendChild(opt);
+        }
+        console.log(province);
+        document.body.appendChild(province);
 
-        top.addEventListener('click', function (e) {
-            var color = e.target.value;
-            for (var i = 0; i < btn.length; i++) {
-                        btn[i].style.backgroundColor='';
-                    }
-            e.target.style.backgroundColor = color;
-            function backgroundColor(event) {
-                event.stopPropagation();
-                colorBox.style.backgroundColor = color;
-            }
-            contral.addEventListener('click', backgroundColor, false)
-        }, false)
-
-
-    </script>
-    <input name="cardgrade" type="button" value="普卡" />
-    <script>
-
+        // 获取省份对应的value值
+        var proVal = province.value;
+        
+        // 根据数据结构获取对应的想要取得的数据
+        var cityObj = area[proVal][0];
+        console.log(cityObj);
+        for(var x in cityObj){
+            var citys = new Option(x,x);
+            // console.log(citys)
+            city.appendChild(citys);
+        }
+        document.body.appendChild(city);
+       
+        // 通过onchange事件 获取对应的value值
+        province.onchange = function(){
+            var val = province.value;
+            console.log(val);
+            var cityAll = area[val][0];
+            city.innerHTML = '';
+            // value值 对应的市区也要改变  改变之前进行清空 然后重新存入新的数据
+            for(var y in cityAll){
+                var cityAlls = new Option(y,y);
+                city.appendChild(cityAlls);
+                console.log(cityAlls)
+                document.body.appendChild(city)
+            };
+            
+        };
+    
     </script>
 </body>
-
 </html>
+
+
+

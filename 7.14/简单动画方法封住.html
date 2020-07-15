@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: crimson;
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+    <script>
+        // $animat实现动画
+        // 
+        var box = document.querySelector('.box');
+        // $animat(box, { opacity: 0.5 });
+        // ele指定元素  styles css样式动画   time 时间
+        function $animat(ele, styles, time, callback) {
+
+            for (var key in styles) {
+                // (function () {
+                //     var timer = setInterval(function () {
+                //         box.style[key] -= opacity;
+                //         console.log(1)
+                //         if (opacity <= 0.3) {
+                //             box.style.opacity = 0.3;
+                //             clearInterval(timer)
+                //         }
+                //     }, 72)
+                // })();
+                console.log(getComputedStyle(ele,key)[key])
+                    ele.style[key]=styles[key]
+                    ele.style.transition = 'all  '+time+'s';
+            }
+
+
+        }
+
+        box.onclick = function(){
+            $animat(box, { opacity: 0.5 },0.5);
+        }
+    </script>
+</body>
+
+</html>

@@ -52,10 +52,10 @@
                 box.style.left = e.clientX-x+'px';
                 box.style.top = e.clientY-y+'px';
             }
-            // document.onmouseup = function () {
-            //         document.onmousemove = null;
-            //         // document.onmouseup = null;
-            //     }
+            document.onmouseup = function () {
+                    document.onmousemove = null;
+                    // document.onmouseup = null;
+                }
         }
 
         // document.onmousemove = function (e) {

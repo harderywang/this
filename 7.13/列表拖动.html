@@ -8,7 +8,7 @@
     <style>
         * {
             padding: 0;
-            padding: 0;
+            margin: 0;
             box-sizing: border-box;
         }
 
@@ -27,6 +27,7 @@
             justify-content: center;
             align-items: center;
             position: absolute;
+            border-radius: 10px;
         }
 
         div {
@@ -38,6 +39,7 @@
             border: none;
             width: 200px;
             height: 25px;
+            border-radius: 5px;
         }
 
         .logo {
@@ -53,10 +55,10 @@
     <form action="">
         <h3>猥琐一笑</h3>
         <div>
-            <input type="text" placeholder='账号'>
+            <input type="text" placeholder='账号' class="focus">
         </div>
         <div>
-            <input type="password" placeholder='密码'>
+            <input type="password" placeholder='密码' class="focus">
         </div>
         <div>
             <input type="submit" value="登录" class="logo">
@@ -71,22 +73,56 @@
 
         // 拖动
         function drag(e) {
+            // e.stopPropagation();
             var x = e.offsetX;
             var y = e.offsetY;
             // 移动
             document.addEventListener('mousemove', move, false);
             function move(event) {
-                form.style.left = event.clientX - x + 'px';
-                form.style.top = event.clientY - y + 'px';
+                var y1 = event.clientY - y;
+                var x1 = event.clientX - x;
+               
+                if (x1 < 0) {
+                    x1 = 0;
+                }
+                if (y1 < 0) {innerHeight
+                    y1 = 0;
+                }
+                if (x1 > innerWidth-300) {
+                    x1 = innerWidth-300;
+                }
+                if (y1 > innerHeight-300) {
+                    y1 = innerHeight-300;
+                }
+                form.style.left = x1 + 'px';
+                form.style.top = y1 + 'px';
+                //    console.log(event.clientX - x)
             }
-            // 拖
+            // 取消事件移动
             document.addEventListener('mouseup', pull, false)
             function pull() {
-                document.removeEventListener('mousemove',move,false)
+                document.removeEventListener('mousemove', move, false)
             }
-            
+
         }
 
+        // var focu = document.querySelectorAll('.focus');
+        // [...focu].forEach((ele, index) => {
+        //     // var flag = false;
+        //     ele.addEventListener('click', (e) => {
+        //         // e.stopPropagation();
+        //         console.log(index)
+        //         // falg = !flag;
+        //         // if(flag){
+        //         form.removeEventListener('mousedown', drag, false);
+        //         // }else{
+        //         //     form.addEventListener('mousedown', drag, false);
+        //         // }
+
+        //     })
+        // })
+       
+       
     </script>
 </body>
 
