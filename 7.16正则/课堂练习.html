@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // 1: 以数字字母开头 匹配结果字符长度为8为
+        var reg = /^(\d|[a-zA-Z]){8}$/g;//  /^[0-9a-zA-Z]{8}$/g
+        var str = '11234d567'
+        console.log(str.match(reg))
+    // 2：匹配一个数字字符字符长度为18为
+    var reg1 = /\d{18}/g;
+    // 3: 手机号码正则
+    var reg2 = /^1[345789]\d{9}$/g;
+    // 4: 邮箱的验证码
+    var reg4 = /(^[0-9a-zA-Z]{1,32})@[a-z]{1,}\.com/g;
+    var email = 'guangjia@mail.com';
+    console.log(email.match(reg4))
+    // 5：写一个 8-12 的密码验证。
+    var reg5 = /^\w{8,12}$/;
+    // 6：http开头 中间为任意字符，长度不限，结尾必须是.com.cn
+    var reg6 = /^http:.+\.com\.cn/g;
+    </script>
+</body>
+</html>

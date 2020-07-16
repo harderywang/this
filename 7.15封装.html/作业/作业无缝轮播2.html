@@ -17,19 +17,8 @@
             height: 400px;
             display: flex;
             position: absolute;
-            /* left: 10px; */
         }
 
-        /* .wrap{
-            width: 2400px;
-            height: 400px;
-            display: flex;
-            overflow: auto;
-
-        }
-        .wrap::-webkit-scrollbar{
-            display: none;
-        } */
         img {
             width: 800px;
             height: 400px;
@@ -78,8 +67,6 @@
         <script>
             var wrap = document.querySelector('.wrap');
 
-            // ani(wrap,'left',)
-            // function()
             var distance = 0;
             var timer = setInterval(function () {
                 if (distance === -3200) {
@@ -99,7 +86,7 @@
             }
             win.onmouseout = function () {
                 timer = setInterval(function () {
-                    if (distance === -2400) {
+                    if (distance === -3200) {
                         distance = 0;
                         wrap.style.left = distance + 'px';
                         wrap.style.transition = 'all 0s';
@@ -113,7 +100,7 @@
             var right = document.querySelector('.right');
             var left = document.querySelector('.left');
             right.onclick = function () {
-                if (distance === -2400) {
+                if (distance <= -2400) {
                     distance = 0;
                     wrap.style.transition = 'all 0s';
                 } else {
@@ -135,26 +122,6 @@
                 wrap.style.left = distance + 'px';
             }
         </script>
-
-        <!-- <script>
-        var wrap = document.querySelector('.wrap');
-
-        setInterval(function(){
-            wrap.scrollLeft='800';
-            // if(wrap.scrollLeft===800){
-            //     wrap.scrollLeft=0;
-            // }
-            wrap.style.transition = 'all  0.3s linear';
-        },1000)
-        // wrap.onscroll=function(){
-        //     console.log(wrap.scrollLeft);
-        // }
-        // var pageh = document.documentElement.scrollHeight||document.body.scrollHeight;
-
-
-
-
-    </script> -->
 </body>
 
 </html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 量词 设置 匹配字符的长度
+
+        // {m,n} 匹配的字符的长度最小为m 最大为n
+        // {n,}  匹配字符的长度最小为n 最大不限
+        // {n}  匹配的字符的长度为n
+
+        // 验证长度为三的任意字符
+        // .匹配任意字符 \.匹配.
+        // var reg = /^.{3}$/g;
+        // var str='2342sdfsddsfdsf';
+        // console.log(str.match(reg))
+
+        // 只能为数字 不限制长度
+        var reg = /^[0-9]{1,}$/
+        var str = '432324324234xcvsdf23423';
+        console.log(str.match(reg))
+        console.log(reg.test(str))
+        // exec()检查字符串中是否含有匹配的字符 有返回字符没有返回null
+        // text()验证是否符合正则 返回是true false
+
+
+
+
+        // 匹配首部且者尾部为空格的
+        var reg1 = /^\s{1,}|\s{1,}$/g;
+        var str = '          dddddd  ddddddddd     '
+        console.log(str.replace(reg1,'-'))
+
+
+        // 去除一个字符串中的所有空格
+        var reg2 = /\s{1,}/g;
+        console.log(str.replace(reg2,'8'))
+    </script>
+</body>
+</html>

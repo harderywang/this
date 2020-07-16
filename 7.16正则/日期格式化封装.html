@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // var date = new Date();
+        // function formatDate(date) {
+        //      // 确定数据结构
+        //      var str = 'yyyy-mm-dd hh:ff:ss'
+        //     var time = {
+        //     //    属性名设置为'y+'是为了动态设置
+        //         'y+': date.getFullYear(),
+        //         'm+': date.getMonth() + 1<=10?'0'+(date.getMonth() + 1):date.getMonth() + 1,
+        //         'd+': date.getDate(),
+        //         'h+': date.getHours(),
+        //         'f+': date.getMinutes(),
+        //         's+': date.getSeconds()<=10?'0'+date.getSeconds():date.getSeconds(),
+        //     }
+            
+        //     for(var x in time){
+        //         // 设置正则/(y+)/
+        //         var reg =new RegExp(`(${x})`);
+        //         console.log(reg+'g')
+        //         // 利用正则方法判断 reg.test(str) 如果str中有reg则返回true否则返回false
+        //         if(reg.test(str)){
+        //             // RegExp.$1利用反向引用获取str中的yyyy
+        //          str = str.replace(RegExp.$1,time[x])
+        //     }
+        //     }
+        //    return str
+        // }
+        // var res = formatDate(date);
+        // console.log(res)
+    </script>
+</body>
+
+</html>
+<script>
+    // 1.0
+//     function formatDate1(date,str){
+//         var res = str;
+//         var time = {
+//                 'y+': date.getFullYear(),
+//                 'm+': date.getMonth() + 1<=10?'0'+(date.getMonth() + 1):date.getMonth() + 1,
+//                 'd+': date.getDate(),
+//                 'h+': date.getHours(),
+//                 'f+': date.getMinutes(),
+//                 's+': date.getSeconds()<=10?'0'+date.getSeconds():date.getSeconds(),
+//             }
+//             for(var x in time){
+//                 var reg =new RegExp(`(${x})`);
+//                 console.log(reg+'g')
+//                 if(reg.test(res)){
+//                     res = res.replace(RegExp.$1,time[x])
+//             }
+//             }
+//            return res
+//     }
+//   var r =  formatDate1(new Date(),'yyyy/mm/dd hh:ff:ss')
+//   console.log(r)
+</script>
+<script>
+   // 1.1
+    // 需求format 时间对象下是API
+
+   
+    Date.prototype.formate =function(str){
+        var res = str;
+        var time = {
+                'y+': this.getFullYear(),
+                'm+': this.getMonth() + 1<=10?'0'+(this.getMonth() + 1):this.getMonth() + 1,
+                'd+': this.getDate(),
+                'h+': this.getHours(),
+                'f+': this.getMinutes(),
+                's+': this.getSeconds()<=10?'0'+this.getSeconds():this.getSeconds(),
+            }
+            for(var x in time){
+                var reg =new RegExp(`(${x})`);
+                console.log(reg+'g')
+                if(reg.test(res)){
+                    res = res.replace(RegExp.$1,time[x])
+            }
+            }
+           return res
+    }
+    var a = new Date();
+    var  res = a.formate('yyyy/mm/dd hh:ff:ss');
+    console.dir(a)
+    console.log(res)
+</script>

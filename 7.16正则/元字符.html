@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var reg = /[0-9]/g;
+        var reg = /\d/g;//匹配0-9
+        var reg = /[0-9a-zA-Z_]/g;//数字字母下划线
+        var reg = /\w/g;//数字字母下划线
+        var reg = /./g;//
+
+        var reg = /^\d[a-zA-Z_]$/g;//以数字开头字母结尾 长度2
+        var reg = /^\d*\w*[a-zA-Z]$/g;
+        var str = '12fefverxq12erfc';
+        console.log(str.match(reg));
+
+        // 匹配 必须以1开头 结尾无所谓 长度不限
+        var reg3 = /^[1][^\s]{1,}/g;
+
+        // 手机号码 开头为1 的11位数字
+        var reg5 = /^1\d{10}$/g;//开头1 结尾是数字  用{}$控制长度
+
+        // 边界类
+        var str8 = '王宇航 是河南人 他不是 是一个 大学生';
+        
+        var reg6 =  /\B是\B/g;// 非单词边界
+        console.log(str8.match(reg6))
+    </script>
+</body>
+</html>

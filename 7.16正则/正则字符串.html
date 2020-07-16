@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 正则字符分为 原义文本字符（元字符） 和 特殊文本字符
+    原义文本字符 原本意义的文本字符
+    [] 或  /[123456789]/g 匹配1~9字符字符长度为一 可以匹配多个结果 每个结果长度都为1
+                /[123456789]{3}/g 匹配1~9多个结果 每个结果长度都为3
+    {}  量词  匹配单个字符的长度 -->
+    <script>
+        var  reg = /[123456789]{3}/g;//匹配连续的三个字符 匹配成功的字符不在匹配 
+        var  reg = /[123456789]{1,5}/g;//
+        var str = '12d32f14f3483';
+        console.log(str.match(reg))//["348"] 
+    </script>
+</body>
+</html>

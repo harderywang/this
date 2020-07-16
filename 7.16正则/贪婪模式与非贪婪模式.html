@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var str = 'dsidfusidfusifj323244324sdkfjsdk';
+        var reg = /\d{3,5}?/g;
+        var reg1 = /\d{3,5}/g;
+        console.log(str.match(reg));
+        console.log(str.match(reg1));
+
+
+        var reg2 = /\d+/g; //贪婪模式
+        console.log(str.match(reg2));
+        var reg3 = /\d+?/g; //非贪婪
+        console.log(str.match(reg3));
+
+        var reg4 =/\d{0,}/g;
+        var reg5 =/\d*/g;
+
+        console.log(str.match(reg4));
+        console.log(str.match(reg5));
+
+        // + ==={1,}
+        // * ==={0,}
+        //  ?  非贪婪模式
+    </script>
+</body>
+</html>

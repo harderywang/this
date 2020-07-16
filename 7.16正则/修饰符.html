@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var str = '韩国人，美国人，日本人';
+        var reg = /人/;//匹配第一个出现的字符
+        var reg1 = /人/g;//匹配所用相同的字符
+        var res = str.replace(reg,'狗');
+        console.log(res)
+
+        var str1 = 'dskfjioweruisdflkxnc8923478329sdklfjl04859dsklfjJKLSDHFSJDH';
+        var str1 = `dskfjioweruisdf 
+        lkxnc8923478329sd
+        klfjl04859dsklfjJ
+        KLSDHFSJDH`;
+        // i匹配英文字符忽略大小写
+        // g 全局匹配 在整个字符串中匹配
+         var reg2 = /[abcdefghigklmnopqrstuvwxyz]/ig;//匹配任意26个英文字母
+        var res1 = str1.replace(reg2,'狗');
+        console.log(res1)
+    </script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div></div>
+    <script>      
+        var div =document.querySelector('div')
+        function countDown(str) {
+            var now = new Date();
+            now = now.getTime();
+            var future = new Date(str);
+            future = future.getTime();     
+            var time = (future - now)/1000;
+            var date = {
+                day:parseInt((time/60/60/24)%30),
+                hours:parseInt((time/60/60)%24),
+                min:parseInt((time/60)%60),
+                seconds:parseInt(time%60),
+            }
+            return (date.day+'日   '+date.hours+'时'+date.min+'分'+date.seconds +'秒')
+        }
+        function stop(str){
+            var now = new Date();
+            now = now.getTime();
+            var future = new Date(str);
+            future = future.getTime();
+            return future-now
+        }
+        
+        var timer =  setInterval(() => {
+            // console.log(!stop('2020-7-16 20:44:00'))
+            // console.log(timer)
+            if(stop('2020-7-16 20:54:00')<0){
+                clearInterval(timer)
+            }
+            div.innerHTML= `倒计时 ${countDown('2020-7-16 20:54:00')}`   
+           
+        }, 1000);
+
+
+
+
+        // function stop(str){
+        //     var now = new Date();
+        //     now = now.getTime();
+        //     var future = new Date(str);
+        //     future = future.getTime();
+        //     return future-now
+        // }
+        
+        // // var t =stop('2020-7-17')
+        // // console.log(t)
+        // var timer =  setInterval(() => {
+        //     if(!stop('2020-7-16 20:07:00')){
+        //         console.log('成功')
+        //         clearInterval(timer)
+        //     }
+        //     div.innerHTML= `倒计时 ${countDown('2020-7-16 20:07:00')}`   
+           
+        // }, 1000);
+    </script>
+</body>
+
+</html>
