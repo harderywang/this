@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>获取localStorage中内容</button>
+    <button>清空localStorage</button>
+    <script>
+        var btn = document.querySelector('button');
+        var btns = document.querySelectorAll('button');
+        btn.onclick = function(){
+            // getItem(str)从localStorage中获取某一个属性的值
+            var res = localStorage.getItem('name');
+            var res1 = localStorage.getItem('musiclist')
+            var res2 = localStorage.key(0)
+            // key()返回key值 参数index对应的索引的key值
+            console.log(res,res1)
+        }
+        btns[1].onclick = function(){
+            localStorage.clear();
+        }
+
+        // localStorage 数据不能被删除 只能通过 clear() removeItem 删除 
+        //没有默认过期时间  存在浏览器缓存中
+
+
+        // 什么是数据持久化
+        // 1页面刷新后数据存在 2 将数据保存在不会自动销毁的容器中 本地localStorage 数据库 云数据库  对象存储 cookie
+    </script>
+</body>
+</html>

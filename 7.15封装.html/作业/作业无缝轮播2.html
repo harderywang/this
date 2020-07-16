@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .wrap {
+            width: 3200px;
+            height: 400px;
+            display: flex;
+            position: absolute;
+            /* left: 10px; */
+        }
+
+        /* .wrap{
+            width: 2400px;
+            height: 400px;
+            display: flex;
+            overflow: auto;
+
+        }
+        .wrap::-webkit-scrollbar{
+            display: none;
+        } */
+        img {
+            width: 800px;
+            height: 400px;
+        }
+
+        .win {
+            width: 800px;
+            height: 400px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .right,
+        .left {
+            width: 30px;
+            height: 50px;
+            background-color: rgb(93, 90, 90);
+            position: absolute;
+            text-align: center;
+            line-height: 50px;
+            top: 50%;
+            transform: translate(0, -50%);
+        }
+
+        .right {
+            right: 0;
+        }
+
+        .left {
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="win">
+        <div class="wrap">
+            <img src="./img/1.jpg" alt="">
+            <img class="img2" src="./img/2.jpg" alt="">
+            <img src="./img/3.jpg" alt="">
+            <img src="./img/1.jpg" alt="">
+        </div>
+        <div class="right">></div>
+        <div class="left"><</div>
+        </div>
+        <script>
+            var wrap = document.querySelector('.wrap');
+
+            // ani(wrap,'left',)
+            // function()
+            var distance = 0;
+            var timer = setInterval(function () {
+                if (distance === -3200) {
+                    distance = 0;
+                    wrap.style.left = distance + 'px';
+                    wrap.style.transition = 'all 0s';
+                } else {
+                    wrap.style.left = distance + 'px';
+                    wrap.style.transition = 'all 1s';
+                }
+                distance -= 800;
+            }, 1000);
+
+            var win = document.querySelector('.win');
+            win.onmouseover = function () {
+                clearInterval(timer)
+            }
+            win.onmouseout = function () {
+                timer = setInterval(function () {
+                    if (distance === -2400) {
+                        distance = 0;
+                        wrap.style.left = distance + 'px';
+                        wrap.style.transition = 'all 0s';
+                    } else {
+                        wrap.style.left = distance + 'px';
+                        wrap.style.transition = 'all 1s';
+                    }
+                    distance -= 800;
+                }, 1000);
+            }
+            var right = document.querySelector('.right');
+            var left = document.querySelector('.left');
+            right.onclick = function () {
+                if (distance === -2400) {
+                    distance = 0;
+                    wrap.style.transition = 'all 0s';
+                } else {
+                    distance -= 800;
+                    wrap.style.transition = 'all 1s';
+                }
+
+                wrap.style.left = distance + 'px';
+            }
+            left.onclick = function () {
+                if (distance === 0) {
+                    distance = -2400;
+                    wrap.style.transition = 'all 0s';
+                } else {
+                    distance += 800;
+                    wrap.style.transition = 'all 1s';
+                }
+
+                wrap.style.left = distance + 'px';
+            }
+        </script>
+
+        <!-- <script>
+        var wrap = document.querySelector('.wrap');
+
+        setInterval(function(){
+            wrap.scrollLeft='800';
+            // if(wrap.scrollLeft===800){
+            //     wrap.scrollLeft=0;
+            // }
+            wrap.style.transition = 'all  0.3s linear';
+        },1000)
+        // wrap.onscroll=function(){
+        //     console.log(wrap.scrollLeft);
+        // }
+        // var pageh = document.documentElement.scrollHeight||document.body.scrollHeight;
+
+
+
+
+    </script> -->
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>返回</button>
+    <script>
+        var btn = document.querySelector('button')
+        btn.onclick = function(){
+            // history.back();//返回上一页
+            history.go(-1)
+        }
+        console.log(location.search) //接下来对字符串进行替换分割 替换 处理
+        // ?   ''
+        // &    ,
+    </script>
+</body>
+</html>

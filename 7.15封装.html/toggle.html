@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: darksalmon;
+        }
+    </style>
+</head>
+
+<body>
+    <button>toggle</button>
+    <div class="box"></div>
+    <script src="./todos.js"></script>
+    <script>
+        // box显示隐藏不确定  显示隐藏一定是display控制
+        var btn = document.querySelector('button');
+        var box = document.querySelector('.box')
+        var flag = true;
+        btn.onclick = function () {
+            toggle(box)
+            // flag = !flag;
+            // if (flag) {
+            //     box.style.display = 'block';
+            // } else {
+            //     box.style.display = 'none';
+            // }
+            // console.log(getComputedStyle(box, null)['display'])
+        }
+
+        function toggle(ele) {
+            var none = getComputedStyle(ele, null)['display'];
+            if(none ==='none'){
+                ele.style.display = 'block';
+                show(ele)
+
+            }else{
+                ele.style.display = 'none';
+                hide(ele)
+            }
+            return ele
+        }
+        // toggle(box);//如果box显示那么隐藏  如果隐藏那么显示
+    </script>
+</body>
+
+</html>

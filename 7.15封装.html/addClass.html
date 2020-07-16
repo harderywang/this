@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="box"></div>
+    <script>
+        // 给元素添加类名 
+         var box = document.querySelector('.box');
+         addClass(box,'wrap');
+         addClass(box,'youcai');
+         function addClass(ele,str){
+             var list = ele.classList;
+             list.add(str);
+            
+             return ele
+         }
+        //  元素删除类名
+         remove(box,'youcai');
+         function remove(ele,str){
+             var list = ele.classList;
+             list.remove(str)
+             return ele
+         }
+
+        //错误  元素插入类名
+        //  insert(box,'you');
+        //  function insert(ele,str){
+        //      var list = ele.classList;
+        //      list.insert(str)
+        //      return ele
+        //  }
+    </script>
+</body>
+</html>

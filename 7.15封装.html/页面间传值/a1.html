@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>跳转a1</button>
+    <script>
+        var str = 'a数据';
+        //1 url传值   传少量字符串的数据
+        //2 sessionstorage传值 浏览器关闭时sessionStorage会自动清空
+        //3 localstroage传值  存储在浏览器中
+
+        var btn = document.querySelector('button');
+        // btn.onclick=function(){
+        //     location.href ='./a2.html?str='+str;
+        // }
+
+        var obj = {
+                name:'wang',
+                age:12,
+                list:[1,2,45,6]  
+        }
+        console.log(sessionStorage)
+
+        // 在a 中往sessionStorage中存数据
+        // 其他页面中 sessionStorage中取数据
+        btn.onclick=function(){
+            // setItem()设置sessionStorage中的数据 包括新增 修改
+            sessionStorage.setItem('obj',obj);
+            for(var key in obj){
+                sessionStorage.setItem(key,obj[key])
+            }
+            location.href ='./a2.html'
+        }
+    </script>
+</body>
+</html>

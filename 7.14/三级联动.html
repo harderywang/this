@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        <select name="pro" id="pro"></select>
+        <select name="city" id="city"></select>
+        <select name="area" id="area"></select>
+    </form>
+    <script src="./area.js"></script>
+    <script>
+        var data = area;
+        var pro = document.getElementById('pro');
+        var city = document.getElementById('city');
+        var Area = document.getElementById('area');
+        // 初始化获取省
+        (function(){
+            for(var key in data){
+            var option = document.createElement('option');
+            option.innerHTML=key;
+            option.value=key;
+            pro.add(option)
+        }
+        })()
+        
+        // 初始化获取城市
+        // console.log(pro[0].value);
+        (function(){
+
+        })()
+        // var cityData = data[pro[0].value][0];
+        // console.log(cityData)
+        // for(var key in data[pro[0].value][0]){
+        //     var option = document.createElement('option');
+        //     option.innerHTML=key;
+        //     option.value=key;
+        //     city.add(option)
+        // }
+
+
+        // 初始化获取区
+        (function(){
+            w
+        })()
+
+
+        // 当用户选择省份发生变化时 
+        console.dir(pro)
+        pro.onchange = function(){
+            // selectedIndex返回选中的索引值
+            console.log(pro.selectedIndex)
+        }
+
+        // 当用户选择市发生变化时
+        city.onchange = function(){
+            console.log()
+        }
+    </script>
+</body>
+</html>

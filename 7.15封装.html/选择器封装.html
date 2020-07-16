@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="box"></div>
+    <div id="box"></div>
+    <script>
+        getElement('div');
+        getElement('.box');
+        getElement('#box');
+        console.log( getElement('#box'))
+        console.log( getElement('.box'))
+        console.log( getElement('div'))
+        function getElement(str){
+            var ele;
+            if(str[0]==='.'){
+                ele = document.getElementsByClassName(`${str}`);
+            }else if(str[0]==='#'){
+                ele = document.getElementById(`${str}`)
+            }else{
+                ele = document.getElementsByTagName(`${str}`);
+            }
+            return ele
+            // if(str.charAt(0))
+        }
+    </script>
+</body>
+</html>

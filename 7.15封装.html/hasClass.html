@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="box a b"></div>
+    <script>
+        // 判断某一个元素是否具有某个类名
+        var box = document.querySelector('div');
+        // console.log(box)
+        
+        console.log(hasClassName(box,'wrap'))
+        
+        function hasClassName(ele,calssN){
+            console.dir(ele)
+            var classes = ele.className;  
+            var classL = [...ele.classList];
+            return classL.indexOf(calssN) !==-1?true:false;
+        }
+        //   /\s+/匹配多个字符   \s空格字符   +无限次数匹配
+    </script>
+</body>
+</html>

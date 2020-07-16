@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="box a youcai hahaha a a "></div>
+    <script>
+        var box = document.querySelector('.box');
+
+        //  元素删除类名
+        remove(box, 'youcai');
+        function remove(ele, str) {
+        //domAPI  使用类数组方法操作
+            // var list = ele.classList;
+            // var arr = [...ele.classList];
+            // if (arr.indexOf(str) !== -1) {
+            //     list.remove(str)
+            //     return ele
+            // }else{
+            //     console.log('不存在')
+            // }
+        //  判断是否存在
+             var classes = ele.className;
+             classes = classes.split(/\s+/);
+             console.log(classes) ;
+             res = classes.indexOf(str) !==-1?true:false;
+             if(res){
+                var newArr   = classes.filter(function(item){
+                    return item !=str;
+                })
+                var newStr = newArr.join(' ');
+                ele.className = newStr;
+             }
+             return ele
+        }
+    </script>
+</body>
+
+</html>

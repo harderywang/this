@@ -9,15 +9,15 @@
 
 <body>
     <select name="province" id="" class="province">
-        <option value="" >请选择</option>
+        <!-- <option value="" >请选择</option> -->
        
     </select>
     <select name="city" id="" class="city">
-        <option value="">请选择</option>
+        <!-- <option value="">请选择</option> -->
        
     </select>
     <select name="area" id="" class="area">
-        <option value="">请选择</option>
+        <!-- <option value="">请选择</option> -->
       
     </select>
     <script src="./area.js"></script>
@@ -27,54 +27,54 @@
         var area1 = document.querySelector('.area');
         // console.log(province)
 
-        // for (var key in area) {
-        //     var option = document.createElement('option');
-        //     option.innerHTML = key;
-        //     option.value = key;
-        //     province.appendChild(option);
-
-        //     if (option.selected === true) {
-        //         area[key].forEach(function (ele, index) {
-        //             for (var k in ele) {
-        //                 var option1 = document.createElement('option');
-        //                 option1.innerHTML = k;
-        //                 option1.value = k;
-        //                 city.appendChild(option1);
-
-        //                 if (option1.selected === true) {
-        //                     ele[k].forEach(function (el, ind) {
-        //                         for (var x in el) {
-        //                             var option2 = document.createElement('option');
-        //                             option2.innerHTML = x;
-        //                             option2.value = x;
-        //                             area1.appendChild(option2);
-
-        //                         }
-        //                     })
-        //                 }
-        //             }
-        //         })
-        //     }
-        // };
-
-
         for (var key in area) {
             var option = document.createElement('option');
             option.innerHTML = key;
-            option.className = 'province-item';
+            option.value = key;
             province.appendChild(option);
-        }
 
-        var option = document.querySelectorAll('.province-item')
-       
-        function linkage(e){
-            console.dir(e)
-            console.dir(option)
-            if (option.selected == true) {
-                console.log(option)
+            if (option.selected === true) {
+                area[key].forEach(function (ele, index) {
+                    for (var k in ele) {
+                        var option1 = document.createElement('option');
+                        option1.innerHTML = k;
+                        option1.value = k;
+                        city.appendChild(option1);
+
+                        if (option1.selected === true) {
+                            ele[k].forEach(function (el, ind) {
+                                for (var x in el) {
+                                    var option2 = document.createElement('option');
+                                    option2.innerHTML = x;
+                                    option2.value = x;
+                                    area1.appendChild(option2);
+
+                                }
+                            })
+                        }
+                    }
+                })
             }
+        };
 
-        }
+
+        // for (var key in area) {
+        //     var option = document.createElement('option');
+        //     option.innerHTML = key;
+        //     option.className = 'province-item';
+        //     province.appendChild(option);
+        // }
+
+        // var option = document.querySelectorAll('.province-item')
+       
+        // function linkage(e){
+        //     console.dir(e)
+        //     console.dir(option)
+        //     if (option.selected == true) {
+        //         console.log(option)
+        //     }
+
+        // }
 
         // console.log(province)
         //  function linkage () {
@@ -114,7 +114,7 @@
         //     };
         // }
 
-        province.addEventListener('click',linkage,false)
+        // province.addEventListener('click',linkage,false)
 
     </script>
 </body>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: darkorange;
+        }
+    </style>
+</head>
+
+<body>
+    <button>隐藏</button>
+    <div class="box"></div>
+   
+    <script src="./todos.js"></script>
+    <script>
+        var button = getElement('button')[0];
+        console.log(button)
+        button.onclick=function(){
+            hide(box);
+            show(box);
+        }
+        // console.log(button)
+      
+        
+
+
+        var box = document.querySelector('.box');
+
+        console.log(button)
+       
+        // 功能 渐入隐藏一个元素
+        function hide(ele) {
+            var count = 1;
+            ele.style.opacity = 1;
+            var timer = setInterval(function(){
+                count -=0.1;
+                if(count<=0){
+                    ele.style.opacity=0;
+                    ele.style.display='none';
+                    clearInterval(timer);
+                    return
+                }
+                ele.style.opacity=count;
+            },30)
+            return  ele
+        }
+        // hide(box);
+       
+        // show 显示 与hide 相反的方法
+
+        function show(ele){
+            ele.style.display = 'block';
+            var count = 0;
+            ele.style.opacity =count;
+            var timer = setInterval(function(){
+                count +=0.1;
+                if(count>=1){
+                    ele.style.opacity=1;
+                    // ele.style.display='none';
+                    clearInterval(timer);
+                    return ele
+                }
+                ele.style.opacity=count;
+            },30)
+            return  ele
+        }
+        // setTimeout(function(){
+        //     show(box)
+        // },30)
+    </script>
+</body>
+
+</html>
