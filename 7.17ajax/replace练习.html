@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>鱼 说 朱超真帅啊</h1>
+    <script>
+        var val = document.querySelector('h1').innerHTML;
+        var res = val.replace(/(朱超)/,function(reg,index,str){
+            return `<span style="color:red">${RegExp.$1}</span>`
+        })
+
+        document.querySelector('h1').innerHTML =res;
+    </script>
+</body>
+</html>

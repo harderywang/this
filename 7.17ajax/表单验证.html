@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+
+        }
+        form{
+            width: 300px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            padding: 20px 15px;
+            box-shadow: 10px 5px 5px #cccccc;
+            text-align: center;
+            background-color: rgb(161, 231, 161);
+        }
+        .form-contral{
+            widows: 100%;
+            padding: 10px 5px;
+        }
+        .form-contral label{
+            display: inline-block;
+            width: 50px;
+            text-align: center;
+            font-size: 14px;
+            color: rgb(85, 82, 54);
+        }
+        .form-contral input{
+            height: 20px;
+            outline: none;
+            border: 1px solid #cccccc;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        .form-contral p{
+            font-size: 12px;
+            text-align: center;
+            color: crimson;
+            /* display: none; */
+            visibility: hidden;
+            
+        }
+        .login{
+            width: 65%;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            background-color: rgb(74, 141, 180);
+            outline: none;
+            text-decoration: none;
+            border: none;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <form action="">
+        <div class="form-contral">
+            <label  for="username">用户名</label>
+            <input type="text" name="uername" id="username">
+            <p class="userWain">请输入6-12位字符</p>
+        </div>
+        <div class="form-contral">
+            <label  for="password">密码</label>
+            <input type="password" name="password" id="password">
+            <p class="passwordWain">请输入8-12位的大写数字字符加下换线</p>
+        </div>
+        <div>
+            <button class="login">登录</button>
+        </div>
+    </form>
+</body>
+</html>
+<script>
+    var  username= document.getElementById('username');
+    var password = document.getElementById('password');
+    var login = document.querySelector('.login');
+    var userWain = document.querySelector('.userWain');
+    var passwordWain = document.querySelector('.passwordWain');
+    login.onclick = function(e){
+        e.preventDefault();
+        var user = username.value;
+        var pass = password.value;
+        // console.log(user,pass)
+        var nameReg = /^[0-9a-zA-Z]{6,12}$/g;
+        var passwordReg = /^[A-Z]\w{7,11}/g;//贪婪匹配
+        // console.log(!nameReg.test(user))
+        if(!nameReg.test(user)){
+            userWain.style.visibility='visible';
+        }else{
+            userWain.style.visibility='hidden';
+        }
+        if(!passwordReg.test(pass)){
+            passwordWain.style.visibility='visible';
+        }else{
+            passwordWain.style.visibility='hidden';
+        }
+        console.log(passwordReg.test(pass))
+        console.log(nameReg.test(user))
+        if(passwordReg.test(pass)&&nameReg.test(user)){
+            console.log('成功');
+        }
+    }
+    // 实时验证
+    console.log(username)
+    username.onchange = function(){
+        var user = username.value;
+        var nameReg = /^[0-9a-zA-Z]{6,12}$/g;
+        if(!nameReg.test(user)){
+            userWain.style.visibility='visible';
+        }else{
+            userWain.style.visibility='hidden';
+        }
+    }
+</script>

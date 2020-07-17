@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var str = 'a eatix regular exprution';
+
+        // 匹配regular中的e不匹配exprution中的e
+        var reg = /e(?=gular)/g;//e右边的是不是gular 即前瞻（从右看看是否满足某个条件 同时也叫正向匹配）
+        // 此时可以用断言 断言相当于正则匹配中的条件判断 匹配字符
+        console.log(reg.exec(str))//[e]
+        console.log(str.replace(reg,'我'));
+
+
+        // 前 字符串尾部叫前
+
+        var reg1 =/\w(?=3)/g;
+        var reg2 = /\d(?=\d{5})/;
+
+        var str1 = 's3s3';
+        var str3 = 'd111111111dd11'
+        // console.log(str3.replace(reg2,'str'))
+
+
+
+        // 匹配re 但不匹配开头为re 
+        var str4 = 'resdfsd dsfjredf jkdjfrefksdj redsfkl';
+        var reg5= /(?<=\w)re/g;
+        console.log(str4.replace(reg5,'我'))
+    </script>
+</body>
+</html>

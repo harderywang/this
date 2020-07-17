@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var str ='美国人日本人韩国人';
+        var res = str.replace(/人/g,function(reg,index,str){
+            console.log(reg);
+            console.log(index);
+            console.log(str);
+            return'狗屁' //替换
+        })
+        console.log(res)
+    </script>
+</body>
+</html>

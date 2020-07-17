@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>{{msg}}</h1>
+    <div>{{name}}</div>
+    <section>{{age}}</section>
+    <script>
+        var data ={
+            msg:'我是h1',
+            name:'我是div',
+            age:12
+        }
+        // var h1=document.querySelector('h1');
+        // var div=document.querySelector('div');
+        // var h1val = h1.innerHTML;
+        // var divval = div.innerHTML;
+        // h1.innerHTML = h1val.replace(/\{\{(\w*)\}\}/,function(a,b,c){
+        //     return data[RegExp.$1]
+        // })
+        // div.innerHTML = divval.replace(/\{\{(\w*)\}\}/,function(a,b,c){
+        //     return data[RegExp.$1]
+        // })
+
+        // function replaceVal (ele){
+        //     var str =  ele.innerHTML;
+        //     ele.innerHTML = str.replace(/\{\{(\w*)\}\}/,function(a,b,c){
+        //         for(var key in data){
+        //             if(key ===RegExp.$1){
+        //                 return data[RegExp.$1]
+        //             }
+        //         }
+           
+        // })
+        // }
+        // var section=document.querySelector('section');
+        // replaceVal(section)
+        function replace(data){
+            var template = document.body.innerHTML;
+            // console.log(template)
+           var res = template.replace(/\{\{(\w*)\}\}/g,function(a,b,c){
+                // console.log(a,RegExp.$1);
+                var reg =/\w+/;
+                // var newVal = a.match(reg)[0];
+                var newVal = reg.exec(a)[0];
+                console.log(newVal)
+                // console.log(a.match(reg))
+                for(var key in data){
+                    if(key === newVal){
+                        return data[key];
+                    }
+                }
+            });
+            document.body.innerHTML= res
+        }
+        replace(data)
+    </script>
+</body>
+</html>
