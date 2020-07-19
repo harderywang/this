@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    get 用户 需要向服务器获取大量数据
+        请求 通过url 传参
+        1有缓存作用
+        2 弊端 多用点请求参数都可以被用户查看到不安全 传输数据少
+    post 通过请求体传送请求参数  post 需要设置请求头
+        1提交数据 表单提交 用的都是post 请求
+        2 没有缓存 不可以利用缓存减少http请求次数
+        3 相比get更安全
+
+    pull 用于数据更新
+
+    delete 用于删除服务器数据
+    。。。
+
+    <script>
+        // baseurl:vebcoder.cn:9527/api/search
+        // post
+        // 请求参数 word
+
+
+        window.onload = function(){
+            var xhr = new XMLHttpRequest();
+            var url = 'http://vebcoder.cn:9527/api';
+            
+            // 设置请求头
+            xhr.open('POST',url,true)
+            // content-type 告诉服务请 请求体中的数据 是什么格式的
+            xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
+
+            // 问题 请求头有很多个 写多个 xhr.setRquestHeader();
+
+            // xhr.send(str)发送请求
+            // str格式'pa=值&p2=值'
+            var params = '咖啡';
+            xhr.send(`word=${params}`)
+        }
+    </script>
+</body>
+</html>

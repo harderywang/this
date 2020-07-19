@@ -1,0 +1,53 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html{
+    font-size: 100px;
+    width: 100%;
+    height:  100%;
+}
+body{
+    font-size: 16px;
+    width: 100%;
+    height:  100%;
+}
+.input{
+    outline: none;
+    text-decoration: none;
+    border: none;
+}
+.button{
+    outline: none;
+    /* background: none; */
+    /* text-decoration: none; */
+    border: none;
+    font: none;
+}
+.ul{
+    list-style: none;
+}
+.a {
+    text-decoration: none;
+}
+/*正常的未被访问过的链接*/
+.a:link {
+    text-decoration: none;
+}
+/*已经访问过的链接*/
+.a:visited {
+    text-decoration: none;
+}
+/*鼠标划过(停留)的链接*/
+.a:hover {
+    text-decoration: none;
+}
+/* 正在点击的链接*/
+.a:active {
+    text-decoration: none;
+}
+.iframe{
+    width: 100%;
+    padding: 0 10%;
+}

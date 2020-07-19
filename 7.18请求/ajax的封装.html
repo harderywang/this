@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var myHeaders = new Headers();
+        myHeaders.append('Content-Type', 'image/jpeg');
+        var myInit = {
+            method: 'GET',
+            headers: myHeaders,
+            mode: 'cors',
+            cache: 'default'
+        };
+        var myRequest = new Request('https://www.baidu.com', myInit);
+        fetch(myRequest).then(function(response){
+            console.log(response);
+        })
+    </script>
+    <script>
+        // ajax(
+        //     {
+        //         method: 'get',
+        //         data: {
+        //             page: 1,
+        //             name: 'wang',
+        //             age: 23,
+        //         },
+        //         url: 'www.baidu.com',
+        //         success: function (data) {
+        //             console.log(data)
+        //         },
+        //         error: function (err) {
+        //             console.log(err)//err是xhr对象
+        //         },
+
+        //         async: true,
+        //     }
+        // );
+        // // ajax(option)发送http请求 
+        // // options | @obj
+        // // @method |string get post 表示请求方式
+        // // @url |string   url地址
+        // // @data| obj       需要发送的数据
+        // // @sussecc|function 表示请求成功执行函数
+        // // @error|function  表示请求失败执行函数
+        // // @async|Boolean  表示请求程序 是同步还是异步
+        // function ajax(option) {
+           
+        //     // 获取需要发送数据 
+        //     var { method, data, url, success, error, async } = option;
+
+        //     var xhr = new XMLHttpRequest();
+        //     if (method === 'get' || method === 'GET') {
+        //         // 发送get请求 
+        //         //处理请求地址 和请求参数
+        //         url = url + '?';
+        //         for (var key in data) {
+        //             url += `${key}=${data[key]}&`
+        //         }
+        //         url = url.slice(0, url.length - 1);
+        //         xhr.open(method, url, async);
+        //         xhr.send();
+
+        //         // 处理响应
+        //         xhr.onreadystatechange = function () {
+        //             // 判断是否请求成功
+        //             if (xhr.status == '200' && xhr.readyState == '4') {
+        //                 success(xhr.response)
+        //             } else {
+        //                 // console.log(xhr)
+        //                 error(xhr)
+        //             }
+        //         }
+        //     };
+        //     if (method === 'post' || method === 'POST') {
+        //         var params = '';
+        //         for (var key in data) {
+        //             params += `${key}=${data[key]}&`;
+        //         }
+        //         params = params.slice(0, params.length - 1)
+        //         xhr.open(method, url, async);
+        //         xhr.setRequestHeader('Content-type', 'json/x-www-form-urlencoded')
+        //         xhr.send(params);
+        //         xhr.onreadystatechange = function () {
+        //             if (xhr.status == '200' && xhr.readyState == '4') {
+        //                 success(xhr.response)
+        //             } else {
+        //                 error(xhr)
+        //             }
+        //         }
+        //     }
+        // }
+    </script>
+</body>
+
+</html>
