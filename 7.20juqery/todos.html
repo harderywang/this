@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./node_modules/jquery/dist/jquery.js"></script>
+</head>
+
+<body>
+    <input type="text" name="" id="">
+    <div class="content">
+        <p>我是内容</p>
+    </div>
+    <script>
+
+         // 给插入的p 添加删除事件 但不能给最开始p添加
+         $('p').on('click', function () {
+                    console.log($(this));
+                    
+                    $(this).fadeOut(500,function(){
+                        $(this).remove();
+                    });
+                    
+                })
+
+        $('input[type=text]').on('keydown', function (e) {
+            if (e.keyCode === 13) {
+                // val()获取和设置input的value 值
+                // 没参数 获取  有参数设置
+                var val = $('input[type=text]').val();
+                var p = `<p>${val}</p>`;
+                p = $(p).css({
+                    display: 'none'
+                })
+                $('.content').append(p);
+                $('input[type=text]').val('');
+
+                //   插入p标签有淡出效果
+                // 添加元素时候为隐藏 在动画出来
+                $(p).fadeIn(500);
+
+                // 获取所有的p 点击删除
+                // 给插入的p 添加删除事件 但不能给最开始p添加
+                $(p).on('click', function () {
+                    console.log($(this));
+                    
+                    $(this).fadeOut(500,function(){
+                        $(this).remove();
+                    });
+                    
+                })
+            }
+        })
+    </script>
+</body>
+
+</html>

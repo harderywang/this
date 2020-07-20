@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>我是谁</div>
+    <script>
+        // $this指向jQuery?
+        function $(str) {
+            // 返回jQuery对象
+            return new jQuery(str);
+        }
+        function jQuery(ele) {
+            this.ele = document.querySelector(ele);
+        }
+
+        jQuery.prototype = {
+            html: function (str) {
+                // 使用this找到jQuery对象 在通过 this.ele 找到标签
+                this.ele.innerHTML = str;
+                // 返回jQuery对象 方便链式访问 $('div').html('好人').css()
+                return this
+            },
+            css: function (option) {
+                // 改变样式
+                for (var key in option) {
+                    this.ele.style[key] = option[key];
+                }
+                console.log(this);
+                 // 返回jQuery对象 方便链式访问 $('div').html('好人').css()
+                return this
+            }
+        };
+        // var res = $('div');
+        // console.log(res)
+
+        // 展示
+        jQuery.prototype.show = function () {
+        this.ele.style.display = "block";
+        var val = 0;
+        this.ele.style.opacity = val;
+        var timer = setInterval(() => {
+          val += 0.1;
+          if (val >= 1) {
+            this.ele.style.opacity = 1;
+            clearInterval(timer);
+            return;
+          }
+          this.ele.style.opacity = val;
+        }, 30);
+        return this;
+      };
+// 隐藏
+        jQuery.prototype.hide = function () {    
+        var val = 1;
+        this.ele.style.opacity = val;
+        var timer = setInterval(()=> {
+          val -= 0.1;
+          if (val <= 0) {
+            this.ele.style.opacity = 0;
+            this.ele.style.display = "none";
+            clearInterval(timer);
+            // 隐藏之后在显示
+            // this.show();
+            return;
+          }
+          this.ele.style.opacity = val;
+        }, 30);
+        
+        return this;
+      };
+
+     
+
+
+        jQuery.prototype.on = function(str,callback,syanc){
+            this.ele.addEventListener(str,callback,syanc)
+        }
+        $('div').html('好人').css({
+            color: 'red'
+        });
+        console.log($('div').html('好人'))
+        // 链式 所用API返回的都是同一个对象
+        // 
+        $('div').on('click',function(){
+            // alert('wang');
+            $('div').hide();
+        })
+    </script>
+</body>
+
+</html>

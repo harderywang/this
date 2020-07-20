@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./node_modules/jquery/dist/jquery.js"></script>
+    <style>
+        /* .box{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        } */
+    </style>
+</head>
+
+<body>
+    <button class="show">显示</button>
+    <div class="box"></div>
+    <script>
+        $(window).on('load', function () {
+            // 初始化设置box样式
+            $('.box').css({
+                width: ' 100px',
+                height: '100px',
+                backgroundColor: 'red',
+            })
+        })
+        // button绑定点击事件
+        $('button').on('click',function(){
+            console.log(this)//按钮
+            // toggle()设置元素显示隐藏
+            $('.box').toggle()
+        })
+    </script>
+</body>
+
+</html>

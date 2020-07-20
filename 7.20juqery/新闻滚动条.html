@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./node_modules/jquery/dist/jquery.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .wrap {
+            width: 300px;
+            height: 50px;
+            border: 1px solid black;
+            text-align: left;
+            line-height: 50px;
+            font-size: large;
+            font-weight: 700;
+            padding-left: 20px;
+            /* position: absolute;
+            left: 50%;
+            right: 50%;
+            transform: translate(-50%, -50%); */
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <!-- 我笑了 -->
+    </div>
+    <script>
+        var news = ["今天是阴天", '昨天心情不好', '醉了', '周超今天有情况', '是不是有进展了', '据说与非桑心了', '方雪子毕业就结婚了', '顾坤这个老男人。。。'];
+        
+        news.forEach(function (item) {
+            $('.wrap').append(`<p>${item}</p>`)
+        });
+        var timer = setInterval(function () {
+            // animate()是异步的
+            $('p:first').animate({
+                marginTop: '-50px',
+            },
+                500,
+                function () {
+                    // 清空margin-top
+                    $('p').css({ 'marginTop': 0 });
+                    $('.wrap').append($('p:first'));
+                })
+        }, 1000);
+
+        $('.wrap').on('mouseover',function(){
+            clearInterval(timer)
+        })
+
+    </script>
+</body>
+
+</html>

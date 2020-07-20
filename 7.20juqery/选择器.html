@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./node_modules/jquery/dist/jquery.js"></script>
+</head>
+<body>
+    <div class="wrap">
+        <div class="box"></div>
+    </div>
+    
+    <script>
+        // 选中html 元素返回 jquery对象（不是dom对象 不能直接dom下的api）
+        var wrap = $('.wrap');
+        console.log(wrap);
+        //  wrap[0]就变成了dom对象可以使用dom 下的API
+        // $(wrap) 将dom变成jq对象
+        // wrap.css('height','100px');
+        var box = $('.box')
+        console.log(box);
+        var div = $('div')
+        console.log(div)
+        div.css('height','100px');
+        div.css({
+            width:'100px',
+            backgroundColor:'red'
+        });
+        // $()作用一 选中hmtl 元素返回jq对象 二 将dom对象变为 jq 对象
+        // 参数 css选择器  或者dom 对象
+    </script>
+</body>
+</html>

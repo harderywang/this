@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./node_modules/jquery/dist/jquery.js"></script>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: brown;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap"></div>
+    <div class="box"></div>
+    <script>
+        $('.wrap').append('<p>我是内容一</p>')// 把str添加到html
+        console.log( $('.wrap').append('<p>我是内容一</p>')[0])
+        // prepend()从头加
+        $('.wrap').prepend('<p>我是内容头</p>')
+        // 新闻滚动效果
+        $('.wrap').appendTo($('.box'))// 把修改原来html
+        console.log($('.wrap').appendTo($('.box'))[0])
+        // animate(最终效果,动画执行时间,要使用的擦除效果的名称(需要插件支持).默认jQuery提供"linear" 和 "swing".,动画执行完毕后执行)
+        $('.box').animate({
+            opacity:0
+        },3000,function(){
+            alert('完了')
+        })
+        // afer()添加下一个兄弟元素
+        $('.wrap').after('<p>我是小弟</p>')
+        // before()添加上一个兄弟元素
+        $('.wrap').before('<p>我是大哥</p>')
+
+
+    </script>
+</body>
+</html>

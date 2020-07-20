@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./node_modules/jquery/dist/jquery.js"></script>
+    <style>
+        .active{
+            opacity: 0.3;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <script>
+        // 给元素添加样式 css({属性(驼峰命名):'值'})    返回juery对象
+// 优势 可以继续调用jQuery下的API
+       var res = $('.box').css({
+            width:'100px',
+            height:'100px',
+            backgroundColor:'red'
+        })
+        console.log(res)//jQuery.fn.init(1)
+        
+        // 通过类名添加样式
+        $('.box').addClass('active')
+        // 如果存在就删除一个类不存在就添加
+        $('.box').toggleClass('active')
+    </script>
+</body>
+</html>

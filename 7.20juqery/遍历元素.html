@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./node_modules/jquery/dist/jquery.js"></script>
+</head>
+<body>
+    <div class="wrap">
+        <div class="box"></div>
+        <p>我是位置</p>
+        <ul>
+            <li>我是内容01</li>
+            <li>我是内容02</li>
+            <li>我是内容03</li>
+        </ul>
+    </div>
+    <script>
+        // 如何通过当前元素查找 相关元素  父子兄弟子元素
+       var child= $('ul').children();//子元素集合
+       console.log(child)
+
+       var parent =$('ul').parent();//返回父元素
+       console.log(parent);
+       var parents =$('ul').parents();//返回祖籍元素
+        console.log(parents);
+        var li = $('ul').find('li')//查找
+
+        // eq(index) 找到第几个元素
+        var li2 = li.eq(2);
+        
+    </script>
+</body>
+</html>
