@@ -16,7 +16,7 @@ body{
 .input{
     outline: none;
     text-decoration: none;
-    border: none;
+    /* border: none; */
 }
 .button{
     outline: none;
