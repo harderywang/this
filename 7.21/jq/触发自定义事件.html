@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../7.20juqery/node_modules/jquery/dist/jquery.js"></script>
+    
+</head>
+<body>
+    <div class="box"></div>
+    <button>点击
+
+    </button>
+    <script>
+        $('.box').on('feifei',function(data,event){
+            console.log('我笑了');
+            console.log(data,'data');
+            console.log(event,'event');
+        })
+
+        $('button').on('click',function(){
+            // trigger(事件名,给事件处理函数传入实参) 触发自定义事件
+            $('.box').trigger('feifei',{
+                nv:'yufei',
+                nan:'朱超'
+            })
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../7.20juqery/node_modules/jquery/dist/jquery.js"></script>
+
+</head>
+<body>
+    <div class="wrap">
+        <h2>001呵呵33</h2>
+    <h2>002呵呵33</h2>
+    <h2>003呵呵33</h2>
+    <h2>004呵呵33</h2>
+    <h2>005呵呵33</h2>
+    <div>sdfj</div>
+    </div>
+    <script>
+        // 当第二个参数 是标签名 就是限制触发事件的元素
+        $('.wrap').on('click',$('h2'),function(e){
+            console.log($(this))//绑定事件的元素
+            console.log($(e.currentTarget))//绑定事件的 元素
+            console.log(e.originalEvent.target)//取到点击的dom对象
+
+            // 需求 只想点击 h2 字体变色
+            $(e.originalEvent.target).css({color:'red'})
+
+            // 获取事件的元素名称 dom API
+            console.log(e.originalEvent.target.localName)
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+
+.login-form{
+    width: 2rem;
+    height: 2rem;
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.login-form>div{
+    width: 4rem;
+    height: 0.4rem;
+    margin: 0.4rem 0;
+}
+.login-form p{
+    color: red;
+    font-size: 12px;
+    display: none;
+}
+.user-div,.pass-div{
+    position: relative;
+}
+.user,.password{
+    width: 4rem;
+    height: 0.4rem;
+    line-height: .4rem;
+    color: #606266;
+    border: 1px solid #dcdfe6;
+    padding-left: 0.3rem;
+    border-radius: 0.05rem;
+}
+.user:focus,.password:focus{
+    border: 0.01rem solid purple;
+}
+
+.iconfont{
+    color: #606266;
+    font-weight: 400;
+    position: absolute;
+    left: 0.1rem;
+    top: 0.1rem;
+    font-size: large;
+}
+
+.login-btn{
+    width: 4rem;
+    height: 0.4rem;
+    color: #fff;
+    background-color: #67c23a;
+    border-color: #67c23a;
+}

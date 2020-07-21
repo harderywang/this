@@ -2,6 +2,8 @@
     width: 100%;
     margin: 0 auto;
     padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
+
 }
 
 .header {
@@ -27,22 +29,28 @@
     color: #dedede;
 }
 
-.wrap {
-    width: 12rem;
+
+.wrap{
+    width: 100%;
     height: 5rem;
+    border-radius: .2rem;
     overflow: hidden;
-    border-radius: 0.2rem;
     margin: 0 auto;
     position: relative;
 }
-
-.ad {
-    white-space: nowrap;
+.wrap>ul{
+    width: 100%;
+    height: 100%;
+    /* flex-wrap: nowrap; */
 }
-
-.ad-item {
-    width: 12rem;
-    height: 5rem;
+.wrap>ul>li{
+    width: 100%;
+    height: 100%;
+    border-radius: .2rem;
+}
+.wrap>ul>li>img{
+    width: 100%;
+    height: 100%;
 }
 
 .right,

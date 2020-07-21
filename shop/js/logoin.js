@@ -5,33 +5,42 @@ var passP = document.querySelector('.pass-div>p')
 var loginBtn = document.querySelector('.login-btn');
 
 
-user.onblur=function(e){
+user.onblur = function (e) {
     e.preventDefault();
-    var reg = /^[0-9a-zA-Z_]{6,12}$/g;
-    console.log(reg.test(user.value));
-    if(!reg.test(user.value)){
-        userP.style.display='block';
-    }else{   
-        console.log(234)
-        userP.style.display='none';
+    var reg1 = /^[0-9a-zA-Z_]{6,12}$/;
+    if (!reg1.test(user.value)) {
+        userP.style.display = 'block';
+    } else {
+        userP.style.display = 'none';
     }
 }
 
 
 
-password.onblur= function(e){
+password.onblur = function (e) {
     e.preventDefault();
-    var reg = /^[0-9a-zA-Z_]{6,12}$/g;
-    if(!reg.test(password.value)){
-        passP.style.display='block';
-        // ='none';
-    }else{   
-        passP.style.display='none';
-        console.log(234)
+    var reg = /^[0-9a-zA-Z_]{6,12}$/;
+    if (!reg.test(password.value)) {
+        passP.style.display = 'block';
+    } else {
+        passP.style.display = 'none';
     }
 }
 
-loginBtn.onclick =function(e){
+loginBtn.onclick = function (e) {
     e.preventDefault();
-    
+    var name =localStorage.getItem('uName');
+    var pw = localStorage.getItem('uPass');
+    console.log(user.value ===name)
+    if(!(user.value ===name)){
+        alert('用户名不正确')
+    }
+    if(!(password.value ===pw)){
+        alert('密码不正确')
+    }
+    if((user.value ===name)&&(password.value ===pw)){
+        location.href = '../html/register.html'
+        // location.href = './d.html'
+    }
+
 }

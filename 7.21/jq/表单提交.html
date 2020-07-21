@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../7.20juqery/node_modules/jquery/dist/jquery.js"></script>
+
+</head>
+<body>
+    <form action="">
+        <label for="">
+            <input type="text" name="username">
+        </label>
+        <div>
+            <select name="city" id="city">
+                <option value="nanjing">南京</option>
+                <option value="beijing">北京</option>
+                <option value="tianjing">天京</option>
+                <option value="dongjing">东京</option>
+
+            </select>
+        </div>
+        <div>
+            <input type="checkbox" name="liulan" id="liulan">浏览
+            <input type="checkbox" name="pingguo" id="pinguo">苹果
+            <input type="checkbox" name="aaa" id="aaa">啊啊啊
+
+        </div>
+        <div>
+            <input type="radio" name="sex" id="sex" value="nan">男
+            <input type="radio" name="sex" id="sex" value="nv">女
+
+        </div>
+        <div>
+            <button>提交</button>
+        </div>
+    </form>
+    <script>
+    $('form').on('submit',function(e){
+        e.preventDefault();
+        // 获取表单当中所用的添加内容
+        var res = $('form').serializeArray();
+        console.log(res);
+        
+        // checkbox 
+        console.log($('input:checked'));
+
+        // 多选 根据请求参数的数据结构 res 进一步
+       
+
+    })
+    </script>
+</body>
+</html>

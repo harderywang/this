@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../7.20juqery/node_modules/jquery/dist/jquery.js"></script>
+</head>
+<body>
+    <input type="text">
+    <input type="checkbox">
+    <input type="radio">
+    <input type="password">
+    <input type="file">
+    <script>
+    $('input:password').on('chang',function(e){
+        //获取选择文件路径
+        console.log(e.currentTarget.baseURI)
+    })
+    </script>
+</body>
+</html>

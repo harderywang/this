@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../7.20juqery/node_modules/jquery/dist/jquery.js"></script>
+
+</head>
+<body>
+    <input type="checkbox" value="1">苹果
+    <input type="checkbox" value="2">香蕉
+    <input type="checkbox"value="3">鸭梨
+    <input type="checkbox"value="4">西红柿
+    <input type="checkbox"value="5">韭菜
+    <button>提交</button>
+    <script>
+        // 如何获取用户勾选的内容
+
+        // 数组用户存放所用勾选的值
+        // var arr = [];
+        // $('input:checkbox').on('change',function(){
+
+        // })
+
+
+        $('button').on('click',function(){
+        var arr = [];
+        $('input:chacked').each(function(index,item){
+            arr.push(item.value)
+        })
+            console.log($('input:chacked'))
+        })
+    </script>
+</body>
+</html>

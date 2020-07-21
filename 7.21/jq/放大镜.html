@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../7.20juqery/node_modules/jquery/dist/jquery.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        .glass {
+            width: 600px;
+            height: 300px;
+            margin: 0 auto;
+            position: relative;
+            margin-top: 100px;
+        }
+
+        .bigImage {
+            width: 670px;
+            height: 320px;
+            overflow: hidden;
+            /* z-index: 999; */
+        }
+
+        .bigImage img {
+            width: 100%;
+            display: none;
+        }
+
+        .glassView {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            right: -271px;
+            top: 0;
+            overflow: hidden;
+        }
+
+        .glassView img {
+            width: 200%;
+            display: none;
+        }
+
+        .smImage {
+            width: 270px;
+            margin: 20px 10px;
+            display: flex;
+
+        }
+
+        .smImage img {
+            margin-left: 10px;
+            width: 150px;
+            opacity: 0.6;
+        }
+
+        .mark {
+            width: 100px;
+            height: 100px;
+            background-color: #ffffff;
+            position: absolute;
+            opacity: 0.5;
+
+            display: none;
+
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="glass">
+        <!-- 放大镜 -->
+        <div class="glassView">
+            <img src="./images/1.jpg" alt="">
+            <img src="./images/2.jpg" alt="">
+            <img src="./images/3.jpg" alt="">
+            <img src="./images/4.jpg" alt="">
+        </div>
+        <!-- 大头 -->
+        <div class="bigImage">
+            <img src="./images/1.jpg" alt="">
+            <img src="./images/2.jpg" alt="">
+            <img src="./images/3.jpg" alt="">
+            <img src="./images/4.jpg" alt="">
+            <!-- 放大镜标记 -->
+            <div class="mark"></div>
+        </div>
+        <!-- 缩略头 -->
+        <div class="smImage">
+            <img src="./images/1.jpg" alt="">
+            <img src="./images/2.jpg" alt="">
+            <img src="./images/3.jpg" alt="">
+            <img src="./images/4.jpg" alt="">
+        </div>
+    </div>
+    <script>
+        // 第一步 css 样式初始化 全部不为选中状态
+        // 第二部 处理浏览器加载的样式 在css基础上
+
+        $(window).ready(function () {
+            var x = 0;
+            $('.bigImage>img:eq(' + x + ')').css({ display: 'block' })
+            // $('.glassView>img:eq(' + x + ')').css({ display: 'block' })
+            $('.smImage>img:eq(' + x + ')').css({ opacity: 1 })
+
+            // 缩略图鼠标移入
+            $('.smImage').on('mouseover', 'img', function () {
+                $('.bigImage>img:eq(' + x + ')').css({ display: 'none' })
+                // $('.glassView>img:eq(' + x + ')').css({ display: 'none' })
+                $('.smImage>img:eq(' + x + ')').css({ opacity: 0.6 })
+                x = $(this).index();
+                $('.bigImage>img:eq(' + x + ')').css({ display: 'block' })
+                // $('.glassView>img:eq(' + x + ')').css({ display: 'block' })
+                $('.smImage>img:eq(' + x + ')').css({ opacity: 1 })
+            })
+
+
+            // 大头鼠标移入 放大镜标记 显示
+            $('.bigImage').on('mouseover', function () {
+                $('.mark').css({ display: 'block' })
+                $('.glassView>img:eq(' + x + ')').css({ display: 'block' })
+                // 大头鼠标鼠标移动
+                $('.bigImage').on('mousemove', function (e) {
+                    var mark = document.querySelector('.mark');
+                    mark.style.left=e.offsetX - 50+'px';
+                    mark.style.top=e.offsetY - 50+'px';
+
+                    $('.mark').css({
+                        left: e.offsetX - 50 ,
+                        top: e.offsetY - 50 ,
+                    });
+                    console.log(e.offsetX,'======')
+                    console.log($('.mark').css('left'))
+
+                    
+                    //确定放大图片的大小 
+                    // var viewX = (e.offsetX - 50) * 2 + 100 + 'px';
+                    // var viewY = (e.offsetY - 50) * 2 + 100 + 'px';
+                    // $('.glassView>img:eq(' + x + ')').css({
+                    //     position: 'relative',
+                    //     left: viewX,
+                    //     top: viewY,
+                    // })
+
+                })
+
+
+
+                //  大头鼠标鼠标移出
+                $('.bigImage').on('mouseout', function () {
+                    $('.mark').css({ display: 'none' })
+                    $('.glassView>img:eq(' + x + ')').css({ display: 'none' })
+
+                })
+                // console.log(e.offsetX,e.offsetY)
+            })
+
+        })
+
+    </script>
+</body>
+
+</html>
