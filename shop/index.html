@@ -10,33 +10,54 @@
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/font_fkmoe9iksdh/iconfont.css">
     <!-- <link rel="stylesheet" href="./css/login.css"> -->
+    <script src="./js/tool.js"></script>
 </head>
 
 <body>
+    <div class="cover">
+        <img src="./img/loading.jpg" alt="">
+    </div>
     <nav>
+        <div class="alert">
+            <div class="searchDiv">
+                <span class="iconfont icon-icon_duihao-mian"></span>
+                <span>搜索内容不能为空。</span>
+            </div>
+            <div class="success">
+                <span class="iconfont icon-icon_duihao-mian"></span>
+                <span>登录成功，赶快去登录吧！</span>
+            </div>
+            <div class="zero">
+                <span class="iconfont icon-icon_duihao-mian"></span>
+                <span>账号已存在，请重新登录。</span>
+            </div>
+           
+        </div>
         <div class="nav-top">
             <div class="nav-top-log">
                 <img src="./img/logo.png" alt="">
             </div>
             <div class="nav-top-search">
-                <input class="input" type="text" name="" id="" placeholder="请输入想要输入的商品">
-                    <button class="button">
-                        <span class="iconfont icon-sousuo">
-                        </span>搜索<span></span>
-                    </button>
-                </div>
-
+                <input class="searchIpt input" type="text" name="" id="" placeholder="请输入想要输入的商品">
+                <button class="searchBtn button">
+                    <span class="iconfont icon-sousuo">
+                    </span>搜索<span></span>
+                </button>
             </div>
+
+        </div>
         </div>
         <div class="nav-down">
             <ul class="nav-down-list ul">
-                <li class="nav-down-list-item"><a href="./html/home.html" target="index" class="a">首页</a>  </li>
-                <li class="nav-down-list-item"><a href="./html/login.html" target="index" class="a"> 登录</a></li>
-                <li class="nav-down-list-item"><a href="./html/register.html" target="index" class="a"> 注册</a> </li>
+                <li class="nav-down-list-item"><a href="./html/home.html" target="index" class="a">首页</a> </li>
+                <li class="nav-down-list-item logo"><a href="./html/login.html" target="index" class="a "> 登录</a></li>
+                <li class="nav-down-list-item register"><a href="./html/register.html" target="index" class="a "> 注册</a> </li>
+                <li class="nav-down-list-item shopCart"><a href="./html/shopcart.html" target="index" class="a "> 购物车</a></li>
+                <li class="nav-down-list-item exit"><a href="./html/register.html" target="index" class="a "> 退出登录</a></li>
             </ul>
         </div>
     </nav>
-    <iframe src="./html/home.html" name="index" frameborder="0"class='iframe' width="100%" height="100%" ></iframe>
+    <iframe src="./html/home.html" name="index" frameborder="0" class='iframe' width="100%" height="100%"></iframe>
 </body>
 
 </html>

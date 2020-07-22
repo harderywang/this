@@ -20,6 +20,13 @@
       "unicode_decimal": 58992
     },
     {
+      "icon_id": "936705",
+      "name": "感叹号",
+      "font_class": "gantanhao",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    },
+    {
       "icon_id": "936753",
       "name": "信号",
       "font_class": "xinhao",
@@ -90,11 +97,18 @@
       "unicode_decimal": 58886
     },
     {
+      "icon_id": "4735289",
+      "name": "icon_对号-面",
+      "font_class": "icon_duihao-mian",
+      "unicode": "e63d",
+      "unicode_decimal": 58941
+    },
+    {
       "icon_id": "5474841",
       "name": "耳机",
       "font_class": "erji",
-      "unicode": "e63d",
-      "unicode_decimal": 58941
+      "unicode": "e63e",
+      "unicode_decimal": 58942
     },
     {
       "icon_id": "9007290",

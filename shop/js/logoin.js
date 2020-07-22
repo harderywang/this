@@ -27,20 +27,75 @@ password.onblur = function (e) {
     }
 }
 
+
+
+
 loginBtn.onclick = function (e) {
     e.preventDefault();
-    var name =localStorage.getItem('uName');
-    var pw = localStorage.getItem('uPass');
-    console.log(user.value ===name)
-    if(!(user.value ===name)){
-        alert('用户名不正确')
+
+    var obj = {
+        'userName': user.value,
+        'password': password.value
     }
-    if(!(password.value ===pw)){
-        alert('密码不正确')
+    for (var key in obj) {
+        localStorage.setItem(key, obj[key])
     }
-    if((user.value ===name)&&(password.value ===pw)){
-        location.href = '../html/register.html'
-        // location.href = './d.html'
-    }
+    $.ajax({
+        url: 'http://vebcoder.cn:9527/api/login',
+        data:obj,
+        dataType: 'json',
+        method: 'get',
+        success: function (data) {
+            console.log(data)
+            if(data.token){
+                for (var key in data) {
+                    localStorage.setItem(key, data[key])
+                };
+                logo.style.display='none';
+                register.style.display='none';
+                shopCart.style.display='block';
+                exit.style.display='block';   
+                shopCart.click();          
+            }
+        },
+        error: function (err) {
+            console.log(err)
+        }
+    })
+
+
+
+    // var uName = user.value;
+    // var uPass = password.value;
+    // var name =localStorage.getItem(''+uName+'');
+    // var pw = localStorage.getItem(''+uPass+'');
+    // console.log(name,pw)
+    // // console.log(user.value ===name)
+    // if(!(user.value ===name)){
+    //     alert('用户名不正确')
+    // }
+    // if(!(password.value ===pw)){
+    //     alert('密码不正确')
+    // }
+    // if((user.value ===name)&&(password.value ===pw)){
+    //     // location.href = '../html/register.html'
+    //     // location.href = './d.html'
+    //     console.log(user.name)
+    //     $.ajax({
+    //         url:'http://vebcoder.cn:9527/api/login',
+    //         data:{
+    //             userName:user.value,
+    //             password:password.value
+    //         },
+    //         dataType:'json',
+    //         method:'get',
+    //         success:function(data){
+    //             console.log(data)
+    //         },
+    //         error:function(err){
+    //             console.log(err)
+    //         }
+    //     })
+    // }
 
 }
