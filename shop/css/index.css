@@ -2,6 +2,7 @@ html {
     font-size: 100px;
     width: 100%;
     height: 100%;
+    /* overflow-y: hidden; */
 }
 
 body {
@@ -159,7 +160,9 @@ nav {
     border-color: purple;
     border-bottom: 2px solid purple;
 } */
-
+.f{
+    height: 459px;
+}
 .iframe {
     width: 100%;
     /* height: 100%; */

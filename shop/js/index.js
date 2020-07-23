@@ -1,3 +1,29 @@
+// ### 5.清空iframe滚动条
+var iframe = document.querySelector("iframe");
+window.onresize = function () {
+    // console.log("========")
+    reinitIframe();
+}
+function reinitIframe(){
+    try{
+        var bHeight = iframe.contentWindow.document.body.scrollHeight;
+        var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
+        var height = Math.min(bHeight, dHeight);
+        iframe.height = height+50;
+        // console.log(iframe.height);
+    }catch (ex){
+        // console.log("----------")
+    }
+}
+
+iframe.contentWindow.window.onload=function(){
+    // console.log("lllllllll");
+    setTimeout(function(){
+    reinitIframe();
+    },100)
+}
+
+
 var navDownList = document.querySelector('.nav-down-list');
 var item = document.querySelectorAll('.nav-down-list-item>a');
 var search = document.querySelector('.nav-top-search');
@@ -48,11 +74,15 @@ function list(event) {
     }
 }
 navDownList.addEventListener('mouseover', list);
-
-
-
-
 // 鼠标点击事件
 navDownList.addEventListener('click', list)
 
+
 // navDownList.addEventListener('mouseover', move)
+
+
+$('.exit').on('click',function(){
+    localStorage.clear();
+    $('.house').click();
+    location.href=''
+})

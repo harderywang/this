@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/node_modules/jquery/dist/jquery.js"></script>
+    <link rel="stylesheet" href="../css/common.css">
+    <style>
+        .main {
+            width: 100%;
+            margin: 0 auto;
+            padding-top: 0.1rem;
+            padding-bottom: 0.1rem;
+
+        }
+
+        .header {
+            padding: 0.1rem;
+        }
+
+        .header-list {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .header-list li {
+            width: 1.12rem;
+            height: 0.3rem;
+            color: #666;
+            border-radius: .20rem;
+            text-align: center;
+            line-height: 0.3rem;
+        }
+
+        .shopClass {
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+        }
+
+        .shopClass-item {
+            width: 100%;
+            flex-direction: column;
+        }
+
+        .type_two {
+            width: 100%;
+            height: 0.3rem;
+            font-size: 30px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .shopList {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .goods {
+            width: 2.1rem;
+            height: 2.8rem;
+            display: flex;
+            flex-direction: column;
+            margin: .05rem;
+            padding: .05rem;
+            cursor: pointer;
+        }
+
+        .goods-img {
+            width: 2.2rem;
+            height: 2.2rem;
+        }
+
+        .goods-img img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .goods-title {
+            width: 2.2rem;
+            height: .21rem;
+            cursor: pointer;
+            font-size: 16px;
+            color: #424242;
+
+        }
+
+        .price {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+            <ul class="header-list ul">
+                <li>咖啡</li>
+                <li>饮食</li>
+                <li>正餐</li>
+                <li>男装</li>
+                <li>女装</li>
+                <li>眼镜</li>
+                <li>鞋靴</li>
+
+            </ul>
+        </div>
+        <script>
+            var data = localStorage.getItem('shoplist');
+            data = JSON.parse(data)
+            var shopClass = document.createElement('div');
+            shopClass.className = 'shopClass';
+            $('.main').append(shopClass);
+            $('.header-list').on('click', 'li', function (e) {
+                // 接收点击的所有是这个的对象
+                var arr = [];
+                var obj = {};
+                shopClass.innerHTML = '';
+                console.log(shopClass)
+                // 获取点击的数据 存到arr
+                data.forEach(function (ele) {
+                    if (ele.type_one === e.originalEvent.target.innerText) {
+                        arr.push(ele);
+                    };
+                })
+                // 去重二级分类 将ele.type_two 存在对象中
+                arr.forEach((ele) => {
+                    if (!obj[ele.type_two]) {
+                        obj[ele.type_two] = 1;
+                    } else {
+                        obj[ele.type_two] += 1;
+                    };
+                })
+
+                // 创建几个shopClass-item 存ele.type_two
+                for (var key in obj) {
+                    var shopClassItem = document.createElement('div');
+                    shopClassItem.className = 'shopClass-item';
+                    shopClassItem.innerHTML = `
+                            <div class="type_two">${key}</div>
+                            <div class="shopList"></div>
+                        `;
+                    shopClass.append(shopClassItem);
+
+                    // 遍历arr数组 找到key值相等的加到goods
+                    var arr1 = arr.filter((ele) => {
+                        return key === ele.type_two;
+                    })
+                    console.log(arr1)
+
+                    arr1.forEach((ele) => {
+                        var goods = document.createElement('div');
+                        goods.className = 'goods';
+                        goods.innerHTML = `
+                                <div class="goods-img"><img src="${ele.img_list_url}" alt=""></div>
+                                    <div class="goods-title">${ele.title}</div>
+                                    <div class="price">
+                                        <div>${ele.price}</div>
+                                        <div>${ele.mack}</div>
+                                    </div>
+                                `;
+                        for(var j = 0;j<$('.type_two').length;j++){
+                            if ($('.type_two')[j].innerText === key) {
+                            $('.type_two')[j].nextElementSibling.append(goods)
+                        }
+                        }
+                        // $(`.${key}`).append(goods);
+                    })
+                }
+
+            })
+
+        </script>
+</body>
+
+</html>

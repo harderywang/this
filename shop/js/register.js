@@ -45,7 +45,6 @@ loginBtn.onclick = function (e) {
     var reg1 = /^[0-9a-zA-Z_]{6,12}$/g;
     if (reg.test(password.value) && reg1.test(user.value)) {
         e.preventDefault();
-
         var obj = {
             'userName': user.value,
             'password': password.value

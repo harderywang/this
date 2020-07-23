@@ -55,7 +55,8 @@ loginBtn.onclick = function (e) {
                 register.style.display='none';
                 shopCart.style.display='block';
                 exit.style.display='block';   
-                shopCart.click();          
+                shopCart.click(); 
+                location.href='../html/home.html'         
             }
         },
         error: function (err) {
