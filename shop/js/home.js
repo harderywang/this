@@ -96,7 +96,7 @@ $(window.parent).on('scroll',function(){
             // console.log()
             var goods = document.createElement('div');
             goods.className='goods';
-            goods.setAttribute('value',`${data[num].id}`)
+            goods.setAttribute('value',`${data[num].Id}`)
             goods.innerHTML=`
              <div class="goods-img"><img src="${data[num].img_list_url}" alt=""></div>
              <div class="goods-title">${data[num].title}</div>
@@ -108,6 +108,14 @@ $(window.parent).on('scroll',function(){
         }
        
     }
+
+    // $('.goods').on('click',function(){
+    //     console.log( $('.goods').attr('value'))
+    // })
+    $('.shopList').on('click','div',function(e){
+      sessionStorage.setItem('value', this.getAttribute('value'));
+      location.href='../html/放大镜.html';
+    })
 })
 
 
