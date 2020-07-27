@@ -77,16 +77,10 @@ lt.onclick = function () {
 
 
 // 获取数据
-var data = JSON.parse(localStorage.getItem('shoplist'));
-if(data = null){
-
-}else{
-
-}
-
-
+var data;
 $.ajax({
     method: 'get',
+
     url: 'http://vebcoder.cn:9527/api/goodList',
     dataType: 'json',
     success: function (data) {
@@ -98,9 +92,6 @@ $.ajax({
     }
 });
 
-
-// data 异步  开始没有 这个是因为存储到loackstr
-// 此处错误 
 data = JSON.parse(localStorage.getItem('shoplist'));
 // 每次开始遍历起点
 // 初始化三十条数据

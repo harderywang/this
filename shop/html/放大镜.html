@@ -273,29 +273,29 @@
                 var top = document.createElement('div');
                 top.className = 'top';
                 top.innerHTML = `
-                <div class="return"><—返回</div>
-                        <div class="main">
-                            <div class="top-img">
-                                <div class="large-img">
-                                    <img src="${data[0].img_list_url}" alt="">
-                                    <div class="mark"></div>
-                                    <div class="mantle"></div>
-                                </div>
-                                <div class="enlarge">
-                                    <img src="${data[0].img_url}" alt="">
-                                </div>
-                                <div class="fixed">
-                                </div>
+            <div class="return"><—返回</div>
+                    <div class="main">
+                        <div class="top-img">
+                            <div class="large-img">
+                                <img src="${data[0].img_list_url}" alt="">
+                                <div class="mark"></div>
+                                <div class="mantle"></div>
                             </div>
-                            <div class="introduce">
-                                <div class="introduce-item">
-                                    <div class="title">${data[0].title}</div>
-                                    <div class="supplier">${data[0].supplier}</div>
-                                    <div class="prices">${data[0].price}</div>
-                                    <div class="star"><img src="../img/star.png" alt=""></div>
-                                    <div class="shopcatBtn">添加到购物车</div>
-                                </div>
+                            <div class="enlarge">
+                                <img src="${data[0].img_url}" alt="">
                             </div>
+                            <div class="fixed">
+                            </div>
+                        </div>
+                        <div class="introduce">
+                            <div class="introduce-item">
+                                <div class="title">${data[0].title}</div>
+                                <div class="supplier">${data[0].supplier}</div>
+                                <div class="prices">${data[0].price}</div>
+                                <div class="star"><img src="../img/star.png" alt=""></div>
+                                <div class="shopcatBtn">添加到购物车</div>
+                            </div>
+                        </div>
             `;
                 var imgs = JSON.parse(data[0].imgs);
                 setTimeout(function () {
