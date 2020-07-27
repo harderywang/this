@@ -1,0 +1,33 @@
+.shopmore {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.shop {
+  width: 230px;
+  height: 220px;
+  margin: 5px;
+}
+.shop img {
+  width: 220px;
+}
+.info {
+  margin: 10px;
+}
+.fl {
+  color: red;
+  font-weight: 700;
+  margin-right: 80px;
+}
+h3 {
+  font-size: 16px;
+}
+.title {
+  width: 100%;
+  text-align: center;
+}
+.active {
+  background-color: purple;
+  border-radius: 15px;
+} 

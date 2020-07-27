@@ -53,11 +53,31 @@
         .large-img {
             width: 4rem;
             height: 4rem;
+            cursor: crosshair;
+            position: relative;
         }
 
         .large-img>img {
             width: 100%;
             height: 100%;
+        }
+        /* 加一个透明罩 */
+        .mantle{
+            background-color:transparent;
+            width: 4.76rem;
+            height: 4.76rem;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .mark{
+            width: 2rem;
+            height: 2rem;
+            background-color: white;
+            opacity: 0.4;
+            position: absolute;
+            top: 0;
+            left: 0;
         }
 
         .enlarge {
@@ -73,17 +93,20 @@
         .enlarge>img {
             width: 200%;
             height: 200%;
+            position: relative;
         }
 
         .fixed {
             width: 0.76rem;
             height: 0.76rem;
+            display: flex;
             /* border: 2px solid #6e496e; */
         }
 
         .fixed>img {
             width: 100%;
             height: 100%;
+            opacity: 0.4
         }
 
         .introduce {
@@ -145,13 +168,13 @@
             border-bottom: 1px solid #dedede
         }
 
-        .shopList {
+        .shoplist {
             display: flex;
             flex-wrap: wrap;
         }
 
         .goods {
-            width: 2.1rem;
+            width: 20%;
             height: 2.8rem;
             display: flex;
             flex-direction: column;
@@ -187,9 +210,9 @@
 </head>
 
 <body>
-    <div class="details">
-        </div>
-        <!-- <div class="top">
+    <!-- <div class="details">
+        </div> -->
+    <!-- <div class="top">
             <div class="return"> <—返回</div>
             <div class="main">
                 <div class="top-img">
@@ -214,7 +237,7 @@
                 </div>
             </div>
         </div> -->
-        <!-- <div class="down">
+    <!-- <div class="down">
             <div class="resemble">相似商品推荐</div>
        
         <div class="shoplist">
@@ -229,69 +252,77 @@
         </div>
     </div>
     </div> -->
-    
+
 
 
 </body>
 
 </html>
 <script>
-    var useId = sessionStorage.getItem('value');
-    $.ajax({
-        method: 'get',
-        data: useId,
-        url: `http://vebcoder.cn:9527/api/detail?goodId=1`,
-        success: function (data) {
-            var details = document.createElement('div');
-            details.className = 'details';
-            $('body').append(details);
+    $(window).ready(function () {
+        var useId = sessionStorage.getItem('value');
+        $.ajax({
+            method: 'get',
+            data: useId,
+            url: `http://vebcoder.cn:9527/api/detail?goodId=${useId}`,
+            success: function (data) {
+                var details = document.createElement('div');
+                details.className = 'details';
+                $('body').append(details);
 
-            var top = document.createElement('div');
-            top.className = 'top';
-            top.innerHTML = `
-            <div class="return"><—返回</div>
-                    <div class="main">
-                        <div class="top-img">
-                            <div class="large-img">
-                                <img src="${data[0].img_list_url}" alt="">
+                var top = document.createElement('div');
+                top.className = 'top';
+                top.innerHTML = `
+                <div class="return"><—返回</div>
+                        <div class="main">
+                            <div class="top-img">
+                                <div class="large-img">
+                                    <img src="${data[0].img_list_url}" alt="">
+                                    <div class="mark"></div>
+                                    <div class="mantle"></div>
+                                </div>
+                                <div class="enlarge">
+                                    <img src="${data[0].img_url}" alt="">
+                                </div>
+                                <div class="fixed">
+                                </div>
                             </div>
-                            <div class="enlarge">
-                                <img src="${data[0].img_url}" alt="">
+                            <div class="introduce">
+                                <div class="introduce-item">
+                                    <div class="title">${data[0].title}</div>
+                                    <div class="supplier">${data[0].supplier}</div>
+                                    <div class="prices">${data[0].price}</div>
+                                    <div class="star"><img src="../img/star.png" alt=""></div>
+                                    <div class="shopcatBtn">添加到购物车</div>
+                                </div>
                             </div>
-                            <div class="fixed">
-                            </div>
-                        </div>
-                        <div class="introduce">
-                            <div class="introduce-item">
-                                <div class="title">${data[0].title}</div>
-                                <div class="supplier">${data[0].supplier}</div>
-                                <div class="prices">${data[0].price}</div>
-                                <div class="star"><img src="../img/star.png" alt=""></div>
-                                <div class="shopcatBtn">添加到购物车</div>
-                            </div>
-                        </div>
             `;
-            var imgs = JSON.parse(data[0].imgs);
-            setTimeout(function(){
-                Array.from(imgs).forEach(function (ele) {
-                var img = document.createElement('img');
-                img.src = ele;
-                $('.fixed').append(img);
-            });
-            },1)
-            details.append(top);
+                var imgs = JSON.parse(data[0].imgs);
+                setTimeout(function () {
+                    Array.from(imgs).forEach(function (ele) {
+                        var img = document.createElement('img');
+                        img.src = ele;
+                        $('.fixed').append(img);
+                    });
+                }, 1)
+                details.append(top);
 
-            var datalocal = localStorage.getItem('shoplist');
-            datalocal=JSON.parse(datalocal);
-            var down = document.createElement('div');
-            down.className='down';
-            down.innerHTML=' <div class="resemble">相似商品推荐</div> ';
-            var shoplist = document.createElement('shoplist');
-                    shoplist.className='shoplist';
-                    var str1 ='';
-            datalocal.forEach(function(ele){
-               if(ele.type_one===data[0].type_one){
-                    for(var num = 0;num < 10;num++){
+                var datalocal = localStorage.getItem('shoplist');
+                datalocal = JSON.parse(datalocal);
+                var down = document.createElement('div');
+                down.className = 'down';
+                down.innerHTML = ' <div class="resemble">相似商品推荐</div> ';
+                details.append(down)
+                var shoplist = document.createElement('shoplist');
+                shoplist.className = 'shoplist';
+                var str1 = '';
+                var n = 0;
+                datalocal.forEach(function (ele) {
+                    if (ele.type_one === data[0].type_one) {
+                        if (n > 9) {
+                            n = 0;
+                            return
+                        }
                         str1 += `
                         <div class="goods">
                             <div class="goods-img"><img src="${ele.img_list_url}" alt=""></div>
@@ -301,19 +332,76 @@
                                 <div>${ele.mack}</div>
                             </div>
                         </div>
-                        `;    
+                        `;
+                        n++
                     }
 
-               }
-            })
-            shoplist.innerHTML =str1;
-                    details.append(shoplist);
-           
-           
-        },
-        error: function (err) {
-            console.log(err)
-        }
+                })
+                shoplist.innerHTML = str1;
+                details.append(shoplist);
+
+
+            },
+            error: function (err) {
+                console.log(err)
+            }
+        })
     })
 
+
+    // 为什么必须要写道setTimout中切时间特别长 才可以获取到元素
+    setTimeout(function () {
+        // 点击返回
+        $('.return').on('click',function(){
+            history.go(-1)
+        })
+
+
+
+        var x = 0;
+        // 初始化
+        $('.fixed>img:eq(' + x + ')').css({
+            border: ' 2px solid #6e496e',
+            opacity: '1'
+        })
+        $('.large-img>img').attr('src', $('.fixed>img:eq(' + x + ')').attr('src'));
+        // 点击小图切换
+        $('.fixed>img').on('click', function () {
+            $('.fixed>img:eq(' + x + ')').css({
+                border: ' 2px solid transparent',
+                opacity: '0.4'
+            })
+            x = $(this).index();
+            $('.fixed>img:eq(' + x + ')').css({
+                border: ' 2px solid #6e496e',
+                opacity: '1'
+            })
+            $('.large-img>img').attr('src', $('.fixed>img:eq(' + x + ')').attr('src'));
+            $('.enlarge>img').attr('src', $('.fixed>img:eq(' + x + ')').attr('src'));
+        })
+        // 移动到大图显示放大镜
+        $('.large-img').on('mouseover',function(){
+            $('.enlarge').css({
+                display:'block',
+            })
+        })
+        // 鼠标移动蒙层定位
+        $('.large-img').on('mousemove',function(e){
+            $('.large-img>.mark').css({
+                top:e.offsetY-100+'px',
+                left:e.offsetX-100+'px',  
+            })
+            $('.enlarge>img').css({
+                top:(-e.offsetY)+'px',
+                left:(-e.offsetX)+'px',
+            })
+           console.log(e.offsetX,e.offsetY)
+        })
+        // 移出
+        $('.large-img').on('mouseout',function(){
+            $('.enlarge').css({
+                display:'none',
+            })
+        })
+    }, 300)
 </script>

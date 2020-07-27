@@ -1,3 +1,11 @@
+var iframe = window.parent.document.querySelector('.iframe');
+var logo = window.parent.document.querySelector('.logo>a');
+console.log(logo)
+logo.onclick = function(){
+    iframe.style.height='4.5rem'
+    console.log(iframe.style.height)
+}
+
 var user = document.querySelector('.user');
 var password = document.querySelector(".password");
 var userP = document.querySelector('.user-div>p');
@@ -32,7 +40,6 @@ password.onblur = function (e) {
 
 loginBtn.onclick = function (e) {
     e.preventDefault();
-
     var obj = {
         'userName': user.value,
         'password': password.value
@@ -40,6 +47,8 @@ loginBtn.onclick = function (e) {
     for (var key in obj) {
         localStorage.setItem(key, obj[key])
     }
+//    console.log(window.parent.document.querySelector('.success'))
+//    window.parent.document.querySelector('.success').style.display='block'
     $.ajax({
         url: 'http://vebcoder.cn:9527/api/login',
         data:obj,
@@ -55,7 +64,7 @@ loginBtn.onclick = function (e) {
                 register.style.display='none';
                 shopCart.style.display='block';
                 exit.style.display='block';   
-                shopCart.click(); 
+                doc.document.querySelector('.house').click(); 
                 location.href='../html/home.html'         
             }
         },

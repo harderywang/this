@@ -1,0 +1,72 @@
+.navbar {
+  height: 50px;
+}
+.banner {
+  width: 1200px;
+  height: 500px;
+  border-radius: 15px;
+  overflow: hidden;
+  position: relative;
+}
+.banner ul {
+  position: absolute;
+  width: 800%;
+}
+.banner li {
+  float: left;
+}
+.banner img {
+  border-radius: 15px;
+}
+.arrow-l,
+.arrow-r {
+  display: inline-block;
+  background-color: red;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 50%;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 50px;
+  font-size: 25px;
+  background-color: purple;
+  opacity: 0.5;
+  transform: translateY(-50%);
+  display: none;
+  z-index: 999;
+}
+.arrow-l {
+  left: 15px;
+}
+.arrow-r {
+  right: 15px;
+}
+.shopmore {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.shop {
+  width: 230px;
+  height: 280px;
+  margin: 5px;
+}
+.shop img {
+  width: 220px;
+}
+.info {
+  margin: 10px;
+}
+.fl {
+  color: red;
+  font-weight: 700;
+  margin-right: 80px;
+}
+h3 {
+  font-size: 16px;
+}
+.active {
+  background-color: purple;
+  border-radius: 15px;
+}

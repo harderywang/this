@@ -1,3 +1,12 @@
+
+var iframe = window.parent.document.querySelector('.iframe');
+var register = window.parent.document.querySelector('.register>a');
+console.log(register)
+register.onclick = function(){
+    console.log(iframe)
+    iframe.style.height='4.5rem'
+}
+
 var user = document.querySelector('.user');
 var password = document.querySelector(".password");
 var userP = document.querySelector('.user-div>p');

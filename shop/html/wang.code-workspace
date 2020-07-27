@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "E:\\ketang"
+		},
+		{
+			"path": "E:\\王泽欣\\js"
+		},
+		{
+			"path": "..\\.."
+		}
+	],
+	"settings": {
+		"editor.fontSize": 20,
+		"liveServer.settings.multiRootWorkspaceName": "this week"
+	}
+}

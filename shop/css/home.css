@@ -146,5 +146,23 @@
     width: 100%;
 }
 
+.fixed-item{
+    border-radius: 5px;
+    background: rgb(255, 255, 255);
+    width: 1rem;
+    border-style: solid;
+    position: fixed;
+    left: 0rem;
+    border-color: rgb(119, 63, 119);
+    top: 1rem; 
+}
+.fixed-item>.item{
+    text-align: center;
+}
+.item:hover{
+    color: purple;
+    filter: drop-shadow(purple 0px 0px 10px);
+}
+
 
 

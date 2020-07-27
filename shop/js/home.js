@@ -1,3 +1,10 @@
+// var iframe = window.parent.document.querySelector('.iframe');
+// var logo = window.parent.document.querySelector('.logo>a');
+// console.log(logo)
+// logo.onclick = function(){
+//     iframe.style.height='100%'
+// }
+
 var wrap = document.querySelector('.wrap');
 var ad = document.querySelector('.ad');
 var adItem = document.querySelectorAll('.ad-item');
@@ -32,7 +39,7 @@ wrap.onmouseout = function () {
     lt.style.right = -0.5 + 'rem';
     right.style.left = -0.5 + 'rem';
     timer = setInterval(function () {
-        console.log(left, "======")
+        // console.log(left, "======")
         left -= 12;
         if (left <= -72) {
             left = 0;
@@ -70,10 +77,16 @@ lt.onclick = function () {
 
 
 // 获取数据
-var data;
+var data = JSON.parse(localStorage.getItem('shoplist'));
+if(data = null){
+
+}else{
+
+}
+
+
 $.ajax({
     method: 'get',
-
     url: 'http://vebcoder.cn:9527/api/goodList',
     dataType: 'json',
     success: function (data) {
@@ -85,92 +98,136 @@ $.ajax({
     }
 });
 
+
+// data 异步  开始没有 这个是因为存储到loackstr
+// 此处错误 
 data = JSON.parse(localStorage.getItem('shoplist'));
 // 每次开始遍历起点
-var num=0;
-$(window.parent).on('scroll',function(){
-    for(num;num<data.length;num++){
-        var n =0;
-        if(n<=29){
-            // console.log(window.parent.document.documentElement.scrollHeight)
-            // console.log()
-            var goods = document.createElement('div');
-            goods.className='goods';
-            goods.setAttribute('value',`${data[num].Id}`)
-            goods.innerHTML=`
-             <div class="goods-img"><img src="${data[num].img_list_url}" alt=""></div>
-             <div class="goods-title">${data[num].title}</div>
-             <div class="price"><div>${data[num].price}</div><div>${data[num].mack}</div></div>
-             `;
-             $('.shopList').append(goods)
-        }else{
-            return
+// 初始化三十条数据
+var num = 0;//记录数据数量
+var s = 0;//滚动条触底次数
+for (num; num < 30; num++) {
+    var goods = document.createElement('div');
+    goods.className = 'goods';
+    goods.setAttribute('value', `${data[num].Id}`)
+    goods.innerHTML = `
+         <div class="goods-img"><img src="${data[num].img_list_url}" alt=""></div>
+         <div class="goods-title">${data[num].title}</div>
+         <div class="price"><div>${data[num].price}</div><div>${data[num].mack}</div></div>
+         `;
+    $('.shopList').append(goods);
+}
+
+// 滚动触底后加载30条数据
+$(window.parent).on('scroll', function () {
+    var scrollT = $(window.parent.document).scrollTop();
+    var scrollH = window.parent.document.documentElement.scrollHeight;
+    var clientH = window.parent.document.documentElement.clientHeight;
+
+    // console.log(clientH)
+    // console.log(scrollT);
+    // console.log(scrollH)
+    if (scrollH - scrollT === clientH) {
+        s++;
+        // 给父窗口添加返回顶部
+        // if (s === 1) {
+        //     var returnTop = document.createElement('div');
+        //     returnTop.className = 'return-top';
+        //     returnTop.innerHTML = '返回<br>顶部'
+        //     returnTop.style.display = 'block'
+        //     $(window.parent.document.body).append(returnTop);
+        //     // 点击返回滚动条
+        //     window.parent.document.querySelector('.return-top').onclick = function () {
+        //         var h = $(window.parent.document).scrollTop();
+        //         window.parent.document.querySelector('.return-top').display='none'
+        //         if (h > 2000) {
+        //             $(window.parent.document).scrollTop(0)
+        //         }
+        //     }
+
+            // // 返回顶部
+            // $(window.parent).on('scroll', function () {
+            //     // 监听滚动条高度
+            //     if (scrollT < 2000) {
+            //         console.log(document.querySelector('.return-top'))
+            //         window.parent.document.querySelector('.return-top').display = 'block'
+            //     }
+            // })
+        // }
+
+        var n = 0;
+        for (num; num < data.length; num++) {
+            if (n <= 29) {
+                var goods = document.createElement('div');
+                goods.className = 'goods';
+                goods.setAttribute('value', `${data[num].Id}`)
+                goods.innerHTML = `
+                 <div class="goods-img"><img src="${data[num].img_list_url}" alt=""></div>
+                 <div class="goods-title">${data[num].title}</div>
+                 <div class="price"><div>${data[num].price}</div><div>${data[num].mack}</div></div>
+                 `;
+                $('.shopList').append(goods);
+                n++;
+            } else {
+                // 获取iframe高度
+                var homeH = $(document).height();
+                // 获取的iframe的高度
+                $(window.parent.document.querySelector('iframe')).height(homeH);
+                return
+            }
+
         }
-       
-    }
 
-    // $('.goods').on('click',function(){
-    //     console.log( $('.goods').attr('value'))
-    // })
-    $('.shopList').on('click','div',function(e){
-      sessionStorage.setItem('value', this.getAttribute('value'));
-      location.href='../html/放大镜.html';
+    }
+    // 数据加载出来后设置点击图片跳转页面
+    $('.shopList').on('click', 'div', function (e) {
+        sessionStorage.setItem('value', this.getAttribute('value'));
+        location.href = '../html/放大镜.html';
     })
+
+
 })
 
-
-// var shopList = document.querySelector('.shopList');
-// data = JSON.parse(localStorage.getItem('shoplist'));
-// // console.log(data)
-// var str = '';
-// data.forEach(function (ele, index) {
-//     str += `   
-//             <div class="goods" value='${ele.id}'>
-//                 <div class="goods-img"><img src="${ele.img_list_url}" alt=""></div>
-//                 <div class="goods-title">${ele.title}</div>
-//                 <div class="price"><div>${ele.price}</div><div>${ele.mack}</div></div>
-//             </div>
-        
-//         `
-// })
-// shopList.innerHTML = str;
-
-
-// 移动变色
-var x = 0;
+var x;
+// 移入变色
 $('.header-list').on('mouseover', 'li', function (e) {
-    $(`.header-list>li:eq(${x})`).css({
-        color: '#666',
-        background: 'white'
-    })
-    x = $(this).index();
-    // console.log(!($(this).css('color') === 'white'))
-    if (!($(this).css('color') === 'white')) {
-        $(this).css({
-            background: 'purple',
-            color: 'white'
-        })
-    }
-})
-// 点击跳转
-$('.header-list').on('click', 'li', function (e) {
-    x = 0;
+
     $(this).css({
         background: 'purple',
         color: 'white'
     })
-    console.log($(this).value)
+})
+// 移出恢复颜色但点击的不恢复
+$('.header-list').on('mouseout', 'li', function (e) {
+    if (!($(this).index() === x)) {
+        $(this).css({
+            background: 'white',
+            color: '#666'
+        })
+    }
+
 })
 
 
 
-// 接收跳转
+//点击 变色 接收跳转
 var data = localStorage.getItem('shoplist');
 data = JSON.parse(data)
 var shopClass = document.createElement('div');
 shopClass.className = 'shopClass';
 
 $('.header-list').on('click', 'li', function (e) {
+    if (!($(this).index() === x)) {
+        $('.header-list>li:eq(' + x + ')').css({
+            background: 'white',
+            color: '#666'
+        })
+    }
+    x = $(this).index();
+    $(this).css({
+        background: 'purple',
+        color: 'white'
+    })
     // 删除main的所有兄弟元素
     console.log($('.header').nextAll().remove())
     $('.main').append(shopClass);
@@ -194,8 +251,14 @@ $('.header-list').on('click', 'li', function (e) {
         };
     })
 
+    var fixedItem = document.createElement('div');
+    fixedItem.className='fixed-item';
     // 创建几个shopClass-item 存ele.type_two
     for (var key in obj) {
+        var item = document.createElement('div');
+            item.className='item';
+            item.innerHTML=`${key}`
+        fixedItem.append(item);
         var shopClassItem = document.createElement('div');
         shopClassItem.className = 'shopClass-item';
         shopClassItem.innerHTML = `
@@ -208,8 +271,7 @@ $('.header-list').on('click', 'li', function (e) {
             `;
         shopClass.append(shopClassItem);
         arr.forEach((ele) => {
-            console.log(key);
-            console.log(ele.type_two ===key,'sdfsdf')
+
             if (key === ele.type_two) {
                 var goods = document.createElement('div');
                 goods.className = 'goods';
@@ -221,14 +283,20 @@ $('.header-list').on('click', 'li', function (e) {
                             <div>${ele.mack}</div>
                         </div>
                     `;
-                    for(var j = 0;j<$('.type_two').length;j++){
-                        if ($('.type_two')[j].innerText === key) {
+                for (var j = 0; j < $('.type_two').length; j++) {
+                    if ($('.type_two')[j].innerText === key) {
                         $('.type_two')[j].nextElementSibling.append(goods)
-                    }}
+                    }
+                }
             }
         })
-        console.log(arr)
     }
+    $('.main').append(fixedItem)
+    var node = '<div class="scroll"></div>';
+    $('.main').append(node);
+    var h = window.parent.document.querySelector('.iframe');
+    console.log(h)
+    $(h).css('height',$('.scroll').offset().top+'px')
 })
 
 

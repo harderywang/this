@@ -16,6 +16,7 @@ function reinitIframe(){
     }
 }
 
+
 iframe.contentWindow.window.onload=function(){
     // console.log("lllllllll");
     setTimeout(function(){
@@ -56,9 +57,6 @@ var searchIpt = document.querySelector('.searchIpt');
 var searchDiv = document.querySelector('.searchDiv')
 searchBtn.onclick = function () {
     if (!searchIpt.value) {
-        // searchDiv.style.top = '0.6rem';
-        // searchDiv.style.left = '0rem';
-
         alert.style.top = '.25rem'
         setTimeout(function () {
             alert.style.top = '-1rem'
@@ -66,23 +64,79 @@ searchBtn.onclick = function () {
     }
 }
 
+
+
 //  列表鼠标监听
-function list(event) {
-    if(event.target.tagName==='A'){
-        event.target.style.color = 'purple';
-        event.target.style.borderBottom = '2px solid purple'
+var x =0;
+// 初始化
+$('.nav-down-list-item>a:eq('+x+')').css({
+    color:'purple',
+    borderBottom:'2px solid purple'
+})
+// 点击变色
+$('.nav-down-list-item').on('click',function(){
+    
+    if(!($(this).index()===x)){
+        $('.nav-down-list-item>a:eq('+x+')').css({
+                 color:'black',
+                 borderBottom:'2px solid transparent'
+        })
+        x=$(this).index();
+        $('.nav-down-list-item>a:eq('+x+')').css({
+            color:'purple',
+            borderBottom:'2px solid purple'
+        })
     }
-}
-navDownList.addEventListener('mouseover', list);
-// 鼠标点击事件
-navDownList.addEventListener('click', list)
+})
+// 鼠标点击变色
+$('.nav-down-list-item').on('mouseover',function(){
+    $(this).children().css({
+        color:'purple',
+        borderBottom:'2px solid purple'
+    })
+})
+
+// 鼠标移出恢复 但点击的不恢复
+$('.nav-down-list-item').on('mouseout',function(){
+    if(!($(this).index()===x)){
+        $(this).children().css({
+                 color:'black',
+                 borderBottom:'2px solid transparent'
+        })
+    }
+})
 
 
-// navDownList.addEventListener('mouseover', move)
-
-
+// 退出删除
 $('.exit').on('click',function(){
     localStorage.clear();
     $('.house').click();
     location.href=''
 })
+
+$(window).on('scroll',function(){
+    // console.log(document.documentElement.s)
+    if(document.documentElement.scrollTop>=800){
+        $('.return-top').css({
+            display:'block'
+        })
+    }else{
+        $('.return-top').css({
+            display:'none'
+        })
+    }
+
+    $('.return-top').on('click',function(){
+        document.documentElement.scrollTop=0;
+        // $(window).animate({scrollTop:0},2000)
+        $('.return-top').css({
+            display:'none'
+        })
+    })
+})
+
+
+
+
+
+
