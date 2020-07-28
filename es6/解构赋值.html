@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let  obj = {
+            name:'yf',
+            age:23,
+        }
+
+        let {name,age} = obj;
+        console.log(name,age)
+
+        let [one,two,[a,b,[c]]] = [1,2,[1,2,[5]]]
+        console.log(one,two,a,b,c)
+
+
+        let [head,...tail] = [1,2,3,4]
+        console.log(head,tail)
+
+
+        let [x,y,...z] = [a];
+        console.log(x,y,z)
+
+        // 解构赋值 解构的是对象或者数组  是直接从对象或者数组中取值的一种方式
+
+        function bar(obj){
+            let {a,b} = obj
+        }
+        
+        bar({
+            a:11,
+            b:12
+        })
+
+        let {d:dr,e:er} = {d:23,e:14};
+        console.log(dr,er)
+        console.log(d,e)
+    </script>
+</body>
+</html>

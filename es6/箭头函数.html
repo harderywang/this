@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 异步的function 函数中默认 this 指向 window
+        // 解决方式  bind apply call  箭头函数
+
+        var bar = a =>1+a;
+        console.log(bar(1))
+    </script>
+</body>
+</html>

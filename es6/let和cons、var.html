@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // let const var 
+        // let 声明一个变量 可以被重复改变 声明的变量会在
+        // 在同一个块级作用域中 不可以重复声明
+        // 暂时性死区
+        // 不存在变量提升
+
+        // 作用 私有化变量 闭包 都可以防止变量污染
+
+        // 暂时性死区 
+        function bar(x = y, y = 2) {
+            return [x, y];
+        }
+
+        bar(); // 报错
+        
+
+        // console.log(bar())
+        // function f1(obj) {
+        //     console.log(obj.age);
+        //     console.log(obj.height)
+        // }
+        //等价于
+        // function f1({ age, height }) {
+        //     console.log(age);
+        //     console.log(height)
+        // }
+
+        // f1({ age: 5, height: 180 })
+    
+// const本质：并不是保证变量的值不可以改动 而是变量指向的那个内存的值不得改动
+                // 对于复合类型数据 变量指向的内存地址只是一个指针 const只是保证指针是固定的
+
+    // 对象冻结：Object.freeze({})
+
+//ES6 对象声明的六种方式  var function let const  import class 
+
+
+// 顶层对象 浏览器环境中指 window   node中指global 
+    </script>
+</body>
+
+</html>

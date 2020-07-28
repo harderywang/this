@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        console.log(a)
+        console.log(b)//Cannot access 'b' before initialization 暂时性死区
+        var a = 123;
+        let b = '电饭锅电饭锅'
+        let b = 'sdfsdf' //Identifier 'b' has already been declared 在同一个作用域中不能命名相同的变量
+
+
+        {
+            var c = 'ccc';
+            let d = 'dddd';//d的执行环境为 块级作用域
+        }
+        console.log(c)
+
+        {
+            let b= 'sdfsdwer'
+            console.log(b);
+            {
+                let b ='lkjk';
+                console.log(b)
+            }
+        }
+        
+    </script>
+</body>
+</html>
