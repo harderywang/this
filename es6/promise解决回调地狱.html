@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 回调地狱代码可读性太差
+        // 
+
+        // 实例化promise对象、
+
+        // 状态 1 待办状态
+                // 2 成功状态
+                // 3失败状态
+        var p = new Promise(function(resolve,reject){
+            //  待办状态
+            ajax('/a',resolve)
+        });
+
+        
+        p.then(function(resolve,reject){
+            // 处理成功
+            ajax('/b')
+        },function(){
+            // 处理失败
+        }).then(function(resolve,reject){
+            ajax('/c')
+        }).then(function(){
+            console.log('cccc')
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var p1 = new Promise((resolve)=>{
+            setTimeout(function(){
+                console.log('p1');
+                resolve(1);
+            },800)
+        });
+        var p2 = new Promise((resolve)=>{
+            setTimeout(function(){
+                console.log('p2');
+                resolve(2);
+            },1200)
+        }); 
+        var p3 = new Promise((resolve)=>{
+            setTimeout(function(){
+                console.log('p3');
+                resolve(3);
+            },2000)
+        });
+
+        // 需求：p1 p2 p3只要有一个执行完毕之后再执行alert('123');
+        // 只要有一个执行 表示都成功
+        var test = [p1,p2,p3];
+        Promise.race(test).then(()=>{
+            alert('123');
+        });
+
+      
+    </script>
+</body>
+</html>

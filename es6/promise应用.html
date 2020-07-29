@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // //promise 解决了回调地狱问题
+        // function ajax(url) {
+        //     return new Promise(function (resovle,reject) {
+        //         const xhr = new XMLHttpRequest();
+        //         xhr.open('GET', url);
+        //         xhr.send();
+        //         xhr.onreadystatechange = function () {                
+        //             if (xhr.readyState === 4&&xhr.status===200) {
+        //                 resovle(xhr.response)
+        //             }
+        //         }
+        //     })
+
+        // }
+
+        // ajax('http://vebcoder.cn:9527/api/goodlist').then((res)=>{
+        //     console.log('商品list成功')
+        //     console.log(res)
+        //     return  ajax('http://vebcoder.cn:9527/api/detail?goodId=1')
+        // }).then((res)=>{
+        //     console.log('商品详情成功')
+        //     console.log(res)
+        // })
+
+        fetch('http://vebcoder.cn:9527/api/goodlist').then(function (res) {
+          return res.json();
+        }).then(res =>{
+            console.log(res)
+        })
+
+        fetch('http://vebcoder.cn:9527/api/detail?goodId=1').then((res) =>{
+            console.log(res.headers,'res.headers')
+            console.log(res.ok,'res.ok')
+            console.log(res.status)
+            console.log(res.url);
+            console.log(res.json(),'返回一个解析为 JSON 格式的promise对象')
+            console.log(res.text(),'返回一个解析为 USVString 格式的promise对像')
+            return res.json();
+        }).then(res =>{
+            console.log(res)
+        })
+
+        var p = new Promise((resolve, reject) => {
+            console.log('异步任务开始了')
+            if (true) {
+                console.log('------------代办任务即将改变状态了')
+                // 未完成
+                resolve('告诉外界，任务成功完成了')
+            } else {
+                reject('任务失败了')
+            }
+        })
+
+        // .then 方法 返回一个新的promise
+        //  .then(resolve处理成功函数，reject处理失败函数)
+        //  .catch() 捕获错误并处理失败
+        p.then(res => {
+            console.log('接收promise 信号', res);
+            console.log('我是外界，正在处理成功后事项。')
+            if (true) {
+                console.log('后续问题为已经处理完毕 可以开始下一个任务了')
+            }
+        }).catch(err => {
+            console.log('我是外界；我捕获错误 正在解决错误')
+        })
+        console.log('我是同步的')
+    </script>
+    <script>
+        console.log('===============新的开始=================')
+        function doshi(){
+            return new Promise((resolve, reject) => {
+            console.log('异步任务开始了')
+            if (true) {
+                console.log('------------代办任务即将改变状态了')
+                // 未完成
+                resolve('告诉外界，任务成功完成了')
+            } else {
+                reject('任务失败了')
+            }
+        })
+        }
+        doshi().then(res => {
+            console.log('接收promise 信号', res);
+            console.log('我是外界，正在处理成功后事项。')
+            if (true) {
+                console.log('后续问题为已经处理完毕 可以开始下一个任务了')
+            }
+        }).catch(err => {
+            console.log('我是外界；我捕获错误 正在解决错误')
+        })
+    </script>
+</body>
+
+</html>

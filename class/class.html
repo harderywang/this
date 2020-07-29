@@ -5,21 +5,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
 </head>
 
 <body>
+    <div id="app">
+        {{ message }}
+    </div>
     <script>
-        function Point(x, y) {
-            this.x = x;
-            this.y = y;
+        
+        function one(callback) {
+            setTimeout((res) => {
+                console.log(res)
+                callback('第一件事了', two)
+            }, 500, '你好啊')
+        }
+        function two(callback) {
+            setTimeout((res) => {
+                console.log(res)
+                callback('第二件事了')
+            }, 500, '我很好')
+        }
+        one(function (res, callback) {
+            console.log(res);
+            callback(function (res) {
+                console.log(res)
+            })
+        })
+
+        function yromise(str) {
+            return new Promise(function (res, rej) {
+                setTimeout((r) => {
+                    console.log(r);
+                    res('第一件事')
+                }, 500, '你好啊')
+            })
         }
 
-        Point.prototype.toString = function () {
-            return '(' + this.x + ', ' + this.y + ')';
-        };
-
-        var p = new Point(1, 2);
-        console.log(p)
+        yromise('第一件事').then(res => {
+            console.log(res)
+            return
+        })
     </script>
 </body>
 

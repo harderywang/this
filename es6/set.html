@@ -1,14 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <script>
         // set 构造函数
         // 用途 数组去重
+        function f() { console.log('I am outside!'); }
+        (function () {
+            if (false) {
+                var a =0;
+                function f() { console.log('I am inside!'); }
+            }
+            f();
+        }());
     </script>
 </body>
+
 </html>

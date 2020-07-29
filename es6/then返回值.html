@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // promise 的回调函数 在new Promise 的时候就执行了 new promise 执行一次产生一个新的任务
+        var p = new Promise((res,rej)=>{
+              console.log('开始了')
+              res('success')
+        })
+        // .then()默认返回一个新的promise  promiseValue :undefined
+
+        var res  = p.then(res=>{
+            console.log(res,'-----')
+            return 1 //promiseValue :1
+        })
+        console.log(res)
+
+
+        // var newRes = p.then(res=>{
+        //     console.log(res,'-----')
+        //     return  new Promise((res,rej)=>{
+        //       console.log('开始了')
+        //       res('success')
+        // })
+        // })
+    </script>
+</body>
+</html>

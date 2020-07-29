@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据拦截</title>
+</head>
+<body>
+    <script>
+        var obj = {
+            num:9,
+            // get n(){
+            //     return this.num
+            // },
+            // set n(val){
+            //     this.num =val
+            // }
+        }
+
+        console.log(obj.n =123);
+
+        // 数据劫持
+        // 中间存储值 中转仓 避免get和set死循环
+        let num = obj.num
+        console.log(num)
+        // Object.defineProperty(被监听的对象,被监听的属性,option{getter setter})
+        Object.defineProperty(obj,'num',{
+             //数据劫持 获取数据
+            get(){
+                console.log('触发get')
+                return num
+            },
+            //数据劫持 修改数据 在修改之前拦截
+            set(val){
+                console.log('触发set')
+                console.log(val)
+                num = val
+            }
+        })
+        console.log(obj.num)
+
+        // 
+    </script>
+</body>
+</html>

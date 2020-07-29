@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // obj 让proxy做代理劫持 
+        var obj = {
+            x:1,
+            y:2,
+            list:[1,2,3,4],
+            z:4,
+            r:7
+        }
+        // 创建代理对象proxy
+        var proxy = new Proxy(obj,{
+            get:function(target,propKey,receiver){
+                console.log('get触发')
+                // target：对象obj
+                // propKey  代理属性
+                // receiver  代理对象proxy
+                console.log(target,propKey,receiver,'+++++')
+                return target[propKey]
+            },
+            set:function(target,propKey,value,receiver){   
+                console.log('set触发')
+                // target：对象obj
+                // propKey  代理属性
+                // value    修改后的值
+                // receiver  代理对象proxy
+                console.log(target,propKey,'=====');
+                target[propKey] =value
+            }
+        })
+        // obj.x
+        // console.log(obj.x,proxy)
+        // console.log(proxy)
+        // var kehu = Object.create(proxy)
+        // console.log(kehu)
+        // console.log(obj.x)
+        // proxy.x='修改成功';
+
+
+        // bug
+        // proxy.list[0] = 'aaa'//整个数组变成了aaa
+
+        proxy.list = new Proxy(obj.list,{
+            get:function(target,index,receiver){
+                console.log('get list触发')
+                console.log(target,index,receiver,'+++++')
+                return target[index]+'试试2';
+            },
+            set:function(target,index,value,receiver){   
+                console.log('set list触发')
+                console.log(target,index,'=====');
+                target[index] =value
+            }
+
+        })
+        proxy.list[0]
+    </script>
+</body>
+</html>
