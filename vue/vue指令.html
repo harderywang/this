@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 动态给HTML插入值
+            v-bind:attr='变量' 给h5 属性动态绑定值
+            简写  :attr='变量'
+        -->
+        <img v-bind:src="imgsrc" :alt="imgalt" :class='className'>
+
+        <!-- 属性插值并拼接字符串 -->
+        <!-- :value="val+我是字符串"  ‘我是字符串’没加引号 value 里面就是声明了两个变量-->
+        <input type="text" :value="val+'我是字符串'" name="" id="">
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        // 什么是指令？（v-for 类外）
+        // 以v 开头的特殊属性， 可以有vue完成功能 的语法糖
+        // 语法糖：为了方便程序员开发方便讲一段代码封装成一个功能 例如 vue指令 模板语法
+        var app = new Vue({
+            el:'#app',
+            data:{
+                imgsrc:'./物理.jpg',
+                imgalt:'物理',
+                className:'wang gk',
+                val:'我是变量'
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 事件绑定 v-on='事件处理函数'
+        简写：@事件名='事件处理函数'
+
+        特殊情况 
+        1 阻止浏览器默认行为 事件冒泡 按指定按键。。。  修饰符
+        @事件名.修饰符='事件处理函数'
+    -->
+    <div class="app">
+        <form action="" @click='clickHandle'>
+            <input type="text" :value='ipt' @input.stop='input'>
+            <!-- <button @click='submit'>提交</button> -->
+            <!-- 事件名.prevent阻止浏览器默认事件  （修饰符） -->
+
+            <!-- <button @click.prevent='submit'>提交</button> -->
+            <!-- 事件名.stop阻止冒泡  （修饰符) -->
+            <button @click.prevent.stop='submit' @keydown.enter.prevent='keyHandle'>提交</button>
+            <h1 @click = 'aa'>我是内容</h1>
+        </form>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:'.app',
+            data:{
+                ipt:'',//ipt表示input输入内容
+            },
+            methods:{
+                submit:function(e){
+                    // console.log(e)//window的事件对象
+                    // e.preventDefault()阻止默认事件
+                //    e.preventDefault();
+                // e.stopPropagation();阻止冒泡
+                    // e.stopPropagation()
+                    console.log(this.ipt,'点击提交按钮')
+                },
+                input(e){
+                    // e.stopPropagation();
+                    // console.log(e.target.value) 获取用户输入的内容 直接操作dom
+                    this.ipt = e.target.value;
+                    console.log(e.target.value,'input输入框')
+                },
+                clickHandle(){
+                    console.log('不冒泡')
+                },
+                keyHandle(e){
+                    // e.keycode  获取按键键码
+                    console.log('enter')
+                },
+                aa(e){
+                    console.log(e.target)
+                }
+            }
+        })
+    </script>
+</body>
+</html>

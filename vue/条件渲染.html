@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 条件渲染（v-if）与条件展示（v-show） -->
+    <div class="app">
+
+    </div>
+
+
+    <div class="app">
+        <!-- v-if  vue的条件渲染 
+            v-if='true/false'
+            true 创建html标签
+            false销毁html标签
+         v-else 条件渲染
+        类似 if else -->
+        <h2 v-if="flag">wang</h2>
+        <h2 v-else>cheng</h2>
+        <button @click =changeH2>切换</button>
+
+
+        <!-- if elseif else if else -->
+        <div>
+            <p v-if='count===1'>你好</p>
+            <p v-else-if='count===2'>我好</p>
+            <p v-else-if='count===3'>他好</p>
+            <p v-else='count===4'>大家好</p>
+        </div>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:'.app',
+            data:{
+                flag:true,
+                count:2
+            },
+            methods:{
+                changeH2(){
+                   this.flag =!this.flag
+                }
+            }
+        })
+    </script>
+</body>
+</html>

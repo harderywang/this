@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="app">
+        <!-- 1复选 多选 如何知道用户选择了那些内容 
+            v-model 绑定所用用户选中内容的集合（数组）
+            checked 数组 存放被勾选的input的value值    
+        -->
+        <input type="checkbox" v-model="checked" value="xiang">向
+        <input type="checkbox" v-model="checked" value="wang">王
+        <p v-for='item in checked'>{{item}}</p>
+
+        <!-- checkbox 单个  选或者不选 用true选中或者false没选    
+        怎么知道选择的值是什么？就一个
+     -->
+        <input type="checkbox" id="checkbox" v-model='che' value="我是一个好人">你是好人吗？
+        <label for="checkbox">{{che}}</label>
+
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:'.app',
+            data:{
+                checked:[],
+                che:true
+            },
+            methods:{
+
+            }
+        })
+    </script>
+</body>
+</html>

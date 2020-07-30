@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html,body,.app{
+            width: 100%;
+            height: 100%;
+            border: 1px solid transparent;
+        }
+        .banner{
+            width: 50%;
+            height: 50%;
+            margin: 0 auto;
+            position: relative;
+            background-color: teal;
+        }
+        .banner-img{
+            width: 100%;
+            height: 100%;
+        }
+        .banner-img>img{
+            width: 100%;
+            height: 100%;
+        }
+        .left,.right{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 50px;
+            font-size: 30px;
+            color:thistle;
+            background-color: rgb(168, 164, 164);
+            position: absolute;
+        }
+        .left{
+            top: 45%;
+            left: 0;
+        }
+        .right{
+            top: 45%;
+            right: 0;
+        }
+        .round{
+            position: absolute;
+            margin: 0 auto;
+            height: 30px;
+            width: 200px;
+            background-color: teal;
+            bottom: 30px;
+            left: 40%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .round-item{
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: thistle;
+            display: inline-block;
+        }
+     
+    </style>
+</head>
+<body>
+    <div class="app">
+        <div class="banner">
+            <div class="banner-img">
+                <img :src="imgArr[index]" alt="">
+            </div>
+            <div class="left" @click='left'><</div>
+            <div class="right" @click = 'right'>></div>
+            <div class="round" @click='round'>
+                <!-- <div class="round-item" v-for="(ele,n) in imgArr" :data-index="n">一</div> -->
+                <div class="round-item">一</div>
+                <div class="round-item">二</div>
+                <div class="round-item">三</div>
+            </div>
+        </div>  
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:'.app',
+            data:{
+                imgArr:["./img/屋水山.jpg","./img/蝶化花.jpg","./img/雾庙林.jpg"],
+                index:0,
+            },
+            methods:{
+                left(){
+                    if(this.index===0){
+                        this.index=2
+                    }else{
+                        this.index--;
+                    }
+                },
+                right(){
+                    if(this.index===2){
+                        this.index=0
+                    }else{
+                        this.index++;
+                    }
+                },
+                round(e){
+                    console.dir(e.target)
+                    console.log(e.target.tabIndex)
+                }
+            }
+        })
+    </script>
+</body>
+</html>

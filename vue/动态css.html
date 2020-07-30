@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="app">
+        <span :class="{active:isActive}"></span>
+        <span :class="{'text-danger':hasErr}"></span>
+        <span :class="classObj"></span>
+        <span :class="['aa','bb','ss']"></span>
+        <!-- 函数 -->
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:'.app',
+            data:{
+                isActive:true,
+                hasErr:true,
+                classObj:{
+                    active:true,
+                    'text-danger':true
+                }
+            }
+        })
+    </script>
+</body>
+</html>

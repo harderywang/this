@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- v-for = 'i in 3' 循环变量 i 从1开始到3 -->
+    <div class="app">
+        <h2 v-for='i in 5'> 我是内容{{i}}</h2>
+        <h2 v-for='i in count'> 我是内容变量{{i}}</h2>
+        <div v-for='i in 9'>
+            <span v-for='n in i'>{{i+'*'+n+'='+i*n }}</span>
+            <!-- <span v-for='x in 4'>{{'i='+i +'  x=' + x}}</span> -->
+            <!-- 九九乘法表 -->
+        </div>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:'.app',
+            data:{
+                count:3,
+            }
+        })
+    </script>
+</body>
+</html>

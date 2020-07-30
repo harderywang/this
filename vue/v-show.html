@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="app">
+        <!-- v-show  标签隐藏  值为true/false-->
+        <!-- v-if  标签用注释节点删除节点  值进行boolean转换 -->
+        <!-- 频繁显示隐藏 元素 用v-show 提高性能
+        v-if 进入新页面 去除公共样式标签 -->
+        <h1 v-show='false'>你看不到我</h1>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:'.app',
+            data:{
+
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+
+    <!-- 谈谈你对vue 的认识
+        vue(MVVM框架Model-View-ViewModel（分离视图view和模型model）) 是一个渐进式框架  vue 的核心只关注视图层  易于上手  便于与第三方库进行整合如uniapp mapvue weex
+    -->
+
+    <!-- 声明式渲染 用模板语法声明变量和使用str 用以渲染dom   数据与dom 的联系是响应式的-->
+    <!-- vue如何实现响应式的   基于 Object.defindeProperty实现的 -->
+    <div id="app">{{msg}}</div>
+    <!--   -->
+    <!-- 导入vue -->
+    <script src="./vue.js"></script>
+   <script>
+        var app =new Vue({
+            el:'#app',
+            data:{
+                msg:'wang'
+            }
+        })
+        console.log(app.msg)//wang
+   </script>
+</body>
+</html>

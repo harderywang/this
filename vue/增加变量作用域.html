@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="app">
+        <!-- template 在vue-cli 中不能使用了 用 transition 标签代替 -->
+        <template v-for='(item,index) in arr'>
+            <span>{{index}}</span>
+            <span>{{item}}</span>
+        </template>
+        <!-- 二者标签结构不同 -->
+        <div  v-for='(item,index) in arr'>
+            <span>{{index}}</span>
+            <span>{{item}}</span>
+        </div>
+    </div>
+    <script src="./vue.js"></script>
+    
+    <script >
+        var app = new Vue({
+            el:'.app',
+            data:{
+                arr:['wang','wang1','wang2']
+            }
+        })
+    </script>
+</body>
+</html>

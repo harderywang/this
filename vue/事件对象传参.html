@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <!-- $event 事件对象
+            事件处理函数传参; 必须手动传入事件对象 $event     
+        -->
+        <div class="box" @click = "clickHandle('aa',$event)"></div>
+        <!-- .once绑定的事件只能执行一次
+            事件修饰符  
+            键盘修饰符
+            系统修饰符
+        -->
+        <div class="box" @click.once = "aa"></div>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:'.app',
+            methods:{
+                clickHandle(a,e){
+                    console.log(a);
+                    console.log(e);
+                },
+                aa(){
+                    console.log('我只能执行一次')
+                }
+            }
+        })
+    </script>
+</body>
+</html>

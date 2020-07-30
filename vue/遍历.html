@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="app">
+        <ul>
+            <!-- v-for 遍历数组 
+                item 数组元素
+                index 数组索引
+                list 变量 赋值数组 -->
+            <li v-for='(item,index) in  list'>{{index}}:{{item}}</li>
+        </ul>
+        <!-- v-for 遍历对象 
+            item 对象值
+            key 对象属性
+             persons 对象
+     -->
+        <div v-for='(item,key) in persons'>{{key}}:{{item}}</div>
+
+        <!-- 遍历列表 -->
+        <dd>
+            <dl v-for='(value,key) in student'>
+                姓名：{{value.name}}
+                年龄：{{value.age}}
+            </dl>
+        </dd>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:'.app',
+            data:{
+                list:[1,2,'ss'],
+                persons:{
+                    name:'wang',
+                    age:21,
+                    school:'大学',
+                    dec:'笑口常开'
+                },
+                student:[
+                    {name:'wang1',age:24},
+                    {name:'wang2',age:24},
+                    {name:'wang3',age:24},
+                ],
+                class:[
+                    {group:1,num:23},
+                    {group:2,num:23,sex:'n'},
+                    {group:3,num:23},
+
+                ]
+            }
+        })
+    </script>
+</body>
+</html>

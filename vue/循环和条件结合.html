@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="app">
+        <h1 v-if="false"> hkj </h1>
+        <!-- <h2>{{true}}</h2> true 不是变量是boolean -->
+        <dd>
+            <!-- 需求 渲染age>20的 -->
+            <!-- 在标签上面声明的变量 作用域 在该元素内部或者自己
+            在vue 对象声明的变量 作用域为整个app模板
+                -data 
+                -mehtods
+                -watcher
+                -... -->
+
+                <!-- 可以通过v-if 控制循环次数 -->
+            <dt v-for='(item,index) in list' v-if='item.age>18 && item.age<23'>
+                姓名：{{item.name}}
+                年龄：{{item.age}}
+                <div v-if = item.age===19>{{item.age}}</div>
+            </dt>
+        </dd>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:'.app',
+            data:{
+                true:'sdf',
+                list:[
+                    {name:'aa',age:23},
+                    {name:'aa',age:23},
+                    {name:'aa',age:18},
+                    {name:'aa',age:23},
+                    {name:'aa',age:19},
+                    {name:'aa',age:23},
+                ]
+            }
+        })
+    </script>
+</body>
+</html>
