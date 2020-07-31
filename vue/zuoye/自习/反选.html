@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="app">
+        <div>
+            <input type="checkbox" name="" id="">{{selectALlStr}}
+            <input type="checkbox">反选
+        </div>
+        <div v-for='(ele,index) in formlist'>
+            <input type="checkbox" v-model="formArr" :value="ele.name">{{ele.name}}
+        </div>
+    </div>
+    <script src="../../vue.js"></script>
+    <script>
+        var app = new Vue({
+            // el:'.app',
+            data:{
+                selectALlStr:'全选',
+                formlist: [
+                    { id: 'wang0', name: '王0' },
+                    { id: 'wang1', name: '王1' },
+                    { id: 'wang2', name: '王2' },
+                    { id: 'wang3', name: '王3' },
+                    { id: 'wang4', name: '王4' },
+                    { id: 'wang5', name: '王5' },
+                ],
+                formArr:[]
+            },
+            methods:{}
+        })
+
+        app.$mount('.app')
+    </script>
+</body>
+</html>

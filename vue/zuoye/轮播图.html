@@ -80,10 +80,10 @@
             <div class="left" @click='left'><</div>
             <div class="right" @click = 'right'>></div>
             <div class="round" @click='round'>
-                <!-- <div class="round-item" v-for="(ele,n) in imgArr" :data-index="n">一</div> -->
-                <div class="round-item">一</div>
+                <div class="round-item" v-for="(ele,n) in imgArr" :data-index="n">一</div>
+                <!-- <div class="round-item">一</div>
                 <div class="round-item">二</div>
-                <div class="round-item">三</div>
+                <div class="round-item">三</div> -->
             </div>
         </div>  
     </div>
@@ -111,8 +111,9 @@
                     }
                 },
                 round(e){
-                    console.dir(e.target)
-                    console.log(e.target.tabIndex)
+                    this.index=e.target.getAttribute('data-index')
+                    console.log(this.index)
+                    console.log(e.target.getAttribute('data-index'))
                 }
             }
         })

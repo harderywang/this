@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            background-color: burlywood;
+            transition: all 2s;
+            animation: wyh 2s linear;
+        }
+        @keyframes wyh{
+            from{
+                opacity: 1;
+            }to{
+                opacity: 0.3;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button id="btn">变大了</button>
+    <div class="box" id="box"></div>
+    <script>
+        btn.onclick = function(){
+            setTimeout(function(){
+                box.style.width='500px'
+            },16.7)
+        }
+
+        box.addEventListener('transitionend',function(){
+            console.log('过渡执行完毕')
+        })
+        box.addEventListener('transitionstart',function(){
+            console.log('过渡执行开始')
+        })
+
+        box.addEventListener('animationstart',function(){
+            console.log('动画开始了')
+        })
+    </script>
+    <!-- css3 中属性 动画过渡 都有对应的事件监听 -->
+    
+</body>
+</html>

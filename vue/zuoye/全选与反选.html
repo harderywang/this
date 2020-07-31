@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="app">
+        <dd>
+        <dt>
+            <input type="checkbox" name="" id="" v-model="allCheck" @change='all'>
+            <span>{{text}}</span>
+            <input type="checkbox" name="" id="" @change='revers'>
+            <span>反选</span>
+        </dt>
+        <dt v-for="(item,index) in formlist">
+            <input type="checkbox" v-model='checkArr' :value='item.id' @change='changeTodo'>
+            <span>{{item.name}}</span>
+        </dt>
+        </dd>
+        <h1 v-for="item in checkArr">{{item}}</h1>
+    </div>
+
+    <script src="../vue.js"></script>
+
+    <script>
+        var app = new Vue({
+            el: '.app',
+            data: {
+                formlist: [
+                    { id: 'wang0', name: '王0' },
+                    { id: 'wang1', name: '王1' },
+                    { id: 'wang2', name: '王2' },
+                    { id: 'wang3', name: '王3' },
+                    { id: 'wang4', name: '王4' },
+                    { id: 'wang5', name: '王5' },
+                ],
+                checkArr: [],
+                allCheck: false,
+                text: '全选'
+            },
+            methods: {
+                all() {
+                    this.checkArr = [];
+                    if (this.allCheck) {
+                        this.formlist.forEach((ele) => {
+                            this.checkArr.push(ele.id)
+                        })
+                        this.text = '全不选'
+                    } else {
+                        this.text = '全选'
+                    }
+                },
+                revers() {
+                    let res = [];
+                    let flag = true;
+                    for (let i = 0; i < this.formlist.length; i++) {
+                        for (let j = 0; j <= this.checkArr.length; j++) {
+                            if (this.formlist[i].id == this.checkArr[j]) {
+                                flag = true;
+                                break;
+                            } else {
+                                flag = false;
+                            }
+                        }
+                        if (!flag) {
+                            res.push(this.formlist[i].id);
+                        }
+                    }
+                    this.checkArr = res;
+                    this.changeTodo()
+                },
+                changeTodo(){
+                    if(this.formlist.length===this.checkArr.length){
+                        this.allCheck='false'
+                        this.text='全不选'
+                    }else{
+                        this.allCheck='true'
+                        this.text='全选'
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

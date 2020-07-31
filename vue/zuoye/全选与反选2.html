@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="app">
+        <dd>
+        <dt>
+            <input type="checkbox" name="" id="" v-model="allcheck" @change='all'>
+            <span>{{text}}</span>
+            <input type="checkbox" @change='revers'>
+            <span>反选</span>
+        </dt>
+        <dt v-for="(item,index) in formlist" >
+            <input type="checkbox" v-model='checka' :value="item.name">
+            <span>{{item.name}}</span>
+        </dt>
+        </dd>
+        <h2>{{checka}}</h2>
+        <p v-for="ele in checka">{{ele}}</p>
+    </div>
+
+    <script src="../vue.js"></script>
+
+    <script>
+        var app = new Vue({
+            el: '.app',
+            data: {
+                formlist: [
+                    { id: 'wang0', name: '王0' },
+                    { id: 'wang1', name: '王1' },
+                    { id: 'wang2', name: '王2' },
+                    { id: 'wang3', name: '王3' },
+                    { id: 'wang4', name: '王4' },
+                    { id: 'wang5', name: '王5' },
+                ],
+                checka: [],
+                allcheck: false,
+                text: '全选',
+            },
+            methods: {
+                
+                all() {
+                    this.checka = [];
+                    if (this.allcheck) {
+                        this.formlist.forEach((ele) => {
+                            this.checka.push(ele.name)
+                        })
+                        this.text = '全不选'
+                    } else {
+                        this.text = '全选'
+                    }
+
+                },
+                revers() {
+                    let res = [];
+                    let flag = true;
+                    for (let i = 0; i < this.formlist.length; i++) {
+                        for (let j = 0; j <= this.checka.length; j++) {
+                            if (this.formlist[i].name == this.checka[j]) {
+                                flag = true;
+                                break;
+                            } else {
+                                flag = false;
+                            }
+                        }
+                        if (!flag) {
+                            res.push(this.formlist[i].name);
+                        }
+                    }
+                    this.checka = res;
+                }
+            }
+
+        })
+    </script>
+</body>
+
+</html>

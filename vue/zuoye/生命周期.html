@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<!-- 十一个函数 vuen内部运行原理 博客 虚拟dom dif算法 编译 
+        修改  原来的存在 更新虚拟dom 新旧进行比较新的改变替代没改变的
+         代理模式 dif算法 编译原理 -->
+         <div class="app">
+            <h1>{{msg}}</h1>
+        </div>
+         <script src="../vue.js"></script>
+         <script>
+             var  app = new Vue({
+                //  template:`
+                //         <div class="app">
+                //              <h1>{{msg}}</h1>
+                //         </div>
+                //  `,
+
+
+                //  el:'.app',
+                data:{
+                    msg:'我是内容'
+                },
+                beforeCreate:function(){
+                    // 可以做loading
+                    console.log('初始化之前')
+                },
+                created:function(){
+                    // 这里一般做页面初始化处理 初始化获取数据
+                    console.log('页面初始化')
+                },
+                beforeMount:function(){
+                    // 数据和dom还没有结合
+                   
+                    console.log('数据渲染之前')
+                    var dom = document.querySelector('h1')
+                    console.log(dom)//<h1>{{msg}}</h1>
+                },
+                mounted:function(){
+                    // 这里可以访问dom 操作dom元素
+                    var dom = document;
+                    console.log(dom)
+                    console.log('数据渲染完毕')
+                    var dom = document.querySelector('h1')
+                    console.log(dom)//<h1>我是内容</h1>
+                },
+                beforeUpdate:function(){
+                    
+                    console.log('数据更新前')
+                },
+                updated:function(){
+                    // 当data中数据更新是会触发update函数
+                    console.log('数据更新完毕')
+                },
+                distory(){
+                    // 这里清空所有的timer  定时器
+                    // 销毁时触发
+                }
+                
+
+             })
+            //  等同于el:'.app'指定根元素
+             app.$mount('.app')
+         </script>
+</body>
+</html>

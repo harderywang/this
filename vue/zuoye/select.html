@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="app">
+        <!-- 实现用户选择的select option与optionStr 的双向绑定 -->
+        <select name="city" id="city" @change='changeCity' v-model="optionStr">
+            <option v-for="item in city"  :value='item'>{{item}}</option>
+        </select>
+        <h2>{{optionStr}}</h2>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:'.app',
+            data:{
+                city:[//option视图数据
+                    '南京','无锡','苏州','常州','上海','西安'
+                ],
+                optionStr:'南京',//选择的哪一个value值
+            },
+            methods:{
+                changeCity(){
+                    console.log(this.optionStr)
+                }
+            }
+        })
+    </script>
+</body>
+</html>

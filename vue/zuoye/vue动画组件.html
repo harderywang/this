@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
+
+    <style>
+        .fade-enter-active,
+        .fade-leave-active {
+            transition: opacity .5s;
+        }
+
+        .fade-enter,
+        .fade-leave-to
+
+        /* .fade-leave-active below version 2.1.8 */
+            {
+            opacity: 0;
+        }
+
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: burlywood;
+            transition: all 2s;
+            animation: wyh 2s linear;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- transition 中的name属性 执行动画的类名：fade slide-fade  -->
+    <div class="app">
+        <button @click="toggle">toggle</button>
+        <!-- <transition name='fade'>
+           <div class="box" v-if='flag'></div>
+        </transition> -->
+        <!-- 文件导入失败link -->
+        <transition name="custom-classes-transition" enter-active-class="animated tada"
+            leave-active-class="animated bounceOutRight">
+            <div class="box" v-if='flag'></div>
+            <!-- <h1 v-if='flag'>我是好人</h1> -->
+        </transition>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '.app',
+            data: {
+                flag: true,
+            },
+            methods: {
+                toggle() {
+                    this.flag = !this.flag
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
