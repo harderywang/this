@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* 一个盒子 */
+        .box {
+            margin-left: 200px;
+            width: 500px;
+            height: 500px;
+            position: relative;
+            /* background-color: cadetblue; */
+        }
+
+        /* 3/4圆 */
+        .box::before {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            border-radius: 50%;
+            content: '';
+            background-color: #E4E9F2;
+        }
+
+        /* 1/4圆 */
+        .box2 {
+            transform: rotate(225deg);
+            transform-origin: right bottom;
+            width: 50%;
+            height: 50%;
+            background-color: white;
+            border-radius: 250px 0 0 0;
+        }
+
+        /* 内圆 */
+        .box::after {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            display: block;
+            width: 480px;
+            height: 480px;
+            content: '';
+            background-color: white;
+            border-radius: 50%;
+        }
+
+        .semicircle {
+            position: absolute;
+            top: 0;
+            left: 0;
+            /* 250px */
+            width: 50%;
+            /* 500px */
+            height: 100%;
+            border-radius: 250px 0 0 250px;
+            transform-origin: right center;
+        }
+
+        .circle10 {
+            background-color: #FF6263;
+            transform: rotate(45deg);
+        }
+
+        .circle20 {
+            background-color: #e6a23c;
+            transform: rotate(75deg);
+        }
+
+        .circle30 {
+            background-color: #e6a23c;
+            transform: rotate(99deg);
+        }
+
+        .circle40 {
+            background-color: #5cb87a;
+            transform: rotate(126deg);
+        }
+
+        .circle50 {
+            background-color: #5cb87a;
+            transform: rotate(153deg);
+        }
+
+        .circle60 {
+            background-color: #1989fa;
+            transform: rotate(180deg);
+        }
+
+        .circle70 {
+            background-color: #1989fa;
+            transform: rotate(207deg);
+        }
+
+        /* .circle80 {
+            background-color: #6f7ad3;
+            transform: rotate(234deg);
+        } */
+
+        /* .circle90 {
+            background-color: #6f7ad3;
+            transform: rotate(261deg);
+        } */
+
+        /* .circle100 {
+            background-color: #6f7ad3;
+            transform: rotate(288deg);
+        } */
+    </style>
+</head>
+
+<body>
+    <div class="box">
+
+        <div class="semicircle circle10"></div>
+        <div class="semicircle circle20"></div>
+        <div class="semicircle circle30"></div>
+        <div class="semicircle circle40"></div>
+        <div class="semicircle circle50"></div>
+        <div class="semicircle circle60"></div>
+        <div class="semicircle circle70"></div>
+        <div class="semicircle circle80"></div>
+        <div class="semicircle circle90"></div>
+        <div class="semicircle circle100"></div>
+        <div class="box2"></div>
+    </div>
+
+
+
+</body>
+
+</html>

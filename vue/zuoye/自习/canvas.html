@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 画布 默认宽300px 高 150px -->
+    <canvas id="canvas"></canvas>
+    <script>
+        let canvas = document.getElementById('canvas');
+        let ctext = canvas.getContext('2d')
+        ctext.fillStyle='green';
+        // .fillRect(x,y,宽,高)  放在左上角x,y
+        ctext.fillRect(10,10,150,100)
+        // 绘制矩形的边框
+        ctext.strokeRect(5,5,160,120)
+        // 清除指定矩形区域 让清除部分完全透明
+        ctext.clearRect(50,50,10,10)
+        ctext.strokeRect(5,5,160,120)
+
+    </script>
+</body>
+</html>
