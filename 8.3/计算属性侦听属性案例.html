@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: brown;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <div class="box" :style='obj1'></div>
+        <button @click='move'>move</button>
+        <button @click='widthChange'>width</button>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '.app',
+            data: {
+                count: 0,
+                width: 100,
+                obj: {},
+            },
+            methods: {
+                move() {
+                    this.count++;
+                },
+                widthChange() {
+                    this.width += 20;
+                    //     this.obj = {
+                    //         marginLeft: this.count * this.width + 'px',
+                    //         transition: 'all 0.5s',
+                    //     }
+                    //     console.log(this.width)
+                    //     console.log(this.obj)
+                    // }
+                },
+            },
+            computed: {
+                obj1: function () {
+                    this.obj = {
+                        marginLeft: this.count * this.width + 'px',
+                        transition: 'all 0.5s',
+                    }
+                    return this.obj
+                }
+            },
+
+            // watch:{
+            //     count:function(to){
+            //         console.log('watch')
+            //         this.obj={
+            //             marginLeft:this.count*this.width+'px',
+            //             transition:'all 0.2s',
+            //         }
+            //     }
+
+
+        })
+    </script>
+</body>
+
+</html>

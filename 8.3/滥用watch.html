@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>{{z}}</h1>
+        <button >删除vue</button>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:'#app',
+            data:{
+                x:1,
+                y:4,
+                z:2,
+            },
+        //z=x+y    z随着 x 和 y 的变化而变化
+        watch:{
+            // x:function(val){
+            //     console.log(val+this.y)  
+            //     console.log('x改变了')
+            //     this.z=val+this.y;
+            // },
+            // y:function(val){
+            //     console.log(val+this.X)
+            //     console.log('y改变了')
+            //     this.z=val+this.x;
+            // },
+            z:function(val){
+                console.log(val)
+                console.log('z改变了')
+                this.z = this.x+this.y
+            }
+        },
+
+        // computed:{
+        //     sum:function(){
+        //         // 可以监听多个变量
+        //         console.log('sum')
+        //         this.z=this.x+this.y
+        //         return this.z
+        //     }
+        // },
+        created(){
+            setInterval(() => {
+                this.x++;
+                this.y++;
+            }, 1000);
+        }
+        })
+        
+    </script>
+</body>
+</html>
+<!-- watch 与computed 的区别
+    watch 监听属性 可以监听到bue 某一个变量值的变化过程 当被监听的响应式数据发生变化时 
+函数执行 注意 只能监听一个响应式数据
+    computed 计算属性 函数方法体内部 有依赖响应式数据 当依赖的响应式数据发生变化时
+ 函数执行 注意 函数体中 可以依赖多个响应式数据
+    从执行程序 computed 可以依赖多个 watch 多个数据 多个函数 执行多个函数
+    对于 某一个响应数据   随着多个响应式数据的变化而变化 应该使用 computed -->
+
+    <!--computed methods 区别  缓存
+        computed watch 区别  依赖响应式数据个数-->

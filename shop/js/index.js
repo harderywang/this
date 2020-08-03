@@ -1,24 +1,16 @@
 // ### 5.清空iframe滚动条
 var iframe = document.querySelector("iframe");
 window.onresize = function () {
-    // console.log("========")
     reinitIframe();
 }
 function reinitIframe(){
-    try{
         var bHeight = iframe.contentWindow.document.body.scrollHeight;
         var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
         var height = Math.min(bHeight, dHeight);
         iframe.height = height+50;
-        // console.log(iframe.height);
-    }catch (ex){
-        // console.log("----------")
-    }
 }
 
-
 iframe.contentWindow.window.onload=function(){
-    // console.log("lllllllll");
     setTimeout(function(){
     reinitIframe();
     },100)

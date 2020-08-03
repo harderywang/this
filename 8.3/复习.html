@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="app"></div>
+    <script src="./vue.js"></script>
+    <script>
+        // template改变渲染的元素 覆盖app
+        var app= new Vue({
+            // 为vue提供一个挂载目标
+            // el:'.app',
+            // 覆盖vue的挂载目标
+            template:`<h1>我是好人{{wang}}</h1>`,
+            // data 表示页面中的数据 可以是函数也可以是对象
+            data(){
+                return{
+                    wang:'我笑了'
+                }
+            },
+            // data:{
+            //     wang:123
+            // },
+            created(){
+                console.log(213)
+            }
+        })
+        // 为vue提供一个挂载目标
+        app.$mount('.app')
+        console.log(app.wang)
+        console.log(app.$data.wang)
+
+
+
+        // // Vue.extend()构造一个vue实例
+        // var profile=Vue.extend({
+        //     template:'<h1>我是好人{{msg}}</h1>',
+        //     data:function(){
+        //         return{
+        //             msg:'王者'
+        //         }
+        //     }
+        // })
+        // new profile().$mount('.app')
+
+       
+
+    </script>
+</body>
+
+</html>
+
+<!-- 
+    render
+    响应式数据处理
+    虚拟dom
+
+    编译需要时间
+    存在问题 
+        1 数据更新了视图没有更新
+        2 有一些操作dom 渲染以后再进行 问题没有dom先触发
+ -->

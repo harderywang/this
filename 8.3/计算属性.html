@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="app">
+        <h1>{{fun()}}</h1>
+        <h1>{{fun()}}</h1>
+        <h1>{{fun()}}</h1>
+        <h1>{{fun()}}</h1>
+        <h1>{{fun()}}</h1>
+        <h2>{{reverseStr1}}</h2>
+        <h2>{{reverseStr1}}</h2>
+        <h2>{{reverseStr1}}</h2>
+        <h2>{{reverseStr1}}</h2>
+        <h2>{{reverseStr1}}</h2>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:'.app',
+            data(){
+                return {
+                    msg:'hellow',
+                    n:0,
+                }
+            },
+            methods:{
+                fun(){
+                    // console.log(this.n++)
+                   return this.msg.split('').reverse().join('');
+                }
+            },
+            // computed 计算属性 值为对象
+            // key 只是一个普通的属性 不是一个函数 key的value是函数返回值
+            // 函数执行
+            // 使用了计算属性 这个函数中用到的 data中数据发生变化时 会再次执行
+            computed:{
+                // 计算属性  这个函数在使用时按照属性执行
+                reverseStr1:function(){
+                    console.log(this.n++)
+                    return this.msg.split('').reverse().join('');
+                }
+            },
+            created(){
+                // this.reverseStr1()//this.reverseStr1 is not a function"
+
+            }
+        })
+    </script>
+</body>
+</html>
+
+<!-- 
+    computed 和methods的区别
+        计算属性 缓存效果 只要用function 中依赖data 数据繁盛变化  再回从新执行Methods普通
+        函数多次执行 每次执行初始化
+
+
+        computed 应用
+        1 与大量计算有关的内容
+        2 渲染的幻术返回值 computed methods
+        3 缓存不是浏览器 只是用代码实现了临时存储 避免了程序的重复执行
+ -->

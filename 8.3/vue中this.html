@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!--1 this.xxx 获取其中内容  -->
+    <div class="app">1 this.xxx 获取其中内容</div>
+    <script src="./vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '.app',
+            methods: {
+                a() {
+                    console.log(this, 'a')
+                    this.b();
+                    // 什么情况不是vue 
+                    // 所用的异步处理函数中的this 如回调函数
+                    // 用箭头函数或者 call()  bind()() apply()
+                },
+                b() {
+                    console.log(this, 'b')
+
+                },
+               
+            },
+            created() {
+                    console.log(this, 'created')
+                    this.a()
+                }
+        })
+    </script>
+</body>
+
+</html>

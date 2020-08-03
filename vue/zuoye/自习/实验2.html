@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 10px solid #E6E9F2;
+            position: relative;
+            text-align: center;
+            line-height: 200px;
+        }
+        .box::after{
+            content: '';
+            width: 200px;
+            height:200px;
+            border-radius: 50%;
+            border: 10px dashed #FF6263; 
+            position: absolute;
+            top: -10px;
+            left: -10px; 
+        }
+    </style>
+</head>
+<body>
+    <div class="box">20%</div>
+</body>
+</html>

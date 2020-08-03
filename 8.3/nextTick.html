@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="app">
+        <h1 @click='msgChange'>{{msg}}</h1>
+        <!-- <div id="example">{{message}}</div>     -->
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:".app",
+            data:{
+                msg:'hew'
+            },
+            methods:{
+                msgChange(){
+                    setTimeout(() => {
+                        this.msg='word'
+                    }, 1000);
+                
+                }
+            },
+           
+        })
+        Vue.nextTick(function(){
+                        console.log(this.msg)
+                        console.log('等dom更新执行完毕在执行')
+                    })
+
+        // var vm = new Vue({
+        //     el: '#example',
+        //     data: {
+        //         message: '123'
+        //     }
+        // })
+        // vm.message = 'new message' // 更改数据
+        // vm.$el.textContent === 'new message' // false
+        // Vue.nextTick(function () {
+        //     vm.$el.textContent === 'new message' // true
+        // })
+        解决问题
+        数据更新了不能获取dom元素
+    </script>
+</body>
+
+</html>
