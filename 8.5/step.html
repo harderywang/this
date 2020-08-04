@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .step {
+      margin-top: 100px;
+      margin-left: 300px;
+      position: relative;
+    }
+
+    .step-arrow {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 3px solid #C0C4CC;
+      text-align: center;
+      line-height: 20px;
+      font-weight: 700;
+      font-size: 14px;
+      float: left;
+      margin-right: 250px;
+      position: relative;
+      color: #C0C4CC;
+    }
+
+    .step-line {
+      width: 250px;
+      height: 3px;
+      background-color: #C0C4CC;
+      float: left;
+      position: absolute;
+      top: 8px;
+      left: -253px;
+      transition: all 0.5s;
+    }
+
+    span {
+      display: inline-block;
+      width: 60px;
+      height: 20px;
+      position: absolute;
+      left: -16px;
+      top: 25px;
+      font-weight: lighter;
+    }
+
+    button {
+      border: 1px solid #ccc;
+      background-color: #fff;
+      border-radius: 3px;
+      width: 84px;
+      height: 40px;
+      position: absolute;
+      left: -5px;
+      top: 60px;
+    }
+
+    /*.beforeArrowStyle {*/
+    /*  color: black;*/
+    /*  border-color: black;*/
+    /*}*/
+
+    .afterArrowStyle {
+      color: #67C23A;
+      border-color: #67C23A;
+    }
+
+    .show {
+      display: none;
+    }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <div class="step">
+            <div class="step-arrow" v-for='(item,index) in step':key='index' ref = 'arrow'> 
+                {{index+1}}
+                <span>{{item}}</span>
+                <div class="step-line" :class="{show:isShow==index}" ref ='lines'></div>
+               
+            </div>
+            <button @click = 'next'>下一步</button>
+        </div>
+        
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var  app = new Vue({
+            el:'.app',
+            data:{
+                step:['步骤一','步骤二','步骤三'],
+                isShow:0,
+                num:0
+            },
+            methods:{
+                next(){
+                    if(this.num === this.step.length){
+                        this.num=0;
+                        for(let i = 0;i<this.step.length;i++){
+                            this.$refs.arrow[i].classList.remove('afterArrowStyle')
+                    this.$refs.lines[i].style.backgroundColor='#CBC4CC'
+                        }
+                        return
+                    }
+                    console.log(this.$refs)
+                    this.$refs.arrow[this.num].classList.add('afterArrowStyle')
+                    this.$refs.lines[this.num].style.backgroundColor='#67C23A'
+                    this.num++
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-decoration: none;
+            box-sizing: border-box;
+        }
+
+        #app {
+            width: 38%;
+            display: flex;
+            position: relative;
+            left: 50%;
+            transform: translate(-50%);
+        }
+
+        .item-one {
+            width: 200px;
+            height: 300px;
+            padding-left: 20px;
+            border: 1px solid #EBEEF5;
+        }
+
+        .list-head {
+            height: 40px;
+            line-height: 40px;
+            font-size: 18px;
+            background-color: #F5F7FA;
+            cursor: pointer;
+
+        }
+
+        .list-head>span {
+            font-size: 12px;
+            float: right;
+        }
+
+        input {
+            margin-right: 10px;
+            cursor: pointer;
+
+        }
+
+        .item-one>ul {
+            height: 260px;
+            overflow: auto;
+        }
+
+        .item-one>ul>li {
+            height: 25px;
+            line-height: 25px;
+            margin-top: 4px;
+        }
+
+        .item-one>ul>li:hover {
+            color: #A0CFFF;
+        }
+
+        .control {
+            line-height: 300px;
+        }
+
+        .control-btn {
+            width: 80px;
+            height: 45px;
+            background-color: #A0CFFF;
+            outline: none;
+            border: none;
+            color: #ffffff;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        label {
+            cursor: pointer;
+        }
+
+        .item-two {
+            width: 200px;
+            height: 300px;
+            padding-left: 20px;
+            border: 1px solid #EBEEF5;
+        }
+
+        .item-two>ul {
+            height: 260px;
+            overflow: auto;
+        }
+
+        .item-two>ul>li {
+            height: 25px;
+            line-height: 25px;
+            margin-top: 4px;
+        }
+
+        .item-two>ul>li:hover {
+            color: #A0CFFF;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <div id="app">
+            <!-- 列表1的内容部分 -->
+            <div class="item-one">
+                <!-- 列表1表头 -->
+                <div class="list-head">
+                    <input id="list1" type="checkbox" v-model="allCheck" @change="all"
+                        :disabled="dataArr.length-num(dataArr) === 0">
+                    <label for="list1">列表1</label>
+                    <span>{{checkAll.length}}/{{dataArr.length}}</span>
+                </div>
+                <!-- 列表1的列表内容 -->
+                <ul>
+                    <li v-for="(item,index) in dataArr" :style="{cursor:prohibit}" @mouseover=over(item)>
+                        <input :id="index" type="checkbox" @change="changeTodo()" v-model="checkAll" :value="item"
+                            :disabled="item%4===0">
+                        <label :for="index" :style="{cursor:prohibit}">列表{{item}}</label>
+                    </li>
+                </ul>
+            </div>
+            <!-- 按钮部分 -->
+            <div class="control">
+                <button class="left control-btn" :style="{ backgroundColor:styleColor2,cursor:cur2 }"
+                    @click="left">&lt;</button>
+                <button class="right control-btn" :style="{ backgroundColor:styleColor,cursor:cur }"
+                    @click="right">&gt;</button>
+            </div>
+            <!-- 列表2的内容部分 -->
+            <div class="item-two">
+                <!-- 列表2表头 -->
+                <div class="list-head">
+                    <input id="list2" type="checkbox" v-model="allCheck2" @change="all2"
+                        :disabled="changeArr.length-num(changeArr) === 0">
+                    <label for="list2">列表2</label>
+                    <span>{{checkAll2.length}}/{{changeArr.length}}</span>
+                </div>
+                <!-- 列表2的列表内容 -->
+                <ul>
+                    <li v-for="(item,index) in changeArr" :style="{cursor:prohibit}" @mouseover=over(item)>
+                        <input :id="index+'aa'" type="checkbox" @change="changeTodo2()" v-model="checkAll2"
+                            :value="item" :disabled="item%4===0">
+                        <label :for="index+'aa'" :style="{cursor:prohibit}">列表{{item}}</label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+       var app = new Vue({
+        el:'#app',
+        data:{
+            dataArr: [2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+            allCheck: false,
+            checkAll: [],
+
+            styleColor:'',
+            styleColor2:'',
+            cur:'not-allowed',
+            cur2:'not-allowed',
+            prohibit:'',
+
+            allCheck2:false,
+            changeArr: [1,4],
+            checkAll2: [],
+        },
+        methods:{
+            all(){
+                this.cur = this.allCheck ? '' : 'not-allowed'
+                this.styleColor = this.allCheck ? '#409EFF' : '#A0CFFF'
+
+
+                this.checkAll = []
+
+                if(this.allCheck){
+                    for(var i = 0;i<this.dataArr.length;i++){
+                        for(var j = 1;j<30;j++){
+                            if(j%4!==0){
+                                if(j == this.dataArr[i]){
+                                    this.checkAll.push(j)
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            all2(){
+                this.cur2 = this.allCheck2 ? '' : 'not-allowed'
+                this.styleColor2 = this.allCheck2 ? '#409EFF' : '#A0CFFF'
+
+                this.checkAll2 = []
+
+                if(this.allCheck2){
+                    for(var i =0;i<this.changeArr.length;i++){
+                        for(var j =1;j<30;j++){
+                            if(j%4!==0){
+                                if(j==this.changeArr[i]){
+                                    this.checkAll2.push(j)
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            right(){
+                if(this.checkAll.length != 0){
+                    var newData = [];
+                    var flag = true;
+                    for(var i = 0;i<this.dataArr.length;i++){
+                        for(var j = 0;j<this.checkAll.length;j++){
+                            if(this.checkAll[j] == this.dataArr[i]){
+                                flag = true;
+                                break;
+                            }else{
+                                flag = false;
+                            }
+                        }
+                        if(!flag){
+                            newData.push(this.dataArr[i])
+                        }
+                    }
+                    this.dataArr = newData
+                }
+                for(var k = 0;k<this.checkAll.length;k++){
+                    this.changeArr.push(this.checkAll[k])
+                }
+                this.changeArr.sort((x,y)=>{
+                    return x-y
+                })
+                this.checkAll = []
+                this.allCheck = false
+
+                this.styleColor = '#A0CFFF'
+                this.cur = 'not-allowed'
+            },
+            left(){
+                 if (this.checkAll2.length != 0) {
+                    var newData = [];
+                    var flag = true;
+                    for (var j = 0; j < this.changeArr.length; j++) {
+                        for (var i = 0; i < this.checkAll2.length; i++) {
+                            if (this.checkAll2[i] == this.changeArr[j]) {
+                                flag = true
+                                break
+                            } else {
+                                flag = false
+                            }
+                        }
+                        if (!flag) {
+                            newData.push(this.changeArr[j])
+                        }
+
+                    }
+                    this.changeArr = newData
+                    
+                }
+                for(var k = 0;k<this.checkAll2.length;k++){
+                    this.dataArr.push(this.checkAll2[k])
+                }
+                this.dataArr.sort((x,y)=>{
+                    return x-y
+                })
+                this.checkAll2 = []
+                this.allCheck2 = false
+
+                this.styleColor2 = '#A0CFFF'
+                this.cur2 = 'not-allowed'
+            },
+            changeTodo(){
+                this.styleColor = this.checkAll.length != 0 ? '#409EFF': '#A0CFFF';
+                this.cur = this.checkAll.length != 0 ? '' : 'not-allowed';
+
+                if(this.checkAll.length == this.dataArr.length - this.num(this.dataArr)){
+                    this.allCheck = true
+                }else{
+                    this.allCheck = false
+
+                }
+            },
+            changeTodo2(){
+                this.styleColor2 = this.checkAll2.length != 0 ? '#409EFF' : '#A0CFFF'
+                this.cur2 = this.checkAll2.length != 0 ? '' : 'not-allowed'
+
+                if(this.checkAll2.length == this.changeArr.length-this.num(this.changeArr)){
+                    this.allCheck2 = true
+                }else{
+                    this.allCheck2 = false
+
+                }
+            },
+            over(item){
+                if(item%4 === 0){
+                    this.prohibit='not-allowed'
+                }else{
+                    this.prohibit=''
+                }
+            },
+            num(arr){
+                let num = 0
+                for(var i = 0;i<arr.length;i++){
+                    if(arr[i]%4 == 0){
+                        num ++
+                    }
+                }
+                return num
+            },
+        }
+    })
+    </script>
+</body>
+
+</html>

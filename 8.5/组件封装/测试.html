@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./font_36b55gsu3vm/iconfont.css">
+    <link rel="stylesheet" href="./树状控件.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <form action="">
+            <transition>
+                <ul class="root">
+                    <!-- 遍历获取第一级列表 -->
+                    <li v-for='item1 in list' @click.stop="expendHandle(item1,item1.flag)">
+                        <span class="iconfont icon-right-fill" :class="{rotate:item1.flag}" v-show='item1.flag1'></span>
+                        <span class="checkbox" :class="{active:item1.selected}"
+                            @click.stop="selectHandle(item1,item1.children,list)">
+                            <i class="iconfont icon-gou"></i>
+                        </span>
+                        <span>{{item1.title}}</span>
+                        <transition>
+                            <ul v-if="item1.flag">
+                                <!-- 遍历获取第二级列表 -->
+                                <li v-for="item2 in item1.children" @click.stop="expendHandle(item2)">
+                                    <span class="iconfont icon-right-fill" :class="{rotate:item2.flag}"
+                                        v-show='item2.flag1'></span>
+                                    <span class="checkbox" :class="{active:item2.selected}"
+                                        @click.stop="selectHandle(item2,item2.children,item1.children)">
+                                        <i class="iconfont icon-gou"></i>
+                                    </span>
+                                    <span>{{item2.title}}</span>
+                                    <transition>
+                                        <ul v-if="item2.flag">
+                                            <!-- 遍历获取第三层列表 -->
+                                            <li v-for="item3 in item2.children" @click.stop="expendHandle(item3)">
+                                                <span class="iconfont icon-right-fill" :class="{rotate:item3.flag}"
+                                                    v-show='item3.flag1'></span>
+                                                <span class="checkbox" :class="{active:item3.selected}"
+                                                    @click.stop="selectHandle(item3,item3.children,item2.children)">
+                                                    <i class="iconfont icon-gou"></i>
+                                                </span>
+                                                <span>{{item3.title}}</span>
+                                                <transition>
+                                                    <ul v-if="item3.flag">
+                                                        <!-- 遍历获取第四层列表 -->
+                                                        <li v-for="item4 in item3.children"
+                                                            @click.stop="expendHandle(item4)">
+                                                            <span class="iconfont icon-right-fill"
+                                                                v-show='item4.flag1'></span>
+                                                            <span class="checkbox" :class="{active:item4.selected}"
+                                                                @click.stop="selectHandle(item4,item4.children,item3.children)">
+                                                                <i class="iconfont icon-gou"></i>
+                                                            </span>
+                                                            <span>{{item4.title}}</span>
+                                                        </li>
+                                                    </ul>
+                                                </transition>
+
+                                            </li>
+                                        </ul>
+                                    </transition>
+
+                                </li>
+                            </ul>
+                        </transition>
+
+                    </li>
+                </ul>
+            </transition>
+        </form>
+
+    </div>
+
+    <script src="./vue.js"></script>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                newArr:[],
+                list: [
+                    {
+                        title: 'region1',
+                        key: 'region1',
+                        flag: false,
+                        flag1: true,
+                        selected: false,
+                        children: [
+                            {
+                                title: 'zone1',
+                                key: 'zone1',
+                                flag: false,
+                                flag1: true,
+                                selected: false,
+                                children: [
+                                    {
+                                        title: 'zone3',
+                                        key: 'zone3',
+                                        flag: false,
+                                        flag1: true,
+                                        selected: false,
+                                        children: [
+                                            {
+                                                title: 'zone5',
+                                                key: 'zone5',
+                                                flag: false,
+                                                flag1: true,
+                                                selected: false,
+                                            },
+                                            {
+                                                title: 'zone6',
+                                                key: 'zone6',
+                                                flag: false,
+                                                flag1: true,
+                                                selected: false,
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        title: 'zone4',
+                                        key: 'zone4',
+                                        flag: false,
+                                        flag1: true,
+                                        selected: false,
+                                    }
+                                ]
+                            },
+
+                            {
+                                title: 'zone2',
+                                key: 'zone2',
+                                flag: false,
+                                flag1: true,
+                                selected: false,
+                                children: [
+                                    {
+                                        title: 'zone7',
+                                        key: 'zone7',
+                                        flag: false,
+                                        flag1: true,
+                                        selected: false,
+                                        children: [
+                                            {
+                                                title: 'zone9',
+                                                key: 'zone9',
+                                                flag: false,
+                                                flag1: true,
+                                                selected: false,
+                                            },
+                                            {
+                                                title: 'zone10',
+                                                key: 'zone10',
+                                                flag: false,
+                                                flag1: true,
+                                                selected: false,
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        title: 'zone8',
+                                        key: 'zone8',
+                                        flag: false,
+                                        flag1: true,
+                                        selected: false,
+                                        children: [
+                                            {
+                                                title: 'zone11',
+                                                key: 'zone11',
+                                                flag: false,
+                                                flag1: true,
+                                                selected: false,
+                                            },
+                                            {
+                                                title: 'zone12',
+                                                key: 'zone12',
+                                                flag: false,
+                                                flag1: true,
+                                                selected: false,
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: 'region2',
+                        key: 'region2',
+                        flag: false,
+                        flag1: true,
+                        selected: false,
+
+                    }
+                ],
+
+            },
+            methods: {
+                // 列表展开以及控制没有子列表的列表项箭头消失
+                expendHandle(x, y, $event) {
+                    if (!x.children) {
+                        // 当树型结构没有子集时，让三角符号消失
+                        x.flag1 = !x.flag1;
+                        console.log(x, x.flag1)
+                    }
+                    x.flag = !x.flag;
+                    console.log(y)
+                },
+               
+                // 选中
+                selectHandle(item, child,arr) {
+                    
+
+                    // console.log(child); //item.children
+                    // 当前选框为选中状态
+                    console.log(item)
+                    item.selected = !item.selected;
+                    // 判断当前选框是否有子选项，有显示全选
+                    // 全选
+                    function selectedAll(child) {
+                        if (child) {
+                            for (var i = 0; i < child.length; i++) {
+                                child[i].selected =  item.selected;
+                                // 递归调用函数  使所有的子选项都被选中
+                                selectedAll(child[i].children)
+                            }
+                            check(child)
+                        }else{
+                            return;
+                        }
+                    };
+                    
+                    function check(child) {
+                        if (child) {
+                            for (var i = 0; i < child.length; i++) {
+                                if(!child[i].selected){
+                                    console.log(item)
+                                    item.selected = false;
+                                    return;
+                                }
+                                // 递归调用函数  使所有的子选项都被选中
+                                check(child[i].children)
+                            }
+                        }else{
+                            return;
+                        }
+                    };
+                    
+                    selectedAll(child);
+
+                    // 当选项为待选状态时，取消父选项的选中状态
+                  
+                },
+            }
+        });
+    </script>
+</body>
+
+</html>

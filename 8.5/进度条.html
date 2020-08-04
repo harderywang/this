@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .line {
+            position: absolute;
+            left: 50%;
+            top: 30%;
+            transform: translate(-50%, -50%);
+            background-color: #EBEEF5;
+        }
+
+        .lineDow {
+            width: 300px;
+            border-radius: 10px;
+        }
+
+        .lineUp {
+            height: 5px;
+            border-radius: 10px;
+            background-color: #409eff;
+            z-index: 999;
+        }
+
+        .center {
+            display: flex;
+            position: absolute;
+            left: 45%;
+            top: 40%;
+
+            transform: translate(-50%, -50%);
+        }
+
+        .rev {
+            width: 55px;
+            height: 40px;
+            border-radius: 5px 0px 0 5px;
+            line-height: 40px;
+            text-align: center;
+            cursor: pointer;
+            display: inline-block;
+            background-color: #fff;
+            outline: none;
+            border: 1px solid #DCDFE6;
+        }
+
+        .add {
+            width: 55px;
+            height: 40px;
+            border-radius: 0 5px 5px 0;
+            line-height: 40px;
+            display: inline-block;
+            text-align: center;
+            cursor: pointer;
+            background-color: #fff;
+            outline: none;
+            border: 1px solid #DCDFE6;
+            border-left: none;
+        }
+
+        .num {
+            position: absolute;
+            left: 305px;
+            top: -10px;
+            font-size: 14px;
+        }
+
+        .rev:active,
+        .add:active {
+            border: 1px solid rgb(182, 182, 245);
+            background-color: #ECF5FF;
+        }
+    </style>
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="line">
+            <div class="lineUp" :style="styleObj1"></div>
+            <div class="lineDow"></div>
+            <div>
+                <span class="num">{{num}}%</span>
+            </div>
+        </div>
+
+        <div class="center">
+            <button class="rev" @click="rev">-<tton>
+                    <button class="add" @click="add">+<tton>
+        </div>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                width: 30,
+                styleObj: { width: 0 + 'px' },
+                num: 10,
+                colorList: [
+                    { color: '#f56c6c' },
+                    { color: '#e6a23c' },
+                    { color: '#5cb87a' },
+                    { color: '#6f7ad3' },
+                    { color: '#800080' },
+                ]
+            },
+            methods: {
+                add() {
+                    if (this.width < 300) {
+                        this.width += 30;
+                        this.num += 10
+                    } else if (this.width > 300) {
+                        this.width = 300
+                    }
+                },
+                rev() {
+                    if (this.width > 0) {
+                        this.width -= 30;
+                        this.num -= 10
+                    } else if (this.width < 0) {
+                        this.width = 0
+                    }
+                }
+            },
+            computed:{
+                styleObj1:function(){
+                    let arr = [];
+
+                    if(this.num<21){
+                        arr.push(this.colorList[0].color)
+                    }else if(this.num<41){
+                        arr.push(this.colorList[1].color)
+                    }else if(this.num<61){
+                        arr.push(this.colorList[2].color)
+                    }else if(this.num<81){
+                        arr.push(this.colorList[3].color)
+                    }else if(this.num<=100){
+                        arr.push(this.colorList[4].color)
+                    }
+                    this.styleObj={
+                        width:this.width+'px',
+                        transition:'all 0.5s',
+                        backgroundColor:arr[0]
+                    };
+                    return this.styleObj
+                }
+               
+            }
+        })
+    </script>
+</body>
+
+</html>

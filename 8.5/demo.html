@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    .success-circle {
+      stroke: #28bf88;
+      stroke-dasharray: 0 1010px 300px 10000px;
+    }
+
+    circle {
+      fill: none;
+      stroke: #444;
+      stroke-width: 20px;
+      transform: translate(50%, 50%) rotate(-90deg);
+    }
+
+    .white-circle {
+      stroke: white;
+      stroke-width: 24px;
+      stroke-dasharray: 0 749px 400px 10000px;
+    }
+
+    .control {
+      display: flex;
+      margin-left: 76px;
+    }
+
+    button {
+      width: 100px;
+      height: 50px;
+      font-size: 40px;
+      line-height: 50px;
+      outline: none;
+      border: 1px solid #E3E6Eb;
+      background-color: white;
+      color: #666A6E;
+    }
+
+    button:hover {
+      background-color: #E9F5FF;
+      color: rgb(91, 91, 185);
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <svg xmlns="http://www.w3.org/2000/svg" width="350" height="350" viewbox="0 0 700 700">
+      <circle class="origin-circle" cx="0%" cy="0%" r="300"></circle>
+      <circle class="success-circle" cx="0%" cy="0%" r="300" ref='success'></circle>
+      <circle class="white-circle" cx="0%" cy="0%" r="300"></circle>
+    </svg>
+    <div class="control">
+      <button @click='reduce'>-</button>
+      <button @click='add'>+</button>
+    </div>
+  </div>
+
+  <script src="./vue.js"></script>
+  <script>
+    var app =new Vue({
+        el:'.app',
+        data:{
+          length:0,
+        },
+        methods:{
+          add(){
+            this.$refs.success.style. strokeDasharray =`0 ${length}px 300px 10000px `
+          },
+          reduce(){
+
+          }
+        }
+    })
+  </script>
+</body>
+
+</html>

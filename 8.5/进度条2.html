@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style lang="scss" scoped>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .overall {
+            position: absolute;
+            top: 200px;
+            /* transform: translate(-50%, -50%); */
+            display: flex;
+            justify-content: center;
+        }
+
+        .lineDiv {
+            left: 500px;
+            width: 1000px;
+            height: 8px;
+            border-radius: 10px;
+            box-shadow: 0 0 5px #ccc;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .dot {
+            position: absolute;
+            top: -3.5px;
+            left: 0;
+            width: 15px;
+            height: 15px;
+            background: #fff;
+            cursor: pointer;
+            border-radius: 50%;
+            border: 2px solid #409EFF;
+        }
+
+        .dot:hover {
+            width: 17px;
+            height: 17px;
+        }
+
+        .title {
+            font-weight: bold;
+            width: 100px;
+            height: 30px;
+            position: absolute;
+            left: calc(50% - 50px);
+            top: calc(50% - 50px);
+
+        }
+
+        .title {
+            position: absolute;
+            font-size: 20px;
+            top: -45px;
+            left: -10px;
+            width: 35px;
+            height: 35px;
+            line-height: 35px;
+            text-align: center;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 14px;
+            background: black;
+        }
+
+        .title:after {
+            content: "";
+            width: 0px;
+            height: 0px;
+            border-top: 6px solid black;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-bottom: 6px solid transparent;
+            display: block;
+            margin-left: 11px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <template>
+            <div class="overall">
+                <div class="lineDiv" ref="lineDiv"
+                    :style="`background: linear-gradient(to right,#409EFF 0,#409EFF ${bck}px, white ${bck}px,white 100%)`">
+                    <div class="dot" ref="dot">
+                        <div class="title" v-if="flag">{{num}}</div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </template>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                num: 0,
+                bck: 0,
+                falg: false,
+            },
+            mouted(){
+                this.getDom('lineDiv','dot');
+            },
+            methods:{
+                getDom(d1,d2){
+                    var _this = this;
+                    var lineDiv =this.$refs[d1];
+                    var ldX =this.$refs[d2];
+                    
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./font_b4sfo3c7fn/iconfont.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #app {
+            display: inline-block;
+        }
+
+        .box {
+            width: 222px;
+            height: 40px;
+            padding: 0 30px 0 15px;
+            border-radius: 4px;
+            border: 1px solid;
+            line-height: 40px;
+            color: #606266;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            position: relative;
+            display: block;
+        }
+
+        .box>i {
+            position: absolute;
+            right: 10px;
+            transition: all 0.3s;
+        }
+
+        .item {
+            /* display: flex; */
+            margin-top: 10px;
+            display: inline-block;
+            box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
+            margin-left: 5px;
+        }
+
+        ul {
+            /* min-width: 180px;
+            height: 187px;
+            padding: 6px 0; */
+            height: 187px;
+            overflow: auto;
+            border-right: 1px solid #e4e7ed;
+            display: inline-block;
+            margin-left: -5px;
+        }
+
+        li {
+            font-size: 14px;
+            padding: 0 30px;
+            min-width: 180px;
+            height: 33px;
+            line-height: 33px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        li:hover {
+            background-color: #f5f7fa;
+        }
+
+        .right>li>i{
+            position: absolute;
+            left: 10px;
+        }
+
+        .active {
+            transform: rotate(180deg);
+            transition: all 0.3s;
+        }
+
+        .center::-webkit-scrollbar,
+        .right::-webkit-scrollbar {
+            width: 6px;
+            transform: translateY(306.383%);
+        }
+
+        .center::-webkit-scrollbar-thumb,
+        .right::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            background-color: #ccc;
+        }
+
+        .center::-webkit-scrollbar-track,
+        .right::-webkit-scrollbar-track {
+            background: none;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="box" :style="{borderColor: item?'#409eff':'#dcdfe6'}" @click='title'>{{res}}<i
+                class="iconfont icon-xiangxiajiantou" :class="{active:item}"></i></div>
+        <div class="item" v-show='item'>
+            <ul class="left">
+                <li @mouseover='first(item,index)' v-for='(item,index) in options'>{{item.label}}</li>
+            </ul>
+            <ul class="center" v-show='once'>
+                <li @mouseover='isCheck && second(item,index)' v-for='(item,index) in options[left].children'>
+                    {{item.label}}</li>
+            </ul>
+            <ul class="right" v-if='flag'>
+                <li @click='third(item,index)' v-for='(item,index) in options[left].children[center].children'><i
+                        v-show='rtick && right==index' class="iconfont icon-confirm-line"></i>{{item.label}}
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                res: '请选择', // 外框初始内容
+                item: false, // 外框样式/联动内容
+                once: false, // 二级显隐(执行一次)
+                isCheck: true, // 判断二级点击/经过事件
+                flag: false, // 三级显隐
+                rtick: false, // 三级对勾显隐
+                left: 0, // 获取一级当前index
+                center: 0, // 获取二级当前index
+                right: 0, // 获取三级当前index
+                one: '', // 一级内容
+                two: '', // 二级内容
+                three: '', // 三级内容
+                options: [{
+                    value: 'zhinan',
+                    label: '指南',
+                    children: [{
+                        value: 'shejiyuanze',
+                        label: '设计原则',
+                        children: [{
+                            value: 'yizhi',
+                            label: '一致'
+                        }, {
+                            value: 'fankui',
+                            label: '反馈'
+                        }, {
+                            value: 'xiaolv',
+                            label: '效率'
+                        }, {
+                            value: 'kekong',
+                            label: '可控'
+                        }]
+                    }, {
+                        value: 'daohang',
+                        label: '导航',
+                        children: [{
+                            value: 'cexiangdaohang',
+                            label: '侧向导航'
+                        }, {
+                            value: 'dingbudaohang',
+                            label: '顶部导航'
+                        }]
+                    }]
+                }, {
+                    value: 'zujian',
+                    label: '组件',
+                    children: [{
+                        value: 'basic',
+                        label: 'Basic',
+                        children: [{
+                            value: 'layout',
+                            label: 'Layout 布局'
+                        }, {
+                            value: 'color',
+                            label: 'Color 色彩'
+                        }, {
+                            value: 'typography',
+                            label: 'Typography 字体'
+                        }, {
+                            value: 'icon',
+                            label: 'Icon 图标'
+                        }, {
+                            value: 'button',
+                            label: 'Button 按钮'
+                        }]
+                    }, {
+                        value: 'form',
+                        label: 'Form',
+                        children: [{
+                            value: 'radio',
+                            label: 'Radio 单选框'
+                        }, {
+                            value: 'checkbox',
+                            label: 'Checkbox 多选框'
+                        }, {
+                            value: 'input',
+                            label: 'Input 输入框'
+                        }, {
+                            value: 'input-number',
+                            label: 'InputNumber 计数器'
+                        }, {
+                            value: 'select',
+                            label: 'Select 选择器'
+                        }, {
+                            value: 'cascader',
+                            label: 'Cascader 级联选择器'
+                        }, {
+                            value: 'switch',
+                            label: 'Switch 开关'
+                        }, {
+                            value: 'slider',
+                            label: 'Slider 滑块'
+                        }, {
+                            value: 'time-picker',
+                            label: 'TimePicker 时间选择器'
+                        }, {
+                            value: 'date-picker',
+                            label: 'DatePicker 日期选择器'
+                        }, {
+                            value: 'datetime-picker',
+                            label: 'DateTimePicker 日期时间选择器'
+                        }, {
+                            value: 'upload',
+                            label: 'Upload 上传'
+                        }, {
+                            value: 'rate',
+                            label: 'Rate 评分'
+                        }, {
+                            value: 'form',
+                            label: 'Form 表单'
+                        }]
+                    }, {
+                        value: 'data',
+                        label: 'Data',
+                        children: [{
+                            value: 'table',
+                            label: 'Table 表格'
+                        }, {
+                            value: 'tag',
+                            label: 'Tag 标签'
+                        }, {
+                            value: 'progress',
+                            label: 'Progress 进度条'
+                        }, {
+                            value: 'tree',
+                            label: 'Tree 树形控件'
+                        }, {
+                            value: 'pagination',
+                            label: 'Pagination 分页'
+                        }, {
+                            value: 'badge',
+                            label: 'Badge 标记'
+                        }]
+                    }, {
+                        value: 'notice',
+                        label: 'Notice',
+                        children: [{
+                            value: 'alert',
+                            label: 'Alert 警告'
+                        }, {
+                            value: 'loading',
+                            label: 'Loading 加载'
+                        }, {
+                            value: 'message',
+                            label: 'Message 消息提示'
+                        }, {
+                            value: 'message-box',
+                            label: 'MessageBox 弹框'
+                        }, {
+                            value: 'notification',
+                            label: 'Notification 通知'
+                        }]
+                    }, {
+                        value: 'navigation',
+                        label: 'Navigation',
+                        children: [{
+                            value: 'menu',
+                            label: 'NavMenu 导航菜单'
+                        }, {
+                            value: 'tabs',
+                            label: 'Tabs 标签页'
+                        }, {
+                            value: 'breadcrumb',
+                            label: 'Breadcrumb 面包屑'
+                        }, {
+                            value: 'dropdown',
+                            label: 'Dropdown 下拉菜单'
+                        }, {
+                            value: 'steps',
+                            label: 'Steps 步骤条'
+                        }]
+                    }, {
+                        value: 'others',
+                        label: 'Others',
+                        children: [{
+                            value: 'dialog',
+                            label: 'Dialog 对话框'
+                        }, {
+                            value: 'tooltip',
+                            label: 'Tooltip 文字提示'
+                        }, {
+                            value: 'popover',
+                            label: 'Popover 弹出框'
+                        }, {
+                            value: 'card',
+                            label: 'Card 卡片'
+                        }, {
+                            value: 'carousel',
+                            label: 'Carousel 走马灯'
+                        }, {
+                            value: 'collapse',
+                            label: 'Collapse 折叠面板'
+                        }]
+                    }]
+                }, {
+                    value: 'ziyuan',
+                    label: '资源',
+                    children: [{
+                        value: 'axure',
+                        label: 'Axure Components'
+                    }, {
+                        value: 'sketch',
+                        label: 'Sketch Templates'
+                    }, {
+                        value: 'jiaohu',
+                        label: '组件交互文档'
+                    }]
+                }]
+            },
+            methods: {
+                // 一级联动
+                first(item, index) {
+                    // 获取当前index 传给后级
+                    this.left = index;
+                    // 二级显示
+                    this.once = true;
+                    // 三级隐藏
+                    this.flag = false;
+                    // 添加一级字体样式
+                    var one = document.querySelectorAll('.left>li');
+                    for (var i = 0; i < one.length; i++) {
+                        one[i].style.color = '#000'
+                    }
+                    one[index].style.color = "#409eff";
+                    // 获取当前一级内容
+                    this.one = item.label;
+                    // 判断二级点击/经过事件
+                    if (index == 2) {
+                        this.isCheck = false;
+                        var two = document.querySelectorAll('.center>li');
+                        for (let i = 0; i < two.length; i++) {
+                            two[i].onclick = () => {
+                                for (var j = 0; j < two.length; j++) {
+                                    two[j].style.color = '#000'
+                                }
+                                two[i].style.color = "#409eff";
+                                this.two = two[i].innerHTML;
+                                this.res = this.one + ' / ' + this.two;
+                                this.item = false;
+                            }
+                        }
+                    } else {
+                        this.isCheck = true;
+                        var two = document.querySelectorAll('.center>li');
+                        for (var j = 0; j < two.length; j++) {
+                            two[j].style.color = '#000'
+                        }
+                    }
+                },
+                // 二级联动
+                second(item, index) {
+                    // 获取当前index 传给后级
+                    this.center = index;
+                    // 三级显示
+                    this.flag = true;
+                    // 添加二级样式
+                    var two = document.querySelectorAll('.center>li');
+                    for (var i = 0; i < two.length; i++) {
+                        two[i].style.color = '#000'
+                    }
+                    two[index].style.color = "#409eff";
+                    // 获取当前二级内容
+                    this.two = item.label;
+                    // 清除三级样式
+                    var three = document.querySelectorAll('.right>li');
+                    for (var i = 0; i < three.length; i++) {
+                        three[i].style.color = '#000'
+                    }
+                    this.rtick = false;
+                },
+                // 三级联动
+                third(item, index) {
+                    // 添加三级样式
+                    var three = document.querySelectorAll('.right>li');
+                    for (var i = 0; i < three.length; i++) {
+                        three[i].style.color = '#000'
+                    }
+                    three[index].style.color = "#409eff";
+                    this.rtick = true;
+                    // 获取当前三级内容
+                    this.three = item.label;
+                    // 修改外框初始内容
+                    this.res = this.one + ' / ' + this.two + ' / ' + this.three;
+                    // 获取当前index 判断对勾状态
+                    this.right = index;
+                    // 隐藏联动内容
+                    this.item = false;
+                },
+                title() {
+                    // 显示联动内容/外框样式
+                    this.item = true;
+                }
+            },
+            // 脱离创建阶段，进入运行阶段
+            mounted() {
+                document.addEventListener('click', (e) => {
+                    // 判断当前点击的节点名称
+                    if (e.target.nodeName == 'HTML' || e.target.nodeName == 'BODY') {
+                        // 隐藏联动内容/外框样式
+                        this.item = false;
+                    }
+                })
+            }
+        })
+    </script>
+</body>
+
+</html>

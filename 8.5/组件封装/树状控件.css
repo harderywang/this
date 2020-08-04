@@ -1,0 +1,78 @@
+ul,li{
+    list-style-type: none;
+    font-size: 16px;
+    line-height: 26px;
+    color: #606266;
+
+}
+/* ul{
+    width: 100%;
+    transition: all 0.5s;
+    animation: heightShow 0.5s linear both;
+}
+@keyframes heightShow{
+    0%{
+        height: 0px;
+    };
+    100%{
+        height: 52px;
+    }
+} */
+.region2{
+    padding-left: 16px;
+}
+form{
+    width: 80%;
+    margin: 20px auto;
+    border: 1px solid #eeeeee;
+    border-radius: 4px;
+}
+
+.checkbox{
+    display: inline-block;
+    /* position: relative; */
+    border: 1px solid #dcdfe6;
+    border-radius: 2px;
+    box-sizing: border-box;
+    width: 14px;
+    height: 14px;
+    background-color: #fff;
+    z-index: 1;
+    transition: border-color .25s linear;
+    line-height: 10px;
+    text-align: center;
+    color: #fff;
+}
+.checkbox:hover{
+    border-color: #409eff;
+
+}
+.checkbox .iconfont {
+    font-family: "iconfont" !important;
+    font-size: 12px;
+    font-style: normal;
+}
+li>.icon-right-fill{
+    font-family: "iconfont" !important;
+    color: #c0c4cc;
+    font-size: 12px;
+    
+}
+
+
+/* 选中添加效果 */
+.active{
+    border-color: #409eff;
+    background-color: #409eff;
+}
+/* transition */
+/* 旋转 */
+.rotate{
+    display: inline-block;
+    transform: rotate(90deg);
+    transition: all 0.5s;
+    animation: rotates 0.5s linear both;
+}
+
+
+

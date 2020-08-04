@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .text {
+            width: 260px;
+            height: 36px;
+            line-height: 36px;
+            margin: 0 auto;
+            border: 1px solid skyblue;
+            outline: none;
+            border-radius: 5px;
+        }
+
+        i {
+            position: relative;
+            left: -30px;
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            text-align: center;
+            transform-origin: 50% 50%;
+        }
+
+        .triangle {
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-bottom: 5px solid rgba(0, 0, 0, .1);
+            margin-left: 30px;
+            margin-top: 5px;
+        }
+
+        .triangle2 {
+            width: 0;
+            height: 0;
+            margin-left: -5px;
+            padding-top: 1px;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-bottom: 5px solid white;
+
+        }
+
+        .rotateGo {
+            transition: all 0.2s;
+        }
+
+        .totateTo {
+            transform: rotate(180deg);
+            transition: all 0.2s;
+        }
+
+        .title {
+            width: 180px;
+            height: 200px;
+            border-radius: 3px;
+            box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
+            padding: 0.1px;
+        }
+
+        .first {
+            width: 100%;
+            height: 30px;
+            border-radius: 3px;
+            line-height: 30px;
+            margin-top: 3px;
+            font-size: 12px;
+        }
+
+        .active {
+            color: #409eff;
+            font-weight: 700;
+        }
+
+        .first>span {
+            font-size: 14px;
+            float: right;
+            margin-right: 10px;
+            height: 30px;
+            line-height: 30px;
+            vertical-align: top;
+
+        }
+
+        .first:hover {
+            background-color: #F5F7FA;
+        }
+
+        .radio {
+            width: 14px;
+            height: 14px;
+        }
+
+        .second {
+            position: absolute;
+            top: 59px;
+            left: 190px;
+            width: 190px;
+            height: auto;
+            border-radius: 3px;
+            box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
+            padding: 0.1px;
+        }
+
+        .third {
+            position: absolute;
+            top: 59px;
+            left: 382px;
+            width: 260px;
+            height: auto;
+            border-radius: 3px;
+            box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
+            padding: 0.1px;
+        }
+
+        .fork {
+            position: relative;
+            color: #999;
+        }
+
+        .fork i {
+            left: -29px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <div>
+            <input type="text" class="text" >
+            <span class="fork"></span>
+            <div class="allclear">
+                
+            </div>
+        </div>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+        var app = new Vue({
+            
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./树状控件.css">
+    <link rel="stylesheet" href="./font_36b55gsu3vm/iconfont.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <form action="">
+            <ul class="root">
+                <!-- 一级列表项 -->
+                <li class="region1" @click="firstClick">
+                    <span :class="iconObj"></span>
+                    <span :class="{checkbox:true,active:flag}">
+                        <i class="iconfont icon-gou"></i>
+                    </span>
+                    <span> region1</span>
+                    <ul class="second" v-show="flag_first" @transitionend="transitionHandle">
+                        <!-- 二级列表项 -->
+                        <li class="zone1" @click.stop="secondClick">
+                            <span class="iconfont icon-right-fill"></span>
+                            <span class="checkbox">
+                                <i class="iconfont icon-gou"></i>
+                            </span>
+                            <span> zone1</span>
+
+                            <ul class="third" v-show="flag_second">
+                                <!-- 三级列表项 -->
+                                <li class="zone3" @click.stop="thirdClick">
+                                    <span class="iconfont icon-right-fill"></span>
+                                    <span class="checkbox">
+                                        <i class="iconfont icon-gou"></i>
+                                    </span>
+                                    <span> zone3</span>
+                                    <ul class="fourth" v-show="flag_third">
+                                        <!-- 四级列表项 -->
+                                        <li class="zone5">
+                                            <span class="checkbox">
+                                                <i class="iconfont icon-gou"></i>
+                                            </span>
+                                            <span> zone5</span>
+                                        </li>
+                                        <li class="zone6">
+                                            <span class="checkbox">
+                                                <i class="iconfont icon-gou"></i>
+                                            </span>
+                                            <span> zone6</span>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="zone4">
+                                    <span class="checkbox">
+                                        <i class="iconfont icon-gou"></i>
+                                    </span>
+                                    <span> zone4</span>
+
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li class="zone2" @click.stop="secondClicks">
+                            <span class="iconfont icon-right-fill"></span>
+                            <span class="checkbox">
+                                <i class="iconfont icon-gou"></i>
+                            </span>
+                            <span> zone2</span>
+                            <ul class="third" v-show="flag_seconds">
+                                <!-- 三级列表项 -->
+                                <li class="zone7" @click.stop="thirdClicks">
+                                    <span class="iconfont icon-right-fill"></span>
+                                    <span class="checkbox">
+                                        <i class="iconfont icon-gou"></i>
+                                    </span>
+                                    <span> zone7</span>
+                                    <ul class="fourth" v-show="flag_thirds">
+                                        <!-- 四级列表项 -->
+                                        <li class="zone9">
+                                            <span class="checkbox">
+                                                <i class="iconfont icon-gou"></i>
+                                            </span>
+                                            <span> zone9</span>
+                                        </li>
+                                        <li class="zone10">
+                                            <span class="checkbox">
+                                                <i class="iconfont icon-gou"></i>
+                                            </span>
+                                            <span> zone10</span>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="zone8" @click.stop="thirdClickss">
+                                    <span class="iconfont icon-right-fill"></span>
+                                    <span class="checkbox">
+                                        <i class="iconfont icon-gou"></i>
+                                    </span>
+                                    <span> zone8</span>
+                                    <ul class="fourth" v-show="flag_thirdss">
+                                        <!-- 四级列表项 -->
+                                        <li class="zone11">
+                                            <span class="checkbox">
+                                                <i class="iconfont icon-gou"></i>
+                                            </span>
+                                            <span> zone11</span>
+                                        </li>
+                                        <li class="zone12">
+                                            <span class="checkbox">
+                                                <i class="iconfont icon-gou"></i>
+                                            </span>
+                                            <span> zone12</span>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="region2">
+                    <span class="checkbox">
+                        <i class="iconfont icon-gou"></i>
+                    </span>
+                    <span> region2</span>
+                </li>
+        </form>
+
+    </div>
+
+    <script src="./vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                list: [
+                    {
+                        title: 'region1',
+                        key: 'region1',
+                        children: [
+                            {
+                                title: 'zone1',
+                                key: 'zone1',
+                                children: [
+                                    {
+                                        title: 'zone3',
+                                        key: 'zone3',
+                                        children: [
+                                            {
+                                                title: 'zone5',
+                                                key: 'zone5',
+                                                children: 'zone5'
+                                            },
+                                            {
+                                                title: 'zone6',
+                                                key: 'zone6',
+                                                children: 'zone6'
+                                            }
+                                        ]
+                                    },
+                                    { zone4: [] }
+                                ]
+                            },
+
+                            {
+                                title: 'zone2',
+                                key: 'zone2',
+                                children: [
+                                    {
+                                        title: 'zone7',
+                                        key: 'zone7',
+                                        children: [
+                                            {
+                                                title: 'zone9',
+                                                key: 'zone9',
+                                                children: 'zone9'
+                                            },
+                                            {
+                                                title: 'zone10',
+                                                key: 'zone10',
+                                                children: 'zone10'
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        title: 'zone8',
+                                        key: 'zone8',
+                                        children: [
+                                            {
+                                                title: 'zone11',
+                                                key: 'zone11',
+                                            },
+                                            {
+                                                title: 'zone12',
+                                                key: 'zone12',
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: 'region2',
+                        key: 'region2',
+                    }
+                ],
+                iconObj:{
+                    'iconfont icon-right-fill':true,
+                    'rotate':false,
+                },
+                flag: false,
+                flag_first: false,
+                flag_second: false,
+                flag_seconds: false,
+                flag_third: false,
+                flag_thirds: false,
+                flag_thirdss: false,
+            },
+            methods: {
+                // 勾选效果
+                clicked() {
+
+                },
+                // 动画效果
+                transitionHandle() {
+                    this.flag = !this.flag;
+                },
+                // 点击展开一级控件
+                firstClick() {
+                    console.log(this.flag_first);
+                    this.flag_first = !this.flag_first;
+                    this.iconObj.rotate = !this.iconObj.rotate
+                    
+                },
+                // 点击展开二级控件
+                secondClick() {
+                    console.log(this.flag_second)
+                    this.flag_second = !this.flag_second
+                },
+                secondClicks() {
+                    console.log(this.flag_seconds)
+                    this.flag_seconds = !this.flag_seconds
+                },
+                // 点击展开三级控件
+                thirdClick() {
+                    this.flag_third = !this.flag_third
+                },
+                thirdClicks() {
+                    this.flag_thirds = !this.flag_thirds
+                },
+                thirdClickss() {
+                    this.flag_thirdss = !this.flag_thirdss
+                }
+            }
+        })
+    </script>
+</body>
+
+
+</html>
