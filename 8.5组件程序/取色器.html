@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+                .wiper{
+            margin:50px auto;
+            width:200px;
+        }
+        .color{
+            width:250px;
+            display: flex;
+            align-items: center;
+            justify-content:space-between;
+        }
+        *{
+            padding:0;
+            margin:0;
+        }
+        .hue{
+            width:10px;
+            height:200px;
+            display:flex;
+            flex-wrap: wrap;
+            position:relative;
+            overflow: hidden;
+        }
+        span{
+            width: 20px;
+            height:calc(200/360)px;
+            
+        }
+        .circle{
+            border:1px solid rgba(0,0,0,.5);
+            height: 8px;
+            width:8px;
+            border-radius: 50%;
+            position:absolute;
+            left:50%;
+            transform: translateX(-50%);
+            /* background: rgba(255,255,255,.5); */
+        }
+        .container{
+            height:200px;
+            width: 200px;
+            position:relative;
+        }
+        .container>div{
+            position:absolute;
+            width: 100%;
+            height: 100%;
+        }
+        .origin{
+            background:red;
+        }
+        .black{
+            background:linear-gradient(to top,black,rgba(0,0,0,0));
+            display: flex;
+        }
+        /* .black>div{
+            width:2px;
+            height: 100%;
+            background:red;
+        } */
+        .white{
+            /* background:linear-gradient(to right bottom,white,rgba(255,255,255,0)); */
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .white>div{
+            height:2px;
+            width:100%;
+            background:yellow;
+        }
+        .mask{
+            height:100%;
+            width:100%;
+            background:transparent;
+            position:absolute;
+            top:0;
+            left:0;
+        }
+        .bg{
+            height:50px;
+            width:50px;
+            margin:50px auto ;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="wiper">
+            <div class="color">
+                <div class="container" >
+                    <!-- h 色相 最底层 -->
+                    <div class="origin"></div>
+                    <!-- s 纯度渐变 从下到上由黑变成透明-->
+                    <div class="black"></div>
+                    <!-- l 亮度渐变 从左到右从上到下都在渐变-->
+                    <div class="white">
+                        <div v-for="item in 100"  :style="{'background':'linear-gradient(to right,rgba(255,255,255,'+(1-(item-1)/100)+'),rgba(255,255,255,'+(0.5-item/200)+'))'}"></div>
+                    </div>
+                    <div class="mask"></div>
+                </div>
+                <!-- 渐变色条 -->
+                <div class="hue">
+                    <div class="circle"></div>
+                    <!-- item的范围是1-361 所以要给361，后面item-1 -->
+                    <span v-for="item in 361" :style="{'background':'hsl('+(item-1)+',100%,50%)'}"></span>
+                </div>
+            </div>
+            <div class="bg"></div>
+        </div>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:'#app',
+            data:{},
+            methods:{
+
+            },
+        })
+    </script>
+</body>
+
+</html>

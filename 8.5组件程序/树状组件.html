@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul{
+            outline: none;   
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+            <ul>
+                <li v-for=>
+                    <ul>
+                        <li>
+                            <ul>
+                                <li>
+                                    <ul>
+                                        <li></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+    </div>
+    <script src="./vue.js"></script>
+
+    <script>
+        var app = new Vue({
+            el: '.app',
+            data: {
+                list: [
+                    {
+                        name: 'region1',
+                        childern: [
+                            {
+                                name: 'ze1',
+                                childern: [
+                                    {
+                                        name: 'z1'
+                                    }
+                                ]
+                            },
+                            {
+                                name: 'ze2',
+                                childern: [
+                                    {
+                                        name: 'z2',
+                                        childern: [
+                                            {
+                                                name: "1z"
+                                            },
+                                            {
+                                                name: '2z'
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        name: 'region1',
+                        childern: [
+                            {
+                                name: 're1'
+                            },
+                            {
+                                name: 're2'
+                            }
+                        ]
+                    }
+                ]
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -5,19 +5,7 @@ ul,li{
     color: #606266;
 
 }
-/* ul{
-    width: 100%;
-    transition: all 0.5s;
-    animation: heightShow 0.5s linear both;
-}
-@keyframes heightShow{
-    0%{
-        height: 0px;
-    };
-    100%{
-        height: 52px;
-    }
-} */
+
 .region2{
     padding-left: 16px;
 }
@@ -30,7 +18,6 @@ form{
 
 .checkbox{
     display: inline-block;
-    /* position: relative; */
     border: 1px solid #dcdfe6;
     border-radius: 2px;
     box-sizing: border-box;

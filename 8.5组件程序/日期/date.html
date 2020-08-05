@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+            list-style: none;
+            box-sizing: border-box;
+        }
+
+        #time-picker {
+            width: 100%;
+            height: 100px;
+            line-height: 100px;
+            margin-top: 50px;
+        }
+
+        .box {
+            width: 700px;
+            height: 100px;
+            line-height: 100px;
+            align-items: center;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .leftTime,
+        .rightTime {
+            width: 200px;
+            height: 40px;
+            position: relative;
+
+        }
+
+        .leftTime>input,
+        .rightTime>input {
+            display: inline-block;
+            width: 200px;
+            height: 40px;
+            position: absolute;
+            top: 0;
+            padding: 0 30px;
+            border: 1px solid #ccc;
+            outline: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .leftTime .icon-shijian00 {
+            position: absolute;
+            left: 8px;
+            top: -30px;
+            font-size: 18px;
+            color: #ccc;
+        }
+
+        .leftTime .icon-guanbi {
+            position: absolute;
+            right: 8px;
+            top: -30px;
+            font-size: 14px;
+            color: #ccc;
+            display: none;
+            cursor: pointer;
+        }
+
+        .leftTime:hover .icon-guanbi {
+            display: block;
+        }
+
+        .rightTime .icon-shijian00 {
+            position: absolute;
+            left: 8px;
+            top: -30px;
+            font-size: 18px;
+            color: #ccc;
+        }
+
+        .rightTime .icon-guanbi {
+            position: absolute;
+            right: 8px;
+            top: -30px;
+            font-size: 14px;
+            color: #ccc;
+            display: none;
+            cursor: pointer;
+        }
+
+        .rightTime:hover .icon-guanbi {
+            display: block;
+        }
+
+        .leftTimeTable,
+        .rightTimeTable {
+            width: 182px;
+            height: 226px;
+            margin: 5px 0;
+            position: absolute;
+            top: 50px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
+            border-radius: 5px;
+        }
+
+        .leftTimeTable>.tableContent,
+        .rightTimeTable>.tableContent {
+            width: 180px;
+            height: 188px;
+            position: relative;
+            display: flex;
+            overflow: hidden;
+        }
+
+        .leftTimeTable>.tableContent::before,
+        .rightTimeTable>.tableContent::before {
+            content: "";
+            top: 50%;
+            position: absolute;
+            margin: -15px 12% 0 12%;
+            height: 32px;
+            left: 0;
+            right: 0;
+            padding-left: 33.33%;
+            text-align: left;
+            border-top: 1px solid #e4e7ed;
+            border-bottom: 1px solid #e4e7ed;
+            box-sizing: border-box;
+        }
+
+        .leftTimeTable>.tableContent>div {
+            width: 60px;
+            height: auto;
+            overflow-y: scroll;
+            overflow-y: hidden;
+            overflow-x: hidden;
+            z-index: 1;
+        }
+
+        .leftTimeTable>.tableContent>div::before {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 80px;
+        }
+
+        .leftTimeTable>.tableContent>div::after {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 80px;
+        }
+
+        .leftTimeTable>.tableContent>div:hover {
+            overflow-y: visible;
+        }
+
+        .leftTimeTable>.tableContent>div::-webkit-scrollbar {
+            width: 6px;
+            transform: translateY(306.383%);
+        }
+
+        .leftTimeTable>.tableContent>div::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            background-color: #ccc;
+        }
+
+        .leftTimeTable>.tableContent>div::-webkit-scrollbar-track {
+            background: none;
+
+        }
+
+        .leftTimeTable>.tableContent>div>div {
+            width: 60px;
+            height: 32px;
+            line-height: 32px;
+            text-align: center;
+            color: #c0c4cc;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .rightTimeTable>.tableContent>div {
+            width: 60px;
+            height: 190px;
+        }
+
+        .leftTimeTable>.tableBar,
+        .rightTimeTable>.tableBar {
+            width: 180px;
+            height: 36px;
+            border-top: 1px solid #ccc;
+            padding: 4px;
+            line-height: 25px;
+            text-align: right;
+        }
+
+        .leftTimeTable>.tableBar>button,
+        .rightTimeTable>.tableBar>button {
+            width: 34px;
+            height: 28px;
+            margin: 0 5px;
+            padding: 0 5px;
+            outline: none;
+            font-size: 12px;
+            cursor: pointer;
+            border: none;
+            background-color: #fff;
+        }
+
+        .isActive {
+            color: #333 !important;
+            font-weight: 700;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="time-picker">
+        <div class="box">
+            <div class="leftTime" @click="leftTime">
+
+                <!-- 输入框 -->
+                <input type="text" v-model="val" @keydown.enter.prevent='keyHandle' placeholder="任意时间">
+                <span><i class="iconfont icon-shijian00"></i></span>
+                <span @click="clearVal"><i class="iconfont icon-guanbi"></i></span>
+
+                <!-- 时间表 -->
+                <div class="leftTimeTable" v-show="isShow">
+                    <div class="tableContent">
+                        <div class="hours" ref="hourRoll">
+                            <div v-for="(item,hh) in 24" v-if="hh<10" @click="hourChange(hh)">{{"0"+hh}}</div>
+                            <div v-for="(item,hh) in 24" v-if="hh>=10" @click="hourChange(hh)">{{hh}}</div>
+                        </div>
+                        <div class="minutes" ref="minuteRoll">
+                            <div v-for="(item,mm) in 60" v-if="mm<10" @click='minuteChange(mm)'>{{"0"+mm}}</div>
+                            <div v-for="(item,mm) in 60" v-if="mm>=10" @click='minuteChange(mm)'>{{mm}}</div>
+                        </div>
+                        <div class="seconds" ref="secondRoll">
+                            <div v-for="(item,ss) in 60" v-if="ss<10" @click='secondChange(ss)'>{{"0"+ss}}</div>
+                            <div v-for="(item,ss) in 60" v-if="ss>=10" @click='secondChange(ss)'>{{ss}}</div>
+                        </div>
+                    </div>
+                    <div class="tableBar">
+                        <button @click.stop="cancel">取消</button>
+                                <button style="color:#409eff" @click.stop="sure">确定</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+        var timePicker = new Vue({
+            el: '#time-picker',
+            data: {
+                isShow: false,
+                hh: '00',
+                mm: '00',
+                ss: '00',
+                val: '',
+            },
+            methods: {
+                leftTime() {
+                    this.isShow = true;
+                },
+                clearVal() {
+                    this.val = '';
+                },
+                cancel() {
+                    this.isShow = false;
+                },
+                sure() {
+                    this.isShow = false;
+                },
+                keyHandle() {
+                    this.isShow = false;
+                },
+                //  点击更新 val
+                hourChange(hh) {
+                    let hhItems = event.target.parentNode.children;
+                    for (var i in hhItems) {
+                        hhItems[i].className = "";
+                    }
+                    event.target.className = 'isActive';
+                    event.target.parentNode.scrollTo(0, hh * 32);
+                    this.hh = hh;
+                    if (hh < 10) {
+                        this.hh = '0' + hh;
+                    }
+                    this.val = this.hh + ':' + this.mm + ':' + this.ss;
+                },
+                minuteChange(mm) {
+                    let mmItems = event.target.parentNode.children;
+                    for (var i in mmItems) {
+                        mmItems[i].className = "";
+                    }
+                    event.target.className = 'isActive';
+                    event.target.parentNode.scrollTo(0, mm * 32);
+                    this.mm = mm;
+                    if (mm < 10) {
+                        this.mm = '0' + mm;
+                    }
+                    this.val = this.hh + ':' + this.mm + ':' + this.ss;
+                },
+                secondChange(ss) {
+                    let ssItems = event.target.parentNode.children;
+                    for (var i in ssItems) {
+                        ssItems[i].className = "";
+                    }
+                    event.target.className = 'isActive';
+                    event.target.parentNode.scrollTo(0, ss * 32);
+                    this.ss = ss;
+                    if (ss < 10) {
+                        this.ss = '0' + ss;
+                    }
+                    this.val = this.hh + ':' + this.mm + ':' + this.ss;
+                },
+
+            },
+            mounted() {
+                //  滚动
+                var hours = document.querySelector('.hours');
+                var minutes = document.querySelector('.minutes');
+                var seconds = document.querySelector('.seconds');
+
+                //  字体样式初始化
+                hours.children[0].className = "isActive";
+                minutes.children[0].className = "isActive";
+                seconds.children[0].className = "isActive";
+
+                //  滚动更新val
+                hours.addEventListener("scroll", function () {
+                    var hoursNum = parseInt(this.scrollTop / 32);
+                    if (hoursNum < 10) {
+                        hoursNum = '0' + hoursNum;
+                    }
+                    timePicker.hh = hoursNum;
+                    timePicker.val = hoursNum + ':' + timePicker.mm + ':' + timePicker.ss;
+                });
+
+                minutes.addEventListener("scroll", function () {
+                    var minutesNum = parseInt(this.scrollTop / 32);
+                    if (minutesNum < 10) {
+                        minutesNum = '0' + minutesNum;
+                    }
+                    timePicker.mm = minutesNum;
+                    timePicker.val = timePicker.hh + ':' + minutesNum + ':' + timePicker.ss;
+                });
+
+                seconds.addEventListener("scroll", function () {
+                    var secondsNum = parseInt(this.scrollTop / 32);
+                    if (secondsNum < 10) {
+                        secondsNum = '0' + secondsNum;
+                    }
+                    timePicker.ss = secondsNum;
+                    timePicker.val = timePicker.hh + ':' + timePicker.mm + ':' + secondsNum;
+                });
+
+                //  失焦隐藏
+                document.addEventListener('click', function () {
+                    if (event.target.nodeName == "HTML") {
+                        timePicker.isShow = false;
+                    }
+                });
+            },
+            watch: {
+                //  滚动对齐
+                hh: function () {
+                    let {
+                        hourRoll
+                    } = this.$refs;
+                    //  对齐
+                    hourRoll.scrollTo(0, this.hh * 32);
+
+                    //  设置字体样式
+                    for (var i in hourRoll.children) {
+                        hourRoll.children[i].className = "";
+                    }
+                    var index = parseInt(this.hh);
+                    hourRoll.children[index].className = "isActive";
+                },
+                mm: function () {
+                    let {
+                        minuteRoll
+                    } = this.$refs;
+                    minuteRoll.scrollTo(0, this.mm * 32);
+                    for (var i in minuteRoll.children) {
+                        minuteRoll.children[i].className = "";
+                    }
+                    var index = parseInt(this.mm);
+                    minuteRoll.children[index].className = "isActive";
+                },
+                ss: function () {
+                    let {
+                        secondRoll
+                    } = this.$refs;
+                    secondRoll.scrollTo(0, this.ss * 32);
+                    for (var i in secondRoll.children) {
+                        secondRoll.children[i].className = "";
+                    }
+                    var index = parseInt(this.ss);
+                    secondRoll.children[index].className = "isActive";
+                }
+            },
+
+        })
+    </script>
+</body>
+
+</html>

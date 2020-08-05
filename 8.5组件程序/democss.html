@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .circleProgress_wrapper {
+            width: 200px;
+            height: 200px;
+            margin: 50px auto;
+            position: relative;
+            border: 1px solid #ddd;
+        }
+
+        .wrapper {
+            width: 100px;
+            height: 200px;
+            position: absolute;
+            top: 0;
+            overflow: hidden;
+        }
+
+        .right {
+            right: 0;
+        }
+
+        .left {
+            left: 0;
+        }
+
+        .circleProgress {
+            width: 160px;
+            height: 160px;
+            border: 20px solid #444;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            transform: rotate(45deg);
+        }
+
+        .rightcircle {
+            border-top: 20px solid #28bf88;
+            border-right: 20px solid #28bf88;
+            right: 0;
+            animation: circleProgressLoad_right 2s linear infinite;
+        }
+
+        .leftcircle {
+            border-bottom: 20px solid #28bf88;
+            border-left: 20px solid #28bf88;
+            left: 0;
+            animation: circleProgressLoad_left 2s linear infinite;
+        }
+
+        .words {
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            margin: 75px auto 0 auto;
+            text-align: center;
+        }
+
+        .control {
+            width: 200px;
+            height: 50px;
+            display: flex;
+            margin: 50px auto;
+        }
+
+        button {
+            width: 100px;
+            height: 50px;
+            font-size: 40px;
+            line-height: 50px;
+            outline: none;
+            border: 1px solid #E3E6Eb;
+            background-color: white;
+            color: #666A6E;
+        }
+
+        button:hover {
+            background-color: #E9F5FF;
+            color: rgb(91, 91, 185);
+            cursor: pointer;
+        }
+
+        @keyframes circleProgressLoad_right {
+            0% {
+                transform: rotate(45deg);
+            }
+
+            50% {
+                transform: rotate(225deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(225deg);
+            }
+        }
+
+        @keyframes circleProgressLoad_left {
+            0% {
+                transform: rotate(45deg);
+            }
+
+            50% {
+                transform: rotate(45deg);
+            }
+
+            100% {
+                transform: rotate(225deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <div class="circleProgress_wrapper">
+            <div class="wrapper right">
+                <div class="circleProgress rightcircle"></div>
+            </div>
+            <div class="words">{{percentage}}%</div>
+            <div class="wrapper left">
+                <div class="circleProgress leftcircle"></div>
+            </div>
+            <div class="quarter"></div>
+        </div>
+        <div class="control">
+            <button @click='reduce'>-</button>
+            <button @click='add'>+</button>
+        </div>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '.app',
+            data: {
+                percentage: 0
+            },
+            methods: {
+                add() {
+
+                    if (this.percentage >= 100) {
+                        this.percentage = 0
+                    }
+                    this.percentage += 10
+                },
+                reduce() {
+                    this.percentage -= 10
+                    if (this.percentage <= 0) {
+                        this.percentage = 0;
+                    }
+                    
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
