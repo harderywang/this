@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            border: 1px solid #e3e3e3;
+            border-collapse: collapse;
+        }
+
+        td {
+            min-width: 150px;
+            text-align: center;
+            border: 1px solid #e3e3e3;
+        }
+
+        tr {
+            min-width: 55px;
+            height: 55px;
+        }
+
+        button {
+            outline: none;
+            border: none;
+            background-color: rgb(154, 227, 231);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <h1 v-if='show'>你的购物车是空的</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        <input type="checkbox" name="" id=""> 全选
+                    </th>
+                    <th>商品名称</th>
+                    <th>单价</th>
+                    <th>数量</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                    <tr v-for='(item,index) in shopCarList'>
+                        <td>
+                            <input type="checkbox" name="" id="">
+                        </td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.price}}</td>
+                        <td>
+                            <button @click='reduceCount(item,index)'>-</button>
+                            <span>0</span>
+                            <button @click='addCount(item,index)'>+</button>
+                        </td>
+                        <td>
+                            <button @click='deletShopCarItem(item,index)'>删除</button>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <script src="../vue/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '.app',
+            data: {
+                shopCarList: [],
+                show: false,
+            },
+            created() {
+                let shopCarListStorge = localStorage.getItem('shopCarList');
+                this.shopCarList = JSON.parse(shopCarListStorge);
+                if (shopCarListStorge) {
+                    this.show = false
+                }
+            },
+            methods: {
+                deletShopCarItem(item, index) {
+                    console.log(item)
+                },
+                addCount(item, index){
+                    item.count++;
+            
+                },
+                reduceCount(item,index){
+                    item.count--;
+                    if( item.count<=0){
+                        item.count=0
+                        }
+                }
+            },
+
+            watch: {
+
+            },
+        })
+    </script>
+</body>
+
+</html>

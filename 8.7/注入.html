@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <coo>
+            <boo></boo>
+        </coo>
+    </div>
+   
+
+    <script src="./vue.js"></script>
+
+    <script>
+        var Provider = {
+            provide:{
+                // 父组件提供属性
+                foo:'bar',
+            },
+            template:`
+            <div>
+                <slot></slot>
+            </div>`
+        };
+        var Child ={
+            inject:['foo'],//在子组件中注入provide提供的属性
+            created(){
+                console.log(this.foo);
+            },
+            template:`
+            <h1>{{foo}}</h1>`,
+        };
+        Vue.component('coo',Provider);
+        Vue.component('boo',Child);
+        var app = new Vue({
+            el:'#app',
+        });
+        console.log(app.$children.$el)
+    </script>
+</body>
+</html>

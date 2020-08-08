@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+     <wang-yu-hang></wang-yu-hang>
+    </div>
+    <script src="./vue.js"></script>
+    <!--组件 ：有多个 html 标签组成一个带有功能性的小demo  例如 loading 弹框
+        封装在一起 以<组件名></组件名>方式名存在
+    -->
+    <script>
+// 私有组件 某一个组件内部 注册一个新的组件 
+
+        // 定义组件 没用被使用 已经实现功能 等待被实现 
+            //可以为全局组件也可以为局部组件 
+        var guKun = {
+            template:'<h1>哈哈哈</h1>'
+        }
+        var wyh = {
+            // template必须有一个根标签
+            template: `<div id="list">
+            <ul>
+                <li v-for="item in student">
+                    <strong>{{item.name}}</strong>
+                    <span>{{item.age}}</span>
+                    <span>{{item.dec}}</span>
+                    <gu-kun></gu-kun>
+                </li>
+            </ul>
+            
+        </div>`,
+
+            data: function () {
+                return {
+                    student: [
+                        { name: 'yyc', age: 13, dec: '你好我是杨同学' },
+                        { name: 'yyc', age: 13, dec: '你好我是杨同学' },
+                        { name: 'yyc', age: 13, dec: '你好我是杨同学' },
+                        { name: 'yyc', age: 13, dec: '你好我是杨同学' },
+                        { name: 'yyc', age: 13, dec: '你好我是杨同学' },
+                        { name: 'yyc', age: 13, dec: '你好我是杨同学' },
+
+                    ]
+                }
+            },
+            // 每个组件都有components
+            components:{
+                'gu-kun':guKun
+            }
+
+        }
+
+
+        var app= new Vue({
+            el:'#app',
+            // components 注册私有组件
+            components:{
+                // key 是组件名称  value组件对象 具体的组件信息
+                "wang-yu-hang":wyh
+            }
+        })
+    </script>
+</body>
+</html>

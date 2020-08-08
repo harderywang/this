@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .app {
+            width: 200px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <form action="">
+            <div>
+                <label for="">商品名称</label>
+                <input type="text" name="" id="" placeholder="请输入商品" v-model='shopItem.name'>
+            </div>
+            <div>
+                <label for="">价格</label>
+                <input type="text" name="" id="" placeholder="请输入价格" v-model='shopItem.price'>
+            </div>
+            <div>
+                <button @click.prevent='addShopItem()'>请添加商品</button>
+            </div>
+        </form>
+
+    </div>
+    <script src="../vue/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '.app',
+            data: {
+                shopItem: {
+                    name: '',
+                    price: ''
+                },
+                shopList: [],//商品列表
+                flag:false,
+            },
+            methods: {
+                addShopItem() {
+                    // 回调函数指向window
+                    console.log(this.flag)
+                    for(let i =0 ;i<this.shopList.length;i++){
+                        let ele = this.shopList[i]
+                         // ele.name=this.shopItem.name;  相等 证明已经添加过了
+                         if (ele.name == this.shopItem.name) {
+                             this.flag =true;
+                            alert('商品已经存在不需要重复添加');
+                            break;
+                        } else {
+                            this.flag=false
+                            // 不存在添加      
+                        };
+                       
+                    }
+                    if(!this.flag){
+                            this.shopList.push({
+                                ...this.shopItem,
+                                id: (new Date()).getTime(),
+                            });
+                        }
+                    this.shopItem.name=''
+                    this.shopItem.price=''
+                }
+            },
+            created() {//页面初始化
+                let shopListStroge = localStorage.getItem('shopList');
+                if (!shopListStroge) {
+                    localStorage.setItem('shopList', JSON.stringify(this.shopList));
+                } else {
+                    // 非空 证明存在商品列表字段  给shopList 做初始化处理
+                    this.shopList = JSON.parse(shopListStroge)
+                }
+            },
+            watch: {
+                shopList: function (val) {
+                    // 去重后的结果
+                    localStorage.setItem('shopList', JSON.stringify(val));
+                    console.log(localStorage.getItem('shopList'))
+                    localStorage.setItem('shopCarList', JSON.stringify(val));
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

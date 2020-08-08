@@ -1,0 +1,29 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<!--
+2013-9-30: Created.
+-->
+<svg>
+<metadata>
+Created by iconfont
+</metadata>
+<defs>
+
+<font id="iconfont" horiz-adv-x="1024" >
+  <font-face
+    font-family="iconfont"
+    font-weight="500"
+    font-stretch="normal"
+    units-per-em="1024"
+    ascent="896"
+    descent="-128"
+  />
+    <missing-glyph />
+    
+    <glyph glyph-name="chaguanbi" unicode="&#58882;" d="M511.976449 439.479385 317.702097 633.792647 262.162812 578.252338 456.438188 383.939076 262.162812 189.617622 317.702097 134.22476 511.976449 328.546214 706.267185 134.22476 761.805446 189.617622 567.515735 383.939076 761.805446 578.252338 706.267185 633.792647Z"  horiz-adv-x="1024" />
+
+    
+
+
+  </font>
+</defs></svg>

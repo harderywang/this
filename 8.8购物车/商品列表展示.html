@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    table{
+        border: 1px solid #e3e3e3;
+        border-collapse: collapse;
+    }
+    td{
+        min-width: 150px;
+        text-align: center;
+        border: 1px solid #e3e3e3;
+    }
+    tr{
+        min-width: 55px;
+        height: 55px;
+    }
+    button{
+        outline: none;
+        border: none;
+        background-color: rgb(154, 227, 231);
+    }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <table>
+            <thead>
+                <tr>
+                    <td>序号</td>
+                    <td>商品名称</td>
+                    <td>商品价格</td>
+                    <td>操作</td>
+                </tr>
+            </thead>
+            <tr v-for='(item,index) in shopList'>
+                <td>{{index+1}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.price}}</td>
+                <td>
+                    <button @click='addShopCarList(item,index)'>加入购物车</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <script src="../vue/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:'.app',
+            data:{
+                shopList:[
+                    {name:'苹果',price:12,id:2312232}
+                ],
+                shopCarList:[],
+                flag:true,
+            },
+            created(){
+                    let shopListStorge=JSON.parse(localStorage.getItem('shopList'));
+                    this.shopList=shopListStorge;
+                    let shopCarListStorge = localStorage.getItem('shopCarListStorge');
+                    if(shopCarListStorge){
+                        localStorage.getItem('shopCarList',JSON.stringify(this.shopCarList))
+                    }else{
+                        this.shopCarList=JSON.parse(shopCarListStorge)
+                    }
+                },
+            methods:{
+            addShopCarList(item,index){
+                // 判断购物车中是否有这个商品有count+1
+                console.log(this.shopCarList)
+                for(let i =0 ;i<this.shopCarList.length;i++){
+                        let ele = this.shopCarList[i]
+                         // ele.name=this.shopItem.name;  相等 证明已经添加过了
+                         if (ele.name == this.shopItem.name) {
+                             this.flag =true;
+                            alert('商品已经存在不需要重复添加');
+                            break;
+                        } else {
+                            this.flag=false
+                            // 不存在添加      
+                        };
+                       
+                    }
+                if(!this.flag){
+                    this.shopCarList.push({
+                    ...item,
+                    count:1,
+                    shopCarId:(new Date()).getTime()+'shopcarid'
+                })
+                }
+               
+            }
+            },
+            
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "678637",
+      "name": "叉 关闭",
+      "font_class": "chaguanbi",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    }
+  ]
+}

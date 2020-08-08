@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="app">
+        <!-- <one :title='msg' @on-title='changeHandle'></one> -->
+        <!-- <one :title='msg' v-on:update:title='msg=$event'></one> -->
+        <!-- <one  :title.sync='msg'></one> -->
+        
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        Vue.component('one', {
+            template: '<h1 @click=onchange>{{title}}</h1>',
+            props:['title'],
+            methods:{
+                onchange(){
+                    // this.$emit('on-title','欣慰')
+                    this.$emit('update:title','欣慰')
+
+                }
+            }
+        });
+        var app = new Vue({
+            el:'.app',
+            data:{msg:'我是一个标题'},
+            methods:{
+                changeHandle(data){
+                    this.msg=data
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>
+<!-- 
+    vue 单项数据流 
+    props 传递的数据 不允许在子组件中直接修改数据 而是通过 this.emit()通知父组件修改据 这种修改方式就是【单项数据流】
+
+ -->

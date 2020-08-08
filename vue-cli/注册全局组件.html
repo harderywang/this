@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 注意 cli不支持 应该是 <elCount></elCount>-->
+        <!-- 使用组件必须要有一个root元素包裹 -->
+      <el-count></el-count>
+      <el-count></el-count>
+      <el-count></el-count>
+     
+        <!-- <elCount></elCount> -->
+    </div>
+    <script src="./vue.js"></script>
+    <!--组件 ：有多个 html 标签组成一个带有功能性的小demo  例如 loading 弹框
+        封装在一起 以<组件名></组件名>方式名存在
+    -->
+    <script>
+// 私有组件 某一个组件内部 注册一个新的组件 
+
+ // 注册全局组件
+    Vue.component('el-count',{
+        // 实现组件功能
+        template:`
+        <div>
+            <button @click='add'>+</button>
+            <span>{{count}}</span>
+            <button @click='red'>-</button>
+        </div>
+        `,
+        // data给的必须是function return 返回的必须是对象
+            // 组件是独立的 组件中的变量 组件内部中的数据 是私有的 函数方法中声明的变量是私有的
+            // 所以data赋值为函数
+        data:function(){
+            return{//意义表示组件中的数据
+                count:0,//计数器
+            }
+        },
+        methods:{
+            add(){
+                console.log(this)//注意 this 指向 组件实例
+                // 可以通过this 获取组件内部的 data methods conpument ....
+                this.count++;
+            },
+            red(){
+                this.count--;
+            }
+        }
+    })
+        var app= new Vue({
+            el:'#app',
+        })
+    </script>
+</body>
+</html>

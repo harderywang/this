@@ -1,0 +1,30 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "8631437",
+      "name": "勾",
+      "font_class": "gou",
+      "unicode": "e6a0",
+      "unicode_decimal": 59040
+    },
+    {
+      "icon_id": "10537423",
+      "name": "向右",
+      "font_class": "right-fill",
+      "unicode": "e502",
+      "unicode_decimal": 58626
+    },
+    {
+      "icon_id": "12198443",
+      "name": "向下",
+      "font_class": "sort-bottom",
+      "unicode": "e527",
+      "unicode_decimal": 58663
+    }
+  ]
+}
