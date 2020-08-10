@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      table {
+        border: 1px solid #cccccc;
+        border-collapse: collapse;
+      }
+      td {
+        min-width: 150px;
+        text-align: center;
+        border: 1px solid #cccccc;
+      }
+      tr {
+        min-height: 55px;
+        height: 55px;
+      }
+      td > button {
+        outline: none;
+        appearance: none;
+        border: none;
+        background-color: rgb(59, 230, 102);
+        color: #d4f5e4;
+        height: 35px;
+        line-height: 25px;
+        text-align: center;
+        padding: 5px 15px;
+      }
+      .fade-enter-active,
+      .fade-leave-active {
+        transition: opacity 0.5s;
+      }
+      .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+        opacity: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h1 v-if="shopCatList.length==0">你的购物车是空的</h1>
+      <div v-else>
+        <table>
+          <thead>
+            <tr>
+              <th><input type="checkbox" />全选</th>
+              <th>商品名称</th>
+              <th>单价</th>
+              <th>数量</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(item,index) in shopCatList">
+              <td>
+                <input type="checkbox" />
+              </td>
+              <td>{{item.name}}</td>
+              <td>{{item.price}}</td>
+              <td>
+                <button @click="reduceCount(item)">-</button>
+                <span>{{item.count}}</span>
+                <button @click="addCount(item)">+</button>
+              </td>
+              <td>
+                <button @click="deletShopCatItem(item,index)">删除</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div>
+          总价钱<span>{{totalPrice}}</span>
+          <button>结算</button>
+        </div>
+      </div>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          shopCatList: [],
+          show: true,
+          totalPrice:0
+        },
+        created() {
+          // 初始化获取购物车列表树
+          let shopCatListStorage = localStorage.getItem("shopCatList");
+          if (shopCatListStorage != null) {
+            this.shopCatList = JSON.parse(shopCatListStorage);
+          }
+        },
+        methods: {
+          deletShopCatItem(item, index) {
+            console.log(item, index);
+            this.shopCatList = this.shopCatList.filter((ele) => {
+              return ele.shopCatID != item.shopCatID;
+            });
+            // 修改localstorage 中shopCatList\
+            // localStorage.setItem('shopCatList',JSON.stringify(this.shopCatList))
+          },
+          reduceCount(item) {
+            --item.count;
+            if (item.count <= 0) {
+              item.count = 0;
+            }
+          },
+          addCount(item) {
+            ++item.count;
+          },
+        },
+      });
+
+      // 选中input 文字变蓝色  总价变化
+      // 全选
+    </script>
+  </body>
+</html>

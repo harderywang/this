@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+        <!-- 
+            修改地址
+         -->
+        <router-link to="/">index哈哈哈</router-link>
+        <!-- 带有参数的路由 -->
+        <router-link to="/about?id=1">aaaa</router-link>
+        <router-link to="/about/home">home</router-link>
+        <router-view></router-view>
+
+    </div>
+    <script src="./vue.js"></script>
+    <script src="./vue-router.js"></script>
+    <script>
+      var Index = {
+        template: `
+          <h1>我是index组件</h1>
+          `,
+      };
+      var About = {
+        template: `
+          <h1>我是About组件</h1>
+          `,
+      };
+      var Err = {
+          template:' <h1>页面没了404 没有这个路由组件</h1>'
+      }
+// 路由匹配是有优先级的 *最低 相同按照顺序
+      var app = new Vue({
+        el: "#app",
+        router: new VueRouter({
+          routes: [
+            {
+              path: "/",
+              name: "Index",
+              component: Index,
+            },
+            {
+              path: "/about",
+              name: "About",
+              component: About,
+            },
+            {
+              path: "*",//匹配所有的url地址 优先级最低 
+              name: "Err",
+              component: Err,
+            },
+            {
+              path: "/about-*",//匹配/about-任意字符 
+              name: "Err",
+              component: Err,
+            },
+          ],
+        }),
+        created(){
+            console.log(this.$route)//路由地址信息
+        }
+      });
+    //   this.$router 与this.$route
+    </script>
+  </body>
+</html>

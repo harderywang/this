@@ -1,9 +1,6 @@
 // 项目入口文件
 import Vue from 'vue'//声明一个Vue变量导入node_module下的vue包
 
-// import 'whatwg-fetch'
-// import promise from 'es6-promise'
-// promise.polyfill();
 
 import App from './App.vue'//导入.vue文件
 // 导入路由

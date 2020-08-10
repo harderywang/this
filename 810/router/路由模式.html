@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+      <!-- 路由模式有三种 
+            history 历史模式 从服务查找路径 找离他最近的服务 没有# 弊端 不利于seo（搜素引擎）
+            hash 默认的
+
+            　Hash:      使用URL的hash值来作为路由。支持所有浏览器。
+
+　          　History:   以来HTML5 History API 和服务器配置。参考官网中HTML5 History模式
+
+　　          Abstract： 支持所有javascript运行模式。如果发现没有浏览器的API，路由会自动强制进入这个模式。
+                            运行在node.js上
+    -->
+    <div id="app">
+        <!-- 
+            修改地址
+         -->
+        <router-link to="/">index哈哈哈</router-link>
+        <router-link to="/about">aaaa</router-link>
+        <router-view></router-view>
+
+    </div>
+    <script src="./vue.js"></script>
+    <script src="./vue-router.js"></script>
+    <script>
+      var Index = {
+        template: `
+          <h1>我是index组件</h1>
+          `,
+      };
+      var About = {
+        template: `
+          <h1>我是About组件</h1>
+          `,
+      };
+
+      var app = new Vue({
+        el: "#app",
+        router: new VueRouter({
+          routes: [
+            {
+              path: "/",
+              name: "Index",
+              component: Index,
+            },
+            {
+              path: "/about",
+              name: "About",
+              component: About,
+            },
+          ],
+          mode:'history'
+        }),
+      });
+    </script>
+  </body>
+</html>

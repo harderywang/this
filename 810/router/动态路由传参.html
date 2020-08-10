@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <router-link to="/">index</router-link>
+      <!-- query传参数 -->
+      <router-link to="/about?id=男装&name=wyh">about</router-link>
+      <router-link :to="{name:'About',query:{name:'wyh',id:'男装'}}">关于</router-link>
+      <router-link to="/home">404</router-link>
+      <!-- 错误写法 params 只能通过 name跳转 -->
+      <!-- <router-link :to="{path:'/a',params:{wyh:'王宇航',id:'123123'}}">aaaa</router-link> -->
+     <!-- params 传参 -->
+      <router-link :to="{name:'A',params:{wyh:'王宇航',id:'123123'}}">aaaa</router-link>
+
+
+      <router-view></router-view>
+    </div>
+    <script src="./vue.js"></script>
+    <script src="./vue-router.js"></script>
+    <script>
+      // 动态路由传参
+      // 1： :to
+      // 2：params 传参 需要通过 name 跳转路哟  
+      // 3: params 传参 参数获取  $route.params
+      // 4：params 传参；路由对象必须写 path:'/地址/:key/:key1'
+      // 5：query  ?拼接地址 可以通过 path name 跳转酷游
+      var Index = {
+        template: `
+          <h1>我是index组件</h1>
+          `,
+      };
+      var About = {
+        template: `
+          <h1>我是About组件 <em style="color:red">{{$route.query.id}}</em> </h1>
+          `,
+      };
+      var Err = {
+        template: `
+          <h1>页面走丢了 404 </h1>
+          `,
+      };
+
+      var a = {
+        template: `
+          <h1>{{$route.params}} </h1>
+          `,
+      };
+      var app = new Vue({
+        el: "#app",
+        router: new VueRouter({
+          routes: [
+            {
+              path: "*", 
+              name: "Error",
+              component: Err,
+            },
+            {
+              path: "/",
+              name: "Index",
+              component: Index,
+            },
+            {
+              path: "/about",
+              name: "About",
+              component: About,
+            },
+            {
+              path: "/a/:wyh/:id", 
+              name: "A",
+              component: a,
+            },
+          ],
+        }),
+        created() {
+          console.log(this.$route)
+        },
+      });
+    </script>
+  </body>
+</html>

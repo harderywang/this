@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        如何实例化一个路由对象 路由对象有哪些？ 如何通过vue获取路由对象
+        如何把组件 注册为路由组件
+        
+
+
+
+        路由的作用 实现单页面应用 微前端
+        
+        路由：url
+        路由组件：通过url地址加载的组件 叫做路由组件 注册在路由对象上的组件叫做 路由对象
+        router-link 
+        router-view 渲染路由组件
+    -->
+    <div class="app">
+        <!-- router-link 匹配路由信息中Path 为/的路由 类似于a标签 -->
+        <router-link to='/'>index</router-link>
+        <router-link to='/About'>about</router-link>
+
+        <!-- router-view 渲染路由组件  
+            注意 通过url地址匹配到路由信息渲染路由组件 与router-link 没有关系
+         -->
+        <router-view></router-view>
+    </div>
+    <script src="./vue.js"></script>
+    <script src="./vue-router.js"></script>
+    <script>
+    
+        var Index = {
+            template:'<h1>我是index组件</h1>'
+        };
+        var About = {
+            template:'<h1>我是About组件</h1>'
+        }
+
+        // 实例化一个路由对象
+        // var Router =new VueRouter({
+        //     // routes的值必须为一个数组 配置路由
+        //     routes:[
+        //         // 第一个路由信息
+        //         {
+        //             path:'/',//路由地址
+        //             name:'Index',//路由名称
+        //             component:Index//注册路由组件
+        //             // 路由组件作用 通过匹配路由'/'或者路由名称为Index 加载路由组件Index
+        //             // 一个地址 一个路由名称 一个路由组件
+        //         },
+        //         {
+        //             path:'/About',
+        //             name:'About',
+        //             component:About
+        //         }
+        //     ]
+        // });
+        // console.log(Router);//路由地址信息
+
+        var app = new Vue({
+            el:'.app',
+            // router:绑定路由实例
+            router:new VueRouter({
+            // routes的值必须为一个数组 配置路由
+            routes:[
+                // 第一个路由信息
+                {
+                    path:'/',//路由地址
+                    name:'index',//路由名称
+                    component:Index//注册路由组件
+                    // 路由组件作用 通过匹配路由'/'或者路由名称为Index 加载路由组件Index
+                    // 一个地址 一个路由名称 一个路由组件
+                },
+                {
+                    path:'/About',
+                    name:'About',
+                    component:About
+                }
+            ]
+        }),
+        })
+    </script>
+</body>
+</html>
