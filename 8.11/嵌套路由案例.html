@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        nav {
+            display: flex;
+            justify-content: space-between;
+            height: 45px;
+            position: fixed;
+            bottom: 0px;
+            background-color: #e3e3e3;
+            width: 100%;
+        }
+
+        nav>div {
+            font-size: 20px;
+
+            width: 100px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+        }
+
+        .index .router-link-active {
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+
+        <router-view></router-view>
+    </div>
+    <script src="./vue.js"></script>
+    <script src="./vue-router.js"></script>
+    <script>
+        var index = {
+            template: `
+            <div class='index'>
+                <router-view></router-view>
+                <nav> 
+                    <router-link tag='div' to='/index/home'>首页</router-link>
+                    <router-link tag='div' to='/index/adress'>通讯录</router-link>
+                    <router-link tag='div' to='/index/find'>发现</router-link>
+                    <router-link tag='div' to='/index/mine'>个人中心</router-link>
+                 </nav>
+             </div>
+            `,
+        };
+        var register = {
+            template: `
+            <div>
+                <h1>注册</h1>
+                <router-link to='/index/mine'>个人中心</router-link>
+             </div>
+            `,
+        }
+        var home = {
+            template: `
+            <div>
+                <h1>首页</h1>
+                <router-link to='/register'>注册</router-link>
+            </div>
+            `,
+        }
+        var adress = {
+            template: `<h1>通讯录</h1>`
+        }
+        var find = {
+            template: `<h1>发现</h1>`
+        }
+        var mine = {
+            template: `<h1>个人中心</h1>`
+        }
+        var app = new Vue({
+            el: '.app',
+            router: new VueRouter({
+                routes: [
+                    {
+                        path: '/index',
+                        component: index,
+                        children: [
+                            {
+                                path: 'home', component: home
+                            },
+                            {
+                                path: 'adress', component: adress
+                            },
+                            {
+                                path: 'find', component: find
+                            },
+                            {
+                                path: 'mine', component: mine
+                            },
+                            {
+                                path:'/index',redirect:'/index/home',
+                             },
+                        ]
+                    },
+                    {
+                        path: '/register', component: register,
+                    },
+                    {
+                        path: '/', redirect: '/index',
+                    },
+                    {
+                        path: '/index*', component: index, //级别最低的
+                    },
+                ]
+            })
+        })
+    </script>
+</body>
+
+</html>

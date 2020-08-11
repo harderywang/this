@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="app">
+        <button @click="$router.push('/wang')" >点击跳转页面更改路由地址$router.push</button>
+        <router-link tag='button' to='/wang'>router-link</router-link>
+        <button @click="$router.back()" >返回</button>
+        <router-view></router-view>
+    </div>
+    <script src="./vue.js"></script>
+    <script src="./vue-router.js"></script>
+    <script>
+        var wang={
+            template:'<h1>wang</h1>'
+        }
+        var chao={
+            template:'<h1>chao</h1>'
+        }
+        var fei={
+            template:'<h1>fei</h1>'
+        }
+        var Router = new VueRouter({
+            routes:[
+                {
+                    path:'/wang',
+                    name:'wang',
+                    component:wang,
+                },
+                {
+                    path:'/chao',
+                    name:'chao',
+                    component:chao,
+                },
+                {
+                    path:'/fei',
+                    name:'fei',
+                    component:fei,
+                },
+                {
+                    // 当路径为'/'重定向为'/fei'
+                    path:'/',
+                    // redirect:'路径' 设置默认路径
+                    // redirect:'/fei'
+                    // 通过名字定向
+                    redirect:{name:'fei'}
+                }
+            ]
+        })
+        var app=new Vue({
+            el:'.app',
+            router:Router,
+            created(){
+                console.log(this.$router,'$router')//返回一个所用route信息的一个集合 api等等
+                console.log(this.$router.app,'$router.app')//配置了 router 的 Vue 根实例。
+                console.log(this.$router.mode,'$router.mode')  //router 模式 hash history abstract
+                console.log(this.$router.currentRoute,'$router.currentRoute')//获取当前路由信息
+                console.log(this.$route)//获取当前路由信息
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .router-link-active{
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+   
+    <div class="app">
+        <router-link tag='span' to='/one_one'>one_one</router-link>
+        <router-link tag='span' to='/two_one'>two_one</router-link>
+        <router-link tag='span' to='/three_one'>three_one</router-link>
+        <router-view style="border: 1px solid red;"></router-view>
+    </div>
+    <script src="./vue.js"></script>
+    <script src="./vue-router.js"></script>
+    <script>
+        var one_one={
+            template:`
+            <div>
+                <router-link tag='span' to='/one_one/one_two1'>one_two1</router-link>
+                <router-link tag='span' to='/one_one/one_two2'>one_two2</router-link>
+                <router-link tag='span' to='/one_one/one_two3'>one_two3</router-link>
+                <router-view style="border: 1px solid blue;"></router-view>
+            </div>     
+            `
+        };
+        var two_one={
+            template:`
+            <div>
+                <router-link tag='span' to='/two_one/two_two1'>two_two1</router-link>
+                <router-link tag='span' to='/two_one/two_two2'>two_two2</router-link>
+                <router-link tag='span' to='/two_one/two_two3'>two_two3</router-link>
+                <router-view style="border: 1px solid blue;"></router-view>
+            </div> 
+            `
+        };
+        var three_one={
+            template:`
+            <div>
+                <router-link tag='span' to='/three_one/three_two1'>three_two1</router-link>
+                <router-link tag='span' to='/three_one/three_two2'>three_two2</router-link>
+                <router-link tag='span' to='/three_one/three_two3'>three_two3</router-link>
+                <router-view style="border: 1px solid blue;"></router-view>
+            </div>
+            `
+        };
+        // var one_p1={
+        //     template:`
+        //     <h1>one_p1</h1>
+        //     `
+        // }
+        var one_p1={
+            template:`
+            <div>
+                <router-link tag='h1' to='/one_one/one_two1/one_span1'>span1</router-link>
+                <router-link tag='h2' to='/one_one/one_two1/one_span2'>span2</router-link>
+                <router-view style="border: 1px solid blue;"></router-view>
+            </div>
+            `
+        }
+        var one_p2={
+            template:' <h1>one_p2</h1>'
+        }
+        var one_p3={
+            template:' <h1>one_p3</h1>'
+        }
+        var two_p1={
+            template:' <h1>two_p1</h1>'
+        }
+        var two_p2={
+            template:' <h1>two_p2</h1>'
+        }
+        var two_p3={
+            template:' <h1>two_p3</h1>'
+        }
+        var three_p1={
+            template:' <h1>three_p1</h1>'
+        }
+        var three_p2={
+            template:' <h1>three_p2</h1>'
+        }
+        var three_p3={
+            template:' <h1>three_p3</h1>'
+        }
+        var one_span1={
+            template:'<h2>one_span1</h2>'
+        }
+        var one_span2={
+            template:'<h2>one_span2</h2>'
+        }
+        var Router = new VueRouter({
+            routes:[
+                {
+                    path:'/one_one',
+                    component:one_one,
+                    children:[
+                        {
+                            path:'one_two1',
+                            component:one_p1,
+                            children:[
+                                {path:'one_span1',component:one_span1},
+                                {path:'one_span2',component:one_span2}
+                            ]
+                        },
+                        {path:'one_two2',component:one_p2},
+                        {path:'one_two3',component:one_p3}
+                    ]
+                },
+                {
+                    path:'/two_one',
+                    component:two_one,
+                    children:[
+                        {path:'two_two1',component:two_p1},
+                        {path:'two_two2',component:two_p2},
+                        {path:'two_two3',component:two_p3}
+                    ]
+                },
+                {
+                    path:'/three_one',
+                    component:three_one,
+                    children:[
+                        {path:'three_two1',component:three_p1},
+                        {path:'three_two2',component:three_p2},
+                        {path:'three_two3',component:three_p3}
+                    ]
+                },
+                {
+                    path:'/',
+                    redirect:'/one_one'  
+                }
+            ]
+        });
+        var app = new Vue({
+            el:'.app',
+            router:Router,
+        })
+    </script>
+</body>
+</html>

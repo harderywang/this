@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <script src="./vue-router.js"></script>
+    <style>
+        /* 在多级路由 只会被一种选中 */
+        /* .router-link-exact-active {
+            color: blue;
+        } */
+        /* 默认匹配/* 所以router-link to='/'也会被激活 */
+        .router-link-active {
+            color: blue;
+        }
+
+        .wang {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <router-link tag='span' to='/index'>首页</router-link>
+        <router-link tag='span' to='/list'>课程</router-link>
+        <router-view></router-view>
+
+    </div>
+
+
+    <script>
+        var index = {
+            template: `
+            <div>
+                <h1>index</h1>
+            </div>
+            `
+        };
+        var list = {
+            template: `
+            <div>
+                <router-link tag='span' to='/list/p1'>前端</router-link>
+            <router-link tag='span' to='/list/p2'>java</router-link>
+            <router-link tag='span' to='/list/p3'>大数据</router-link>
+            <router-view></router-view>
+            </div>
+            
+            `
+        };
+        var p1 = {
+            template: `  <p>p1</p> `
+        };
+        var p2 = {
+            template: `  <p>p2</p> `
+        };
+        var p3 = {
+            template: `  <p>p3</p> `
+        };
+        var Router = new VueRouter({
+            routes: [
+                {
+                    path: '/',
+                    redirect: '/index'
+                },
+                {
+                    path: '/index',
+                    component: index
+                },
+                {
+                    path: '/list',
+                    component: list,
+                    children: [
+                        { path: 'p1', component: p1, },
+                        { path: 'p2', component: p2 },
+                        { path: 'p3', component: p3 },
+                        { path: '', redirect: 'p1', }
+                    ]
+                },
+
+            ]
+        });
+        var app = new Vue({
+            el: '.app',
+            router: Router,
+        })
+    </script>
+</body>
+
+</html>

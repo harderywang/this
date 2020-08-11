@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="app">
+        <!-- 添加样式类名为wang 
+            1在标签中添加 
+            2写在路由信息中linkActiveClass:'wang' 
+            注意通常与exact配合使用
+            exact:是否激活默认匹配的类名
+
+            直接使用用 exact-active-class
+            或者linkExactActiveClass
+        -->
+        <router-link to='/' active-class='wang'>active-class</router-link>
+        <router-view></router-view>
+    </div>
+    <script src="./vue.js"></script>
+    <script src="./vue-router.js"></script>
+    <script>
+        var index={
+            template:'<h1>active-class</h1>'
+        }
+        var Router = new VueRouter({
+            routes:[
+                {
+                    path:'/',
+                    name:'index',
+                    component:index,
+                }
+            ]
+        })
+        var app=new Vue({
+            el:'.app',
+            router:Router,
+        })
+    </script>
+</body>
+</html>
