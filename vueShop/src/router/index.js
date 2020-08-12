@@ -6,7 +6,19 @@ Vue.use(VueRouter)
 
 
 let router = new VueRouter({
-    router:[],
+    // routes 是所有router的集合
+    routes:[
+        {
+            path:'/',
+            redirect:'/index',
+        },
+        {
+            path:'/index',
+            name:'index',
+            component:()=>import('../views/index'),
+        },
+    
+    ],
 })
 
 export default router

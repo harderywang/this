@@ -6,7 +6,6 @@
       <router-link   to='/index/find'>发现</router-link>
       <router-link   to='/index/adress'>通信地址</router-link>
       <router-link   to='/index/mine'>个人中心</router-link>
-
     </nav>
   </div>
 </template>

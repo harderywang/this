@@ -7,15 +7,15 @@
       <h1>注册页面</h1>
       <div class="form-control">
         <label for>用户名：</label>
-        <input type="text" />
+        <input type="text" v-model="userName" />
       </div>
       <div class="form-control">
         <label for>手机号：</label>
-        <input type="text" />
+        <input type="text"  v-model='iphone' />
       </div>
       <div class="form-control">
         <label for>密&#X3000;码：</label>
-        <input type="password" />
+        <input type="password" v-model="password" />
       </div>
       <div class="form-control">
         <button @click.prevent='setRegister'>注册</button>
@@ -25,17 +25,30 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex'
 export default {
     name:'register',
     data(){
-      return{
-
+      return{    
+            userName:'',
+            password:'',
+            iphone:'',
+            token:'addd'
       }
     },
     methods:{
+       ...mapActions([ "noticeToken"]),
       setRegister(){
-        this.$router.push('/index/home')
-      }
+        this.$router.push('/index/home');
+        this.$store.dispatch('noticeUserInfo',{
+           userName:this.userName,
+            password:this.password,
+            iphone:this.iphone,
+        });
+         this.noticeToken('adddd');
+      },
+      
+      
     }
 }
 </script>
