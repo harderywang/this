@@ -2,8 +2,8 @@
   <div id="topSearchBox">
     <input class="searchIpt input" type="text" name id placeholder="请输入想要输入的商品" />
     <button class="searchBtn button">
-      <span class="iconfont icon-sousuo"></span>搜索
-      <span></span>
+      <span class="iconfont icon-sousuo"></span>
+      <span>搜索</span>
     </button>
   </div>
 </template>
@@ -15,9 +15,9 @@ export default {};
 <style>
 #topSearchBox {
   display: flex;
-  position: absolute;
+  /* position: absolute;
   right: 100px;
-  top: 45px;
+  top: 45px; */
 }
 #topSearchBox > .searchIpt {
     padding-left: 10px;

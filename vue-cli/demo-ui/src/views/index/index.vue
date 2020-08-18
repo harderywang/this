@@ -27,6 +27,9 @@ export default {
     position: fixed;
     bottom: 0px;
   }
-
+.nav nav:hover{
+  color: purple;
+  border-bottom: purple;
+}
 
 </style>
